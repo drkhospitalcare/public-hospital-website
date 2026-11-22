@@ -45,8 +45,8 @@ export const HOSPITAL_INFO = {
   
   // Email
   email: {
-    enquiry: "enquiries@drkhospital.com",
-    contact: "contact@drkhospital.com",
+    enquiry: "enquiries@drkhospitals.com",
+    contact: "contact@drkhospitals.com",
   },
   
   // Specialties

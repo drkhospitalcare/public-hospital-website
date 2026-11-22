@@ -17,7 +17,7 @@ test.describe("SUITE 2 – Admin Authentication Tests", () => {
 
   test("AUTH-003: Invalid email is rejected", async ({ page }) => {
     await page.goto(`${ADMIN_BASE}/admin/login`);
-    await page.fill('#email', "nonexistent-user-12345@drkhospital.com");
+    await page.fill('#email', "nonexistent-user-12345@drkhospitals.com");
     await page.fill('#password', "AnyPassword123!");
     await page.click('button[type="submit"]');
 

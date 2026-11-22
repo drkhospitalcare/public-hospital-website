@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   description:
     "Learn about DRK Hospital in Chennai, our healthcare story, vision, mission, healthcare philosophy, core values, clinical standards, and modern facilities for Dental, Skin, and Hair health.",
   alternates: {
-    canonical: "https://drkhospital.com/about",
+    canonical: "https://drkhospitals.com/about",
   },
   openGraph: {
     title: "About DRK Hospital | Chennai, Tamil Nadu",
     description:
       "A premier healthcare center in Chennai dedicated to clinical excellence across Dental Care, Skin Care, and Hair Care. Rooted in care with compassionate, disciplined expertise.",
-    url: "https://drkhospital.com/about",
+    url: "https://drkhospitals.com/about",
     images: [
       {
         url: "/images/hospital-building.jpg",

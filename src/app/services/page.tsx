@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Explore DRK Hospital's dedicated healthcare specialties: Dental Care, Skin Care, and Hair Care in Chennai. Clinical precision, advanced hygiene, and patient-first care.",
   alternates: {
-    canonical: "https://drkhospital.com/services",
+    canonical: "https://drkhospitals.com/services",
   },
   openGraph: {
     title: "Healthcare Services | DRK Hospital Chennai",
     description:
       "Comprehensive dental sciences, clinical dermatology, and specialized trichology treatments delivered with medical excellence in Chennai, Tamil Nadu.",
-    url: "https://drkhospital.com/services",
+    url: "https://drkhospitals.com/services",
     images: [
       {
         url: "/images/hero-clinic.jpg",

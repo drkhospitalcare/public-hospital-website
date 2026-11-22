@@ -18,7 +18,7 @@ export default function AdminRootLayout({
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [adminEmail, setAdminEmail] = useState("admin@drkhospital.com");
+  const [adminEmail, setAdminEmail] = useState("admin@drkhospitals.com");
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   const isLoginPage = pathname === "/admin/login";

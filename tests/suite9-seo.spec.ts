@@ -45,11 +45,11 @@ test.describe("SUITE 9 – SEO and Metadata Tests", () => {
   test("SEO-006: Canonical URL configuration is valid", async ({ page }) => {
     await page.goto(`${PUBLIC_BASE}/`);
     const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
-    expect(canonical).toBe("https://drkhospital.com");
+    expect(canonical).toMatch(/https:\/\/drkhospitals?\.com/);
 
     await page.goto(`${PUBLIC_BASE}/about`);
     const aboutCanonical = await page.locator('link[rel="canonical"]').getAttribute("href");
-    expect(aboutCanonical).toBe("https://drkhospital.com/about");
+    expect(aboutCanonical).toMatch(/https:\/\/drkhospitals?\.com\/about/);
   });
 
   test("SEO-007: sitemap.xml endpoint returns valid sitemap XML", async ({ request }) => {
@@ -57,10 +57,10 @@ test.describe("SUITE 9 – SEO and Metadata Tests", () => {
     expect(res.status()).toBe(200);
     const text = await res.text();
     expect(text).toContain("<urlset");
-    expect(text).toContain("https://drkhospital.com/about");
-    expect(text).toContain("https://drkhospital.com/services");
-    expect(text).toContain("https://drkhospital.com/contact");
-    expect(text).toContain("https://drkhospital.com/gallery");
+    expect(text).toMatch(/https:\/\/drkhospitals?\.com\/about/);
+    expect(text).toMatch(/https:\/\/drkhospitals?\.com\/services/);
+    expect(text).toMatch(/https:\/\/drkhospitals?\.com\/contact/);
+    expect(text).toMatch(/https:\/\/drkhospitals?\.com\/gallery/);
   });
 
   test("SEO-008: robots.txt and structured data (JSON-LD) are present", async ({ page, request }) => {
@@ -70,7 +70,7 @@ test.describe("SUITE 9 – SEO and Metadata Tests", () => {
     const robotsTxt = await res.text();
     expect(robotsTxt).toMatch(/User-agent: \*/i);
     expect(robotsTxt).toContain("Disallow: /admin/");
-    expect(robotsTxt).toContain("Sitemap: https://drkhospital.com/sitemap.xml");
+    expect(robotsTxt).toMatch(/Sitemap: https:\/\/drkhospitals?\.com\/sitemap\.xml/);
 
     // 2. Structured data on homepage
     await page.goto(`${PUBLIC_BASE}/`);

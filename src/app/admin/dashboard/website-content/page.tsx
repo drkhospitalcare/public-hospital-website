@@ -607,12 +607,12 @@ function WebsiteContentStudio() {
           </button>
 
           <a
-            href="http://localhost:8000"
+            href={process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:8000"}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-[#071B68] px-4 py-2 text-xs font-bold text-white hover:bg-[#087FBA] transition shadow-xs"
           >
-            <span>View Live Website (Port 8000)</span>
+            <span>View Live Website</span>
             <ExternalLink size={13} className="text-[#10C6C1]" />
           </a>
         </div>

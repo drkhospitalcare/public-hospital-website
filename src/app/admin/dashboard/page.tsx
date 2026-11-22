@@ -65,7 +65,7 @@ export default function AdminDashboardPage() {
   const searchParams = useSearchParams();
   const showAccountTab = searchParams?.get("tab") === "account";
 
-  const [adminEmail, setAdminEmail] = useState<string>("admin@drkhospital.com");
+  const [adminEmail, setAdminEmail] = useState<string>("admin@drkhospitals.com");
   const [loading, setLoading] = useState(true);
   const [configured, setConfigured] = useState(false);
   const [recentImages, setRecentImages] = useState<GalleryImage[]>([]);
@@ -1055,7 +1055,7 @@ export default function AdminDashboardPage() {
                     id="new-admin-email"
                     type="email"
                     required
-                    placeholder="doctor@drkhospital.com"
+                    placeholder="doctor@drkhospitals.com"
                     value={newAdminEmail}
                     onChange={(e) => setNewAdminEmail(e.target.value)}
                     className="w-full rounded-xl border border-[#DCE8F0] bg-white px-3 py-2 text-xs text-[#071B68] placeholder:text-[#8896AB] focus:border-[#087FBA] focus:outline-hidden focus:ring-1 focus:ring-[#087FBA]"

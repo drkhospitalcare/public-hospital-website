@@ -5,20 +5,23 @@ import type { NextRequest } from "next/server";
  * DRK Hospital Domain & Admin Separation Middleware
  * 
  * Rules:
- * 1. Public Website (localhost:8000 or drkhospital.com):
+ * 1. Public Website (localhost:8000, drkhospitals.com, www.drkhospitals.com):
  *    - Completely blocks all /admin routes, rewriting them to 404 Not Found.
  *    - Public visitors never see or access admin portals or CMS routes.
  * 
- * 2. Private Admin Portal (localhost:3001 or admin.drkhospital.com):
+ * 2. Private Admin Portal (localhost:3001, admin.drkhospitals.com, or trusted preview hosts):
  *    - Root "/" redirects directly to "/admin/dashboard".
- *    - Unauthenticated requests to /admin/dashboard/* redirect to /admin/login.
+ *    - Unauthenticated requests to /admin/dashboard/* redirect to /admin/login (managed via auth guard).
  *    - Public routes on the admin host redirect to /admin/dashboard.
  */
 export function middleware(request: NextRequest) {
-  const host =
+  const rawHost =
     request.headers.get("x-forwarded-host") ||
     request.headers.get("host") ||
     "";
+  // Safely extract the primary host (avoiding spoofed comma-separated lists)
+  const host = rawHost.split(",")[0].trim().toLowerCase();
+  const hostname = host.split(":")[0];
   const { pathname, searchParams } = request.nextUrl;
 
   // Static assets, internal Next.js paths, error components, and public assets
@@ -33,14 +36,45 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Determine if host is the Admin Portal
-  const isLocalAdminPort = host.includes(":3001");
+  // 1. Explicit public production domain guard:
+  // Public production (drkhospitals.com, www.drkhospitals.com, and legacy drkhospital.com) NEVER serves admin routes.
+  const isPublicProd =
+    hostname === "drkhospitals.com" ||
+    hostname === "www.drkhospitals.com" ||
+    hostname === "drkhospital.com" ||
+    hostname === "www.drkhospital.com";
+
+  // 2. Localhost admin development (Port 3001)
+  const isLocalAdminPort = host.endsWith(":3001");
+
+  // 3. Production admin domain
   const isProdAdminDomain =
-    host.startsWith("admin.") || host.includes("admin.drkhospital.com");
-  const isAdminHost = isLocalAdminPort || isProdAdminDomain;
+    hostname === "admin.drkhospitals.com" ||
+    hostname === "admin.drkhospital.com";
+
+  // 4. Controlled preview environment / explicitly configured trusted preview host:
+  // - Explicit preview host configured via environment variable (ADMIN_PREVIEW_HOST)
+  const trustedPreviewHost = (process.env.ADMIN_PREVIEW_HOST || "").toLowerCase().trim();
+  const isConfiguredPreviewHost =
+    Boolean(trustedPreviewHost) &&
+    (hostname === trustedPreviewHost || host === trustedPreviewHost);
+
+  // - Controlled Vercel preview deployments designated for admin testing (e.g. admin-*.vercel.app or admin.*.vercel.app)
+  const isVercelAdminPreview =
+    hostname.endsWith(".vercel.app") &&
+    (hostname.startsWith("admin-") || hostname.startsWith("admin."));
+
+  // Admin access is ONLY allowed if !isPublicProd AND one of the valid admin host criteria is met.
+  // APP_ENV or NEXT_PUBLIC_APP_TYPE does NOT independently enable admin access on arbitrary hosts.
+  const isAdminHost =
+    !isPublicProd &&
+    (isLocalAdminPort ||
+      isProdAdminDomain ||
+      isConfiguredPreviewHost ||
+      isVercelAdminPreview);
 
   // -------------------------------------------------------------
-  // CASE 1: Request on the PUBLIC WEBSITE (localhost:8000 / drkhospital.com)
+  // CASE 1: Request on the PUBLIC WEBSITE (localhost:8000 / drkhospitals.com)
   // -------------------------------------------------------------
   if (!isAdminHost) {
     // If visitor attempts to access any /admin path on the public website, block it completely with 404
@@ -52,7 +86,7 @@ export function middleware(request: NextRequest) {
   }
 
   // -------------------------------------------------------------
-  // CASE 2: Request on the PRIVATE ADMIN PORTAL (localhost:3001 / admin.drkhospital.com)
+  // CASE 2: Request on the PRIVATE ADMIN PORTAL (localhost:3001 / admin.drkhospitals.com)
   // -------------------------------------------------------------
   // 1. Root redirect to dashboard
   if (pathname === "/" || pathname === "/admin") {

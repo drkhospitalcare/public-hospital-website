@@ -649,14 +649,14 @@ export const DEFAULT_CONTACT_INFO: ContactInfoContent = {
     {
       id: "email-1",
       label: "General Enquiries",
-      email: "enquiries@drkhospital.com",
+      email: "enquiries@drkhospitals.com",
       isPrimary: true,
       isActive: true,
     },
     {
       id: "email-2",
       label: "Patient Care Desk",
-      email: "contact@drkhospital.com",
+      email: "contact@drkhospitals.com",
       isPrimary: false,
       isActive: true,
     },
@@ -744,7 +744,7 @@ export const DEFAULT_SEO_METADATA: SEOMetadataContent = {
     "Trichology Clinic",
   ],
   ogImageUrl: "/images/hero-clinic.jpg",
-  canonicalBase: "https://drkhospital.com",
+  canonicalBase: "https://drkhospitals.com",
 };
 
 export const DEFAULT_FOOTER_SETTINGS: FooterSettingsContent = {

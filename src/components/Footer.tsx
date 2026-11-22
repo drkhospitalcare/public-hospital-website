@@ -54,7 +54,7 @@ export default function Footer() {
   const primaryEmail =
     contact.emails.find((e) => e.isPrimary && e.isActive) ||
     contact.emails[0] || {
-      email: "enquiries@drkhospital.com",
+      email: "enquiries@drkhospitals.com",
     };
 
   const activeSocialLinks = social.links.filter(

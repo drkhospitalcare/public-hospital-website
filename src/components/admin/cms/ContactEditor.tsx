@@ -39,7 +39,7 @@ export default function ContactEditor({ contact, setContact }: ContactEditorProp
     const newEmail: EmailContactItem = {
       id: `email-${Date.now()}`,
       label: "Department Email",
-      email: "info@drkhospital.com",
+      email: "info@drkhospitals.com",
       isPrimary: false,
       isActive: true,
     };

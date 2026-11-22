@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://drkhospitals.com";
   return {
     rules: [
       {
@@ -9,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/api/"],
       },
     ],
-    sitemap: "https://drkhospital.com/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
 

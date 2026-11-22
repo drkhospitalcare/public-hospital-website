@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Contact DRK Hospital in Chennai, Tamil Nadu. Access hospital address, verified helpline phone numbers, WhatsApp consultation link, operating hours, and Google Maps location.",
   alternates: {
-    canonical: "https://drkhospital.com/contact",
+    canonical: "https://drkhospitals.com/contact",
   },
   openGraph: {
     title: "Contact DRK Hospital | Chennai, Tamil Nadu",
     description:
       "Get in touch with DRK Hospital for dental, skin, and hair care services. Telephone helplines, WhatsApp chat, location map, and visiting hours in Chennai.",
-    url: "https://drkhospital.com/contact",
+    url: "https://drkhospitals.com/contact",
     images: [
       {
         url: "/images/drk-logo.png",
@@ -29,7 +29,7 @@ const contactJsonLd = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   name: HOSPITAL_INFO.name,
-  url: "https://drkhospital.com/contact",
+  url: "https://drkhospitals.com/contact",
   telephone: HOSPITAL_INFO.phone.primary,
   email: HOSPITAL_INFO.email.enquiry,
   address: {

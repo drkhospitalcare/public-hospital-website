@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Explore DRK Hospital's visual gallery in Chennai. Photos of sterile dental operatories, private dermatology rooms, trichology diagnostic center, and modern hospital facilities.",
   alternates: {
-    canonical: "https://drkhospital.com/gallery",
+    canonical: "https://drkhospitals.com/gallery",
   },
   openGraph: {
     title: "Visual Gallery | DRK Hospital Chennai",
     description:
       "Explore clinical facilities, sterilized operatories, and patient care environments at DRK Hospital in Chennai, Tamil Nadu.",
-    url: "https://drkhospital.com/gallery",
+    url: "https://drkhospitals.com/gallery",
     images: [
       {
         url: "/images/hero-clinic.jpg",

@@ -307,12 +307,12 @@ function AdminLoginForm() {
           />
         </div>
         <a
-          href="http://localhost:8000"
+          href={process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:8000"}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#087FBA] hover:text-[#071B68] transition"
         >
-          <span>View Public Site (Port 8000)</span>
+          <span>View Public Site</span>
           <ExternalLink size={13} />
         </a>
       </header>
@@ -377,7 +377,7 @@ function AdminLoginForm() {
                   type="email"
                   required
                   autoComplete="email"
-                  placeholder="admin@drkhospital.com"
+                  placeholder="admin@drkhospitals.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-xl border border-[#DCE8F0] bg-white py-2.5 pl-10 pr-4 text-sm text-[#071B68] placeholder:text-[#8896AB] focus:border-[#087FBA] focus:outline-hidden focus:ring-2 focus:ring-[#087FBA]/20 transition"

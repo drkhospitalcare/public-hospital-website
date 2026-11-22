@@ -201,7 +201,7 @@ export async function getAdminSection<T>(
       has_draft: Boolean(data.has_draft && data.draft_content),
       published_at: data.published_at,
       updated_at: data.updated_at,
-      updated_by: data.updated_by || "admin@drkhospital.com",
+      updated_by: data.updated_by || "admin@drkhospitals.com",
     };
   } catch (err) {
     console.warn(`[CMS] Error in getAdminSection('${sectionKey}'):`, err);
@@ -218,7 +218,7 @@ export async function saveSectionDraft<T>(
   category: CMSCategory,
   draftContent: T,
   existingContent?: T,
-  updatedBy: string = "admin@drkhospital.com"
+  updatedBy: string = "admin@drkhospitals.com"
 ): Promise<{ success: boolean; error?: string }> {
   const supabase = getSupabaseClient();
   if (!supabase) {
@@ -262,7 +262,7 @@ export async function publishSection<T>(
   sectionName: string,
   category: CMSCategory,
   contentToPublish: T,
-  updatedBy: string = "admin@drkhospital.com"
+  updatedBy: string = "admin@drkhospitals.com"
 ): Promise<{ success: boolean; error?: string }> {
   const supabase = getSupabaseClient();
   if (!supabase) {
@@ -303,7 +303,7 @@ export async function publishSection<T>(
  */
 export async function unpublishSection(
   sectionKey: string,
-  updatedBy: string = "admin@drkhospital.com"
+  updatedBy: string = "admin@drkhospitals.com"
 ): Promise<{ success: boolean; error?: string }> {
   const supabase = getSupabaseClient();
   if (!supabase) return { success: false, error: "Supabase not configured" };

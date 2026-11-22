@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://drkhospital.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://drkhospitals.com"),
   alternates: {
     canonical: "/",
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://drkhospital.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://drkhospitals.com",
     siteName: "DRK Hospital",
     title: "DRK Hospital | Rooted in Care – Dental, Skin & Hair Care",
     description:
@@ -70,9 +70,9 @@ const jsonLd = {
   "@type": "Hospital",
   name: HOSPITAL_INFO.name,
   alternateName: "DRK Hospital Chennai",
-  url: "https://drkhospital.com",
-  logo: "https://drkhospital.com/images/drk-logo.png",
-  image: "https://drkhospital.com/images/hero-clinic.jpg",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://drkhospitals.com",
+  logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://drkhospitals.com"}/images/drk-logo.png`,
+  image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://drkhospitals.com"}/images/hero-clinic.jpg`,
   slogan: HOSPITAL_INFO.tagline,
   description: HOSPITAL_INFO.description,
   address: {

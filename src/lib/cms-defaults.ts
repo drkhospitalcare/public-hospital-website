@@ -32,18 +32,18 @@ import {
 import { HOSPITAL_INFO } from "@/lib/hospital-info";
 
 export const DEFAULT_HOMEPAGE_HERO: HomepageHeroContent = {
-  eyebrow: "Rooted in Care • DRK Hospital Chennai",
+  eyebrow: "Rooted in Care • DRK Hospitals Tiruttani",
   heading: "Complete Care for Your Smile, Skin and Hair",
   headingHighlight: "Smile, Skin",
   subtitle: "Clinical Discipline & Patient Well-Being",
   description:
-    "Welcome to DRK Hospital, where patient well-being meets clinical discipline. We provide comprehensive dental, dermatological, and hair care services in a pristine, patient-first healthcare environment in Chennai.",
+    "Welcome to DRK Hospitals in Tiruttani, where patient well-being meets clinical discipline. We provide comprehensive dental, dermatological, and hair care services in a pristine, patient-first healthcare environment serving Tiruttani, Arakkonam, Pallipattu, Sholinghur, and nearby regions.",
   primaryBtnText: "Explore Services",
   primaryBtnHref: "/services",
   secondaryBtnText: "Contact Us",
   secondaryBtnHref: "/contact",
   clinicImage: "/images/hero-clinic.jpg",
-  clinicImageAlt: "DRK Hospital Clinical Facilities",
+  clinicImageAlt: "DRK Hospitals Clinical Facilities in Tiruttani",
   badgeTitle: "Certified Standards",
   badgeSubtitle: "Sterilized & Safe Clinical Care",
   timingBadge: "Mon – Sat: 8:00 AM – 8:00 PM",
@@ -92,14 +92,14 @@ export const DEFAULT_HOMEPAGE_SPECIALTIES: HomepageSpecialtiesContent = {
 };
 
 export const DEFAULT_HOMEPAGE_ABOUT: HomepageAboutContent = {
-  eyebrow: "About DRK Hospital",
+  eyebrow: "About DRK Hospitals",
   heading: "Rooted in Care, Focused on People",
   paragraphs: [
-    "DRK Hospital was founded on a simple clinical belief: healthcare should be compassionate, transparent, and grounded in uncompromising medical discipline.",
-    "Our hospital brings together specialized dental, dermatological, and trichological care under one roof in Chennai. Every consultation room, sterilisation protocol, and patient interaction reflects our core philosophy: Rooted in Care.",
+    "DRK Hospitals was founded on a simple clinical belief: healthcare should be compassionate, transparent, and grounded in uncompromising medical discipline.",
+    "Our hospital brings together specialized dental, dermatological, and trichological care under one roof in Tiruttani. Every consultation room, sterilisation protocol, and patient interaction reflects our core philosophy: Rooted in Care.",
   ],
   image: "/images/hospital-building.jpg",
-  imageAlt: "DRK Hospital Chennai Facility Building",
+  imageAlt: "DRK Hospitals Tiruttani Facility Building",
   buttonText: "Learn More About Us",
   buttonHref: "/about",
   highlights: [
@@ -146,7 +146,7 @@ export const DEFAULT_HOMEPAGE_FACILITIES: HomepageFacilitiesContent = {
   eyebrow: "Inside DRK Hospital",
   heading: "Pristine Healthcare Environments Built for Precision & Comfort",
   description:
-    "Take a tour of our clinical spaces designed for hygiene, advanced diagnosis, and relaxed patient care in Chennai.",
+    "Take a tour of our clinical spaces designed for hygiene, advanced diagnosis, and relaxed patient care in Tiruttani.",
   buttonText: "Explore Full Hospital Gallery",
   buttonHref: "/gallery",
   items: [
@@ -226,7 +226,7 @@ export const DEFAULT_HOMEPAGE_CTA: HomepageCTAContent = {
   eyebrow: "Get in Touch",
   heading: "Visit or Contact DRK Hospital",
   description:
-    "Our clinical reception and patient coordination team in Chennai are available to assist you with inquiries, department directions, and consultation hours.",
+    "Our clinical reception and patient coordination team in Tiruttani are available to assist you with inquiries, department directions, and consultation hours.",
   primaryBtnText: "Call Hospital Helpline",
   primaryBtnHref: `tel:${HOSPITAL_INFO.phone.primaryRaw}`,
   secondaryBtnText: "WhatsApp Us",
@@ -235,25 +235,25 @@ export const DEFAULT_HOMEPAGE_CTA: HomepageCTAContent = {
 };
 
 export const DEFAULT_ABOUT_HERO: AboutHeroContent = {
-  eyebrow: "About DRK Hospital",
+  eyebrow: "About DRK Hospitals",
   heading: "Rooted in Care, Guided by Medical Discipline",
-  subtitle: "Chennai's Dedicated Center for Dental, Skin & Hair Health",
+  subtitle: "Tiruttani's Dedicated Center for Dental, Skin & Hair Health",
   description:
-    "Welcome to DRK Hospital. We are a specialized healthcare center in Chennai established with a singular focus: delivering ethical, clinical excellence with deep human empathy.",
+    "Welcome to DRK Hospitals. We are a specialized healthcare center in Tiruttani established with a singular focus: delivering ethical, clinical excellence with deep human empathy serving Tiruttani, Arakkonam, Pallipattu, and surrounding communities.",
   image: "/images/hospital-building.jpg",
-  imageAlt: "DRK Hospital Chennai Facility Building",
+  imageAlt: "DRK Hospitals Tiruttani Facility Building",
 };
 
 export const DEFAULT_ABOUT_STORY: AboutStoryContent = {
   sectionTitle: "Our Healthcare Story",
   eyebrow: "How We Began",
   paragraphs: [
-    "DRK Hospital was founded with a clear, enduring conviction: patient care must be genuine, uncompromised, and clinically disciplined.",
-    "Recognizing the deep connection between oral health, dermatological wellness, and hair vitality, we created a specialized medical destination in Chennai that unites all three under disciplined clinical leadership.",
-    "Over the years, DRK Hospital has earned patient trust through transparent dialogue, sterile clinical suites, and honest healthcare advice.",
+    "DRK Hospitals was founded with a clear, enduring conviction: patient care must be genuine, uncompromised, and clinically disciplined.",
+    "Recognizing the deep connection between oral health, dermatological wellness, and hair vitality, we created a specialized medical destination in Tiruttani that unites all three under disciplined clinical leadership.",
+    "Over the years, DRK Hospitals has earned patient trust across Tiruttani and surrounding regional towns through transparent dialogue, sterile clinical suites, and honest healthcare advice.",
   ],
   image: "/images/hero-clinic.jpg",
-  imageAlt: "DRK Hospital Clinical Facilities",
+  imageAlt: "DRK Hospitals Clinical Facilities",
   stats: [
     { label: "Core Specialties", value: "3" },
     { label: "Sterile Clinical Suites", value: "100%" },
@@ -264,7 +264,7 @@ export const DEFAULT_ABOUT_STORY: AboutStoryContent = {
 export const DEFAULT_VISION_MISSION: VisionMissionContent = {
   visionHeading: "Our Vision",
   visionText:
-    "To be Chennai's most trusted specialty hospital for dental, dermatological, and hair healthcare, recognized for uncompromising clinical integrity, state-of-the-art hygiene, and compassionate patient relationships.",
+    "To be Tiruttani and the surrounding region's most trusted specialty hospital for dental, dermatological, and hair healthcare, recognized for uncompromising clinical integrity, state-of-the-art hygiene, and compassionate patient relationships.",
   missionHeading: "Our Mission",
   missionText:
     "To deliver meticulous, evidence-based treatments in a pristine clinical setting, ensuring every patient receives individualized diagnostic attention, gentle care, and clear medical guidance.",
@@ -365,47 +365,47 @@ export const DEFAULT_ABOUT_FACILITIES: AboutFacilitiesContent = {
   eyebrow: "Infrastructure",
   heading: "Modern Clinical Spaces Built for Healing",
   description:
-    "Explore the physical environment of DRK Hospital in Chennai, tailored for clinical excellence and patient ease.",
+    "Explore the physical environment of DRK Hospitals in Tiruttani, tailored for clinical excellence, hygienic safety, and patient ease.",
   items: [
     {
       id: "af-1",
       title: "Precision Dental Operatories",
       desc: "Ergonomic treatment chairs with integrated intraoral digital visualization, shadowless clinical illumination, and ultrasonic scalers.",
       image: "/images/hero-clinic.jpg",
-      imageAlt: "DRK Hospital Dental Operatory",
+      imageAlt: "DRK Hospitals Dental Operatory Tiruttani",
     },
     {
       id: "af-2",
       title: "Clinical Dermatology Suites",
       desc: "Private consultation spaces equipped with specialized skin diagnostic dermoscopy tools and procedural lights.",
       image: "/images/skin-care.jpg",
-      imageAlt: "DRK Hospital Dermatology Suite",
+      imageAlt: "DRK Hospitals Dermatology Suite Tiruttani",
     },
     {
       id: "af-3",
       title: "Trichology Diagnostic Station",
       desc: "High-magnification microscopic equipment for deep scalp and follicular density assessments.",
       image: "/images/hair-care.jpg",
-      imageAlt: "Trichology and Scalp Diagnostic Station",
+      imageAlt: "Trichology and Scalp Diagnostic Station Tiruttani",
     },
     {
       id: "af-4",
       title: "Hospital Sterilization Hub",
       desc: "Dedicated autoclave processing area separated from treatment rooms, following international infection control guidelines.",
       image: "/images/infrastructure-sterilization.jpg",
-      imageAlt: "Hospital Sterilization Hub",
+      imageAlt: "Hospital Sterilization Hub Tiruttani",
     },
   ],
 };
 
 export const DEFAULT_SERVICES_HERO: ServicesHeroContent = {
   eyebrow: "Clinical Disciplines",
-  heading: "Specialized Healthcare Services at DRK Hospital",
+  heading: "Specialized Healthcare Services at DRK Hospitals",
   subtitle: "Dental Care • Skin Care • Hair Care",
   description:
-    "We provide focused, evidence-based treatments across oral health, dermatology, and trichology with medical precision, hygienic protocols, and individual patient care in Chennai.",
+    "We provide focused, evidence-based treatments across oral health, dermatology, and trichology with medical precision, hygienic protocols, and individual patient care in Tiruttani.",
   image: "/images/hero-clinic.jpg",
-  imageAlt: "DRK Hospital Healthcare Services",
+  imageAlt: "DRK Hospitals Healthcare Services Tiruttani",
 };
 
 export const DEFAULT_SERVICES_DENTAL: SpecialtyServicesContent = {
@@ -612,14 +612,14 @@ export const DEFAULT_SERVICES_APPROACH: ServicesApproachContent = {
 };
 
 export const DEFAULT_CONTACT_INFO: ContactInfoContent = {
-  hospitalName: "DRK Hospital",
+  hospitalName: "DRK Hospitals",
   tagline: "ROOTED IN CARE",
-  address: "DRK Hospital, Anna Salai / Central Medical Enclave, Chennai, Tamil Nadu 600002",
-  locality: "Anna Salai",
-  city: "Chennai",
+  address: "DRK Hospitals, Tiruttani, Tiruvallur District, Tamil Nadu 631209",
+  locality: "Tiruttani",
+  city: "Tiruttani",
   state: "Tamil Nadu",
   country: "India",
-  pincode: "600002",
+  pincode: "631209",
   phoneNumbers: [
     {
       id: "phone-1",
@@ -671,19 +671,19 @@ export const DEFAULT_CONTACT_INFO: ContactInfoContent = {
     { day: "Sunday", isOpen: true, openTime: "09:00 AM", closeTime: "01:00 PM", note: "Specialist consultations only" },
   ],
   visitingInfo: {
-    walkInInfo: "Patients and visitors are welcome during working hours. For specialized consultations, prior enquiry is recommended to minimize wait times.",
-    visitingInstructions: "Please carry previous medical records or prescriptions for accurate clinical review. Face masks and hand hygiene protocols apply in sterile procedure suites.",
-    accessibilityInfo: "Wheelchair accessible entrance, ramp access, ground-floor reception, and elevator access to all clinical consultation suites.",
+    walkInInfo: "Patients and visitors are welcome during working hours. Prior consultation enquiry is recommended to minimize wait times.",
+    visitingInstructions: "Please carry any previous medical records or prescriptions for accurate clinical review. Face masks and hygiene protocols apply in procedure rooms.",
+    accessibilityInfo: "Ground-floor reception assistance is available. For specific mobility or wheelchair assistance requirements, please contact our reception team ahead of your visit.",
   },
 };
 
 export const DEFAULT_LOCATION_MAPS: LocationMapsContent = {
-  shareUrl: "https://maps.google.com/?q=Chennai+Tamil+Nadu+India",
-  embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124414.28846387068!2d80.15544977465935!3d13.04756942468707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-  latitude: "13.0827",
-  longitude: "80.2707",
-  mapTitle: "DRK Hospital Location",
-  mapDescription: "Centrally located on Anna Salai / Central Medical Enclave in Chennai with convenient road access, public transit, and patient parking.",
+  shareUrl: "https://maps.google.com/?q=Tiruttani+Tamil+Nadu+India",
+  embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31102.57682281729!2d79.5931215!3d13.1784661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52bb6c8a702b8d%3A0x7d87bc7d25e8a5b2!2sTiruttani%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+  latitude: "13.1784",
+  longitude: "79.6105",
+  mapTitle: "DRK Hospitals Location in Tiruttani",
+  mapDescription: "Centrally located in Tiruttani, Tiruvallur District with convenient road and rail access, serving patients from Tiruttani, Arakkonam, Pallipattu, Sholinghur, and Nagari.",
   directionsButtonText: "Open in Google Maps",
   isMapEnabled: true,
 };
@@ -730,18 +730,28 @@ export const DEFAULT_SOCIAL_MEDIA: SocialMediaContent = {
 };
 
 export const DEFAULT_SEO_METADATA: SEOMetadataContent = {
-  siteTitle: "DRK Hospital Chennai – Dental, Skin & Hair Care | Rooted in Care",
-  titleTemplate: "%s | DRK Hospital Chennai",
+  siteTitle: "DRK Hospitals Tiruttani – Dental, Skin & Hair Care | Rooted in Care",
+  titleTemplate: "%s | DRK Hospitals Tiruttani",
   defaultDescription:
-    "DRK Hospital in Chennai provides premier clinical care across Dental Care, Skin Care, and Hair Care. Sterile clinical suites, expert doctors, and patient-first healthcare.",
+    "Looking for quality hospital care in Tiruttani? Discover DRK Hospitals for dental, skin and hair care services. Serving patients from Tiruttani, Arakkonam, Pallipattu, Sholinghur and nearby areas.",
   keywords: [
-    "DRK Hospital",
-    "Hospital in Chennai",
-    "Dental Hospital Chennai",
-    "Skin Hospital Chennai",
-    "Hair Care Hospital Chennai",
-    "Dermatology Clinic",
-    "Trichology Clinic",
+    "DRK Hospitals",
+    "Hospital in Tiruttani",
+    "Best hospital in Tiruttani",
+    "Dental Hospital in Tiruttani",
+    "Skin Clinic in Tiruttani",
+    "Hair Clinic in Tiruttani",
+    "Multispeciality hospital in Tiruttani",
+    "Dentist in Tiruttani",
+    "Dermatology Clinic Tiruttani",
+    "Root canal treatment Tiruttani",
+    "Dental implants Tiruttani",
+    "Hospital near Arakkonam",
+    "Hospital near Pallipattu",
+    "Hospital near Sholinghur",
+    "Hospital near Nagari",
+    "Hospital in Tiruvallur district",
+    "டிஆர்கே மருத்துவமனை திருத்தணி",
   ],
   ogImageUrl: "/images/hero-clinic.jpg",
   canonicalBase: "https://drkhospitals.com",
@@ -752,5 +762,272 @@ export const DEFAULT_FOOTER_SETTINGS: FooterSettingsContent = {
   logoUrl: "/images/drk-logo.png",
   logoAlt: "ROOTED IN CARE | DRK Hospital",
   caption: "DRK Hospital – Rooted in Care",
+
+  brand: {
+    logoVisible: true,
+    logoUrl: "/images/drk-logo.png",
+    logoAlt: "ROOTED IN CARE | DRK Hospital",
+    logoWidth: 208,
+    logoHeight: 52,
+    logoAlignment: "left",
+    logoBgColor: "#FFFFFF",
+    caption: "DRK Hospital – Rooted in Care",
+    tagline: "ROOTED IN CARE",
+    taglineVisible: true,
+    taglineColor: "#10C6C1",
+    taglineSize: "sm",
+    taglineWeight: "semibold",
+  },
+
+  description: {
+    heading: "",
+    headingVisible: false,
+    mainText:
+      "DRK Hospital is committed to delivering modern, compassionate, and ethical clinical care across Dental, Skin, and Hair health in Tiruttani, Tamil Nadu.",
+    supportingText:
+      "Serving Tiruttani, Arakkonam, Pallipattu, Sholinghur, and surrounding regional communities.",
+    textAlign: "left",
+    maxWidth: "sm",
+    fontSize: "sm",
+    textColor: "#EAF8FF",
+    visible: true,
+  },
+
+  navigation: {
+    heading: "Explore",
+    visible: true,
+    links: [
+      { id: "nav-1", label: "Home", url: "/", isExternal: false, openInNewTab: false, isActive: true, order: 1 },
+      { id: "nav-2", label: "About Us", url: "/about", isExternal: false, openInNewTab: false, isActive: true, order: 2 },
+      { id: "nav-3", label: "Services", url: "/services", isExternal: false, openInNewTab: false, isActive: true, order: 3 },
+      { id: "nav-4", label: "Hospital Gallery", url: "/gallery", isExternal: false, openInNewTab: false, isActive: true, order: 4 },
+      { id: "nav-5", label: "Contact Us", url: "/contact", isExternal: false, openInNewTab: false, isActive: true, order: 5 },
+    ],
+  },
+
+  specialties: {
+    heading: "Our Specialties",
+    visible: true,
+    items: [
+      {
+        id: "spec-1",
+        title: "Dental Care",
+        description: "Advanced preventive, restorative, and smile dentistry",
+        icon: "Smile",
+        url: "/services#dental-care",
+        order: 1,
+        isActive: true,
+      },
+      {
+        id: "spec-2",
+        title: "Skin Care",
+        description: "Clinical dermatology and evidence-based skin therapies",
+        icon: "Sparkles",
+        url: "/services#skin-care",
+        order: 2,
+        isActive: true,
+      },
+      {
+        id: "spec-3",
+        title: "Hair Care",
+        description: "Trichology, scalp health diagnostics, and hair revitalization",
+        icon: "Scissors",
+        url: "/services#hair-care",
+        order: 3,
+        isActive: true,
+      },
+    ],
+  },
+
+  contact: {
+    heading: "Contact & Hours",
+    visible: true,
+    useHospitalInfo: true,
+    addressVisible: true,
+    addressLine1: "DRK Hospitals",
+    addressLine2: "",
+    street: "",
+    landmark: "",
+    city: "Tiruttani",
+    district: "Tiruvallur District",
+    state: "Tamil Nadu",
+    pincode: "631209",
+    country: "India",
+    googleMapsUrl: "https://maps.google.com/?q=Tiruttani+Tamil+Nadu",
+    addressFormat: "single",
+    phoneVisible: true,
+    primaryPhone: "+91 44 2345 6789",
+    primaryPhoneRaw: "+914423456789",
+    secondaryPhone: "+91 98765 43210",
+    secondaryPhoneRaw: "+919876543210",
+    phoneLabel: "Hospital Helpline",
+    clickToCall: true,
+    emailVisible: true,
+    officialEmail: "enquiries@drkhospitals.com",
+    emailLabel: "Email Enquiries",
+    mailtoToggle: true,
+    whatsappVisible: true,
+    whatsappNumber: "+91 98765 43210",
+    whatsappRaw: "919876543210",
+    whatsappButtonText: "Chat on WhatsApp",
+    whatsappMessage: "Hello DRK Hospitals, I would like to enquire about consultation in Tiruttani.",
+    buttons: [
+      {
+        id: "btn-wa",
+        text: "Chat on WhatsApp",
+        url: "https://wa.me/919876543210?text=Hello%20DRK%20Hospitals%2C%20I%20would%20like%20to%20enquire%20about%20consultation%20in%20Tiruttani.",
+        type: "whatsapp",
+        icon: "MessageCircle",
+        color: "accent",
+        visible: true,
+        order: 1,
+      },
+    ],
+  },
+
+  businessHours: {
+    heading: "Business Hours",
+    visible: true,
+    timeFormat: "12h",
+    timezone: "IST (Indian Standard Time)",
+    generalAdvisory: "Doctor consultation schedules are subject to availability. Contact the front desk to confirm timings.",
+    holidayAdvisory: "Sunday consultations available during scheduled hours.",
+    days: [
+      { day: "Monday", isOpen: true, openTime: "8:00 AM", closeTime: "8:00 PM" },
+      { day: "Tuesday", isOpen: true, openTime: "8:00 AM", closeTime: "8:00 PM" },
+      { day: "Wednesday", isOpen: true, openTime: "8:00 AM", closeTime: "8:00 PM" },
+      { day: "Thursday", isOpen: true, openTime: "8:00 AM", closeTime: "8:00 PM" },
+      { day: "Friday", isOpen: true, openTime: "8:00 AM", closeTime: "8:00 PM" },
+      { day: "Saturday", isOpen: true, openTime: "8:00 AM", closeTime: "8:00 PM" },
+      {
+        day: "Sunday",
+        isOpen: true,
+        openTime: "9:00 AM",
+        closeTime: "1:00 PM",
+        departmentNotes: "Consultation & Scheduled Follow-ups",
+      },
+    ],
+  },
+
+  socialLinks: {
+    heading: "Follow DRK Hospital",
+    supportingLabel: "Stay connected for health advisories and clinical updates.",
+    visible: true,
+    iconStyle: "circle",
+    iconSize: "md",
+    alignment: "left",
+    links: [
+      {
+        id: "soc-1",
+        platform: "Instagram",
+        label: "Instagram",
+        url: "https://instagram.com/drkhospitals",
+        icon: "Instagram",
+        openInNewTab: true,
+        isActive: true,
+        order: 1,
+      },
+      {
+        id: "soc-2",
+        platform: "Facebook",
+        label: "Facebook",
+        url: "https://facebook.com/drkhospitals",
+        icon: "Facebook",
+        openInNewTab: true,
+        isActive: true,
+        order: 2,
+      },
+      {
+        id: "soc-3",
+        platform: "YouTube",
+        label: "YouTube",
+        url: "https://youtube.com/@drkhospitals",
+        icon: "YouTube",
+        openInNewTab: true,
+        isActive: true,
+        order: 3,
+      },
+      {
+        id: "soc-4",
+        platform: "LinkedIn",
+        label: "LinkedIn",
+        url: "https://linkedin.com/company/drkhospitals",
+        icon: "LinkedIn",
+        openInNewTab: true,
+        isActive: true,
+        order: 4,
+      },
+    ],
+  },
+
+  trustStatements: {
+    visible: true,
+    alignment: "left",
+    statements: [
+      {
+        id: "trust-1",
+        text: "Patient-Centric & Ethical Healthcare",
+        icon: "ShieldCheck",
+        textColor: "#EAF8FF",
+        iconColor: "#10C6C1",
+        fontSize: "xs",
+        visible: true,
+      },
+    ],
+  },
+
+  copyright: {
+    visible: true,
+    prefix: "©",
+    hospitalName: "DRK Hospital",
+    useDynamicYear: true,
+    manualYear: "2026",
+    tagline: "ROOTED IN CARE",
+    suffix: "All rights reserved.",
+    useCustomFullText: false,
+    locationLabel: "Tiruttani, Tamil Nadu",
+    locationVisible: true,
+    separator: "bullet",
+    links: [
+      { id: "c-1", label: "About DRK", url: "/about", openInNewTab: false, visible: true, order: 1 },
+      { id: "c-2", label: "Contact", url: "/contact", openInNewTab: false, visible: true, order: 2 },
+    ],
+  },
+
+  appearance: {
+    bgColor: "#071B68",
+    bottomBarBgColor: "#05144f",
+    isGradient: false,
+    gradientStart: "#071B68",
+    gradientEnd: "#05144f",
+    headingColor: "#FFFFFF",
+    bodyTextColor: "#EAF8FF",
+    mutedTextColor: "#99C7FF",
+    accentColor: "#10C6C1",
+    linkHoverColor: "#10C6C1",
+    topPadding: "py-14",
+    containerMaxWidth: "container",
+    showTopDivider: true,
+    dividerColor: "rgba(255, 255, 255, 0.15)",
+  },
+
+  visibility: {
+    showBrandColumn: true,
+    showNavigationColumn: true,
+    showSpecialtiesColumn: true,
+    showContactColumn: true,
+    showSocialIcons: true,
+    showTrustStatement: true,
+    showBusinessHours: true,
+    showContactButtons: true,
+    showCopyrightBar: true,
+  },
+
+  responsiveLayout: {
+    desktopColumns: "4-2-3-3",
+    mobileAlignment: "left",
+    mobileStackOrder: "brand-first",
+    mobileSpacing: "normal",
+  },
 };
 

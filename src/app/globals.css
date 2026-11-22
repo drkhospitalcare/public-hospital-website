@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #071B68;
+  --color-navy-dark: #05144f;
+  --color-secondary-blue: #087FBA;
+  --color-turquoise: #10C6C1;
+  --color-turquoise-dark: #0da39f;
+  --color-aqua: #EFFBFC;
+  --color-white: #FFFFFF;
+  --color-main-text: #14234B;
+  --color-secondary-text: #5D6B85;
+  --color-border-line: #DCE8F0;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  color-scheme: light !important;
+  supported-color-schemes: light !important;
+  --drk-navy: #071b68;
+  --drk-blue: #087fba;
+  --drk-turquoise: #10c6c1;
+  --drk-pale: #effbfc;
+  --drk-white: #ffffff;
+  --drk-ink: #14234b;
+  --drk-muted: #5d6b85;
+  --drk-line: #dce8f0;
+}
+
+/* Enforce strict light theme across all browsers, engines, OS preferences, and auto dark modes */
+html,
+body {
+  color-scheme: light !important;
+  background-color: #ffffff !important;
+  color: #14234b;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure no system dark mode or browser forced dark mode inverts the page or darkens backgrounds */
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  body {
+    color-scheme: light !important;
+    background-color: #ffffff !important;
+    color: #14234b;
+  }
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: #14234b;
+  background-color: #ffffff;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: min(1200px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    width: min(1200px, calc(100% - 48px));
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #087fba;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 56px 0;
+  }
+}
+
+.section-title {
+  margin: 12px 0 16px;
+  color: #071b68;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.section-copy {
+  max-width: 640px;
+  color: #5d6b85;
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background-color: #071b68;
+  color: #ffffff !important;
+  padding: 13px 26px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(7, 27, 104, 0.15);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #087fba;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(8, 127, 186, 0.25);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 9999px;
+  border: 1.5px solid #087fba;
+  background-color: #ffffff;
+  color: #071b68;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: #effbfc;
+  border-color: #071b68;
+  color: #071b68;
+}
+
+.btn-turquoise {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background-color: #10c6c1;
+  color: #071b68 !important;
+  padding: 13px 26px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(16, 198, 193, 0.25);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-turquoise:hover {
+  background-color: #0da39f;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.card {
+  border: 1px solid #dce8f0;
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 30px rgba(7, 27, 104, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: #b8dbe6;
+  box-shadow: 0 14px 40px rgba(7, 27, 104, 0.08);
+}

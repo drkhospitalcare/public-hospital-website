@@ -17,6 +17,8 @@ import {
   Train,
   Bus,
   Compass,
+  Building2,
+  Scale,
 } from "lucide-react";
 import { useCMSSection } from "@/lib/useCMS";
 import {
@@ -24,10 +26,12 @@ import {
   LocationMapsContent,
   PhoneContactItem,
   EmailContactItem,
+  LegalIdentityContent,
 } from "@/types/cms";
 import {
   DEFAULT_CONTACT_INFO,
   DEFAULT_LOCATION_MAPS,
+  DEFAULT_LEGAL_IDENTITY,
 } from "@/lib/cms-defaults";
 import { HOSPITAL_INFO } from "@/lib/hospital-info";
 import { formatOperatingHours } from "@/lib/working-hours";
@@ -40,6 +44,10 @@ export default function ContactClient() {
   const maps = useCMSSection<LocationMapsContent>(
     "contact_maps",
     DEFAULT_LOCATION_MAPS
+  );
+  const legal = useCMSSection<LegalIdentityContent>(
+    "legal_identity",
+    DEFAULT_LEGAL_IDENTITY
   );
 
   const primaryPhone =
@@ -492,6 +500,35 @@ export default function ContactClient() {
                     </strong>
                     <span>{contact.visitingInfo.visitingInstructions}</span>
                   </div>
+                </div>
+              </div>
+
+              {/* Card 3: Registered Corporate Entity Information */}
+              <div className="card p-6 sm:p-7 bg-white border border-[#DCE8F0] shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#EFFBFC] text-[#087FBA]">
+                    <Building2 size={18} />
+                  </div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#071B68]">
+                    Corporate & Legal Entity
+                  </h3>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-[#F8FDFF] border border-[#DCE8F0]/70 text-xs text-[#5D6B85] space-y-1.5 leading-relaxed">
+                  <p>
+                    <span className="font-semibold text-[#071B68]">Public Hospital Brand:</span>{" "}
+                    {legal.publicBrandName || HOSPITAL_INFO.name}
+                  </p>
+                  <p>
+                    <span className="font-semibold text-[#071B68]">Registered Company:</span>{" "}
+                    <span className="font-medium text-[#14234B]">
+                      {legal.registeredCompanyName || HOSPITAL_INFO.legalName}
+                    </span>
+                  </p>
+                  <p className="text-[11px] pt-1 border-t border-[#DCE8F0]/60 text-[#5D6B85]">
+                    {legal.legalDescription ||
+                      `${legal.publicBrandName || "DRK Hospitals"} is the public healthcare brand associated with ${legal.registeredCompanyName || "DRK Dental Skin & Hair Hospital Private Limited"}.`}
+                  </p>
                 </div>
               </div>
             </div>

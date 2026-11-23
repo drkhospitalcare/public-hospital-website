@@ -28,15 +28,30 @@ export default function ServicesClient() {
 
   const activeDentalServices = (dental.services || [])
     .filter((p: SingleServiceCard) => p.is_published !== false)
-    .map((p: SingleServiceCard) => ({ title: p.title, desc: p.desc }));
+    .map((p: SingleServiceCard) => ({
+      title: p.title,
+      desc: p.desc,
+      slug: p.slug,
+      specialtyId: "dental-care",
+    }));
 
   const activeSkinServices = (skin.services || [])
     .filter((p: SingleServiceCard) => p.is_published !== false)
-    .map((p: SingleServiceCard) => ({ title: p.title, desc: p.desc }));
+    .map((p: SingleServiceCard) => ({
+      title: p.title,
+      desc: p.desc,
+      slug: p.slug,
+      specialtyId: "skin-care",
+    }));
 
   const activeHairServices = (hair.services || [])
     .filter((p: SingleServiceCard) => p.is_published !== false)
-    .map((p: SingleServiceCard) => ({ title: p.title, desc: p.desc }));
+    .map((p: SingleServiceCard) => ({
+      title: p.title,
+      desc: p.desc,
+      slug: p.slug,
+      specialtyId: "hair-care",
+    }));
 
   return (
     <>
@@ -63,6 +78,8 @@ export default function ServicesClient() {
         consultationText="Initial consultations include thorough dental examination, digital intraoral imaging when needed, and a clear explanation of treatment choices with transparent pricing."
         enquiryText="Enquire about Dental Care"
         bgWhite={true}
+        specialtyPageHref="/services/dental-care"
+        specialtyPageLabel="Dental Hospital Details"
       />
 
       {/* SECTION 3 – SKIN CARE */}
@@ -85,6 +102,8 @@ export default function ServicesClient() {
         consultationText="Each skin consultation includes an evaluation of your skin barrier, active symptoms, medical history, and environmental lifestyle factors to recommend personalized therapeutic regimens."
         enquiryText="Enquire about Skin Care"
         bgWhite={false}
+        specialtyPageHref="/services/skin-care"
+        specialtyPageLabel="Skin Hospital Details"
       />
 
       {/* SECTION 4 – HAIR CARE */}
@@ -107,6 +126,8 @@ export default function ServicesClient() {
         consultationText="During your trichology consultation, high-magnification trichoscopy assesses hair density, caliber, and scalp condition to formulate a targeted treatment roadmap."
         enquiryText="Enquire about Hair Care"
         bgWhite={true}
+        specialtyPageHref="/services/hair-care"
+        specialtyPageLabel="Hair Clinic Details"
       />
 
       {/* SECTION 5 – HEALTHCARE APPROACH */}

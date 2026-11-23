@@ -31,6 +31,18 @@ test.describe("SUITE 18 – Footer WhatsApp Removal Verification", () => {
       // 4. Confirm working hours are preserved
       await expect(footer).toContainText("Mon – Sat: 9:00 AM – 9:00 PM");
       await expect(footer).toContainText("Sunday: 9:00 AM – 9:00 PM");
+
+      // 5. Confirm developer credit is present and readable
+      await expect(footer).toContainText("Designed & Developed by");
+      await expect(footer).toContainText("Deendhayal RR");
+      const devTelLink = footer.locator('a[href="tel:+919344365842"]');
+      await expect(devTelLink).toBeVisible();
+      await expect(devTelLink).toContainText("+91 93443 65842");
+
+      // 6. Confirm copyright information is intact
+      await expect(footer).toContainText("DRK Hospitals");
+      await expect(footer).toContainText("ROOTED IN CARE");
+      await expect(footer).toContainText("All rights reserved.");
     });
   }
 
@@ -53,17 +65,18 @@ test.describe("SUITE 18 – Footer WhatsApp Removal Verification", () => {
     await expect(homeWa).toBeVisible();
 
     // Capture clean desktop and mobile Footer screenshots
+    const artifactDir = "/Users/deendhayalrr/.gemini/antigravity/brain/3db411e6-a1c4-4b41-a268-6a475db1aa56";
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto(`${PUBLIC_BASE}/`, { waitUntil: "networkidle" });
     const footerDesktop = page.locator("footer");
     await footerDesktop.scrollIntoViewIfNeeded();
-    await footerDesktop.screenshot({ path: "test-results/footer-no-whatsapp-desktop.png" });
+    await footerDesktop.screenshot({ path: `${artifactDir}/footer-developer-credit-desktop.png` });
 
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(`${PUBLIC_BASE}/`, { waitUntil: "networkidle" });
     const footerMobile = page.locator("footer");
     await footerMobile.scrollIntoViewIfNeeded();
-    await footerMobile.screenshot({ path: "test-results/footer-no-whatsapp-mobile.png" });
+    await footerMobile.screenshot({ path: `${artifactDir}/footer-developer-credit-mobile.png` });
   });
 });
 

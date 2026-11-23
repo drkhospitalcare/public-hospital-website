@@ -44,6 +44,7 @@ import {
   HomepageJourneyContent,
   HomepageCTAContent,
   ContactInfoContent,
+  LegalIdentityContent,
 } from "@/types/cms";
 
 // Icon resolution helper for dynamic Why DRK & Journey items
@@ -97,6 +98,7 @@ export default function HomePage() {
   );
   const cta = useCMSSection<HomepageCTAContent>("homepage_cta", defaults.DEFAULT_HOMEPAGE_CTA);
   const contact = useCMSSection<ContactInfoContent>("contact_info", defaults.DEFAULT_CONTACT_INFO);
+  const legal = useCMSSection<LegalIdentityContent>("legal_identity", defaults.DEFAULT_LEGAL_IDENTITY);
   const hoursSummary = formatOperatingHours(contact.operatingHours);
 
   const primaryPhone =
@@ -288,7 +290,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. ABOUT DRK HOSPITAL INTRODUCTION */}
-      <section className="bg-[#EFFBFC]/50 py-20 border-y border-[#DCE8F0]">
+      <section id="about" className="bg-[#EFFBFC]/50 py-20 border-y border-[#DCE8F0]">
         <div className="container">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             {/* Image Column */}
@@ -350,6 +352,14 @@ export default function HomePage() {
                   <Link href="/gallery" className="btn-outline">
                     <span>View Our Facilities</span>
                   </Link>
+                </div>
+
+                {/* Subtle Corporate Identity Note */}
+                <div className="mt-6 pt-5 border-t border-[#DCE8F0]/80">
+                  <p className="text-xs text-[#5D6B85] leading-relaxed">
+                    {legal.legalDescription ||
+                      `${legal.publicBrandName || "DRK Hospitals"} is the public healthcare brand associated with ${legal.registeredCompanyName || "DRK Dental Skin & Hair Hospital Private Limited"}.`}
+                  </p>
                 </div>
               </AnimatedSection>
             </div>

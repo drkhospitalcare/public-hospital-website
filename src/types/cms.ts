@@ -13,6 +13,7 @@ export type CMSCategory =
   | "location"
   | "social"
   | "seo"
+  | "legal"
   | "general";
 
 export interface CMSSectionRecord<T = unknown> {
@@ -257,11 +258,17 @@ export interface ServicesHeroContent {
 export interface SingleServiceCard {
   id: string;
   title: string;
+  slug?: string;
   desc: string;
+  detailedDescription?: string;
+  specialtyId?: "dental-care" | "skin-care" | "hair-care";
   image?: string;
   imageAlt?: string;
   is_published: boolean;
   display_order: number;
+  seoTitle?: string;
+  metaDescription?: string;
+  canonicalUrl?: string;
 }
 
 export interface SpecialtyServicesContent {
@@ -418,13 +425,37 @@ export interface WebsiteMediaItem {
 // 9. SEO & Metadata
 // ==========================================
 
+export interface LegalIdentityContent {
+  publicBrandName: string;
+  registeredCompanyName: string;
+  legalDescription: string;
+  showInFooter: boolean;
+  showOnAboutPage: boolean;
+  seoLegalName: string;
+}
+
 export interface SEOMetadataContent {
+  // Brand & Corporate Legal Entity
+  organizationName?: string;
+  legalName?: string;
+  alternateNames?: string[];
+
+  // Homepage & Global Meta
   siteTitle: string;
   titleTemplate: string;
   defaultDescription: string;
   keywords: string[];
   ogImageUrl: string;
   canonicalBase: string;
+  googleSiteVerification?: string;
+
+  // Page-Specific SEO Metadata Overrides
+  aboutTitle?: string;
+  aboutDescription?: string;
+  servicesTitle?: string;
+  servicesDescription?: string;
+  contactTitle?: string;
+  contactDescription?: string;
 }
 
 // ==========================================

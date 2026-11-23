@@ -28,9 +28,15 @@ import {
   LocationMapsContent,
   SocialMediaContent,
   SEOMetadataContent,
+  LegalIdentityContent,
   FooterSettingsContent,
 } from "@/types/cms";
 import { HOSPITAL_INFO } from "@/lib/hospital-info";
+import {
+  OFFICIAL_DENTAL_SERVICES,
+  OFFICIAL_SKIN_SERVICES,
+  OFFICIAL_HAIR_SERVICES,
+} from "@/lib/services-catalog";
 
 export const DEFAULT_HOMEPAGE_HERO: HomepageHeroContent = {
   eyebrow: "Rooted in Care • DRK Hospitals Tiruttani",
@@ -47,7 +53,7 @@ export const DEFAULT_HOMEPAGE_HERO: HomepageHeroContent = {
   clinicImageAlt: "DRK Hospitals Clinical Facilities in Tiruttani",
   badgeTitle: "Certified Standards",
   badgeSubtitle: "Sterilized & Safe Clinical Care",
-  timingBadge: "Mon – Sat: 8:00 AM – 8:00 PM",
+  timingBadge: "Mon – Sat: 9:00 AM – 9:00 PM",
 };
 
 export const DEFAULT_HOMEPAGE_SPECIALTIES: HomepageSpecialtiesContent = {
@@ -427,162 +433,33 @@ export const DEFAULT_SERVICES_HERO: ServicesHeroContent = {
 };
 
 export const DEFAULT_SERVICES_DENTAL: SpecialtyServicesContent = {
-  departmentHeading: "Dental Care",
-  tagline: "Comprehensive Oral Health & Advanced Dentistry",
+  departmentHeading: "Department of Dental Sciences",
+  tagline: "Comprehensive Oral Health & Advanced Clinical Dentistry",
   description:
-    "From routine preventive cleanings to advanced root canal treatments and smile contouring, our dental team provides gentle, sterile, and precision dental care.",
+    "From routine preventive cleanings to advanced root canal treatments, implant surgery, and aesthetic smile contouring, our dental team provides gentle, sterile, and precision dental care in Tiruttani.",
   departmentImage: "/images/dental-care.jpg",
   departmentImageAlt: "DRK Hospital Dental Care Operatory",
-  services: [
-    {
-      id: "dent-1",
-      title: "Preventive & Diagnostic Dentistry",
-      desc: "Routine clinical evaluations, low-radiation digital imaging, plaque scaling, teeth polishing, and early cavity detection.",
-      is_published: true,
-      display_order: 1,
-    },
-    {
-      id: "dent-2",
-      title: "Restorative Dentistry & Root Canals",
-      desc: "Precision tooth-colored composite restorations, endodontic root canal treatments, ceramic inlays, and durable dental crowns.",
-      is_published: true,
-      display_order: 2,
-    },
-    {
-      id: "dent-3",
-      title: "Orthodontics & Clear Aligners",
-      desc: "Orthodontic consultations, fixed bracket systems, and transparent clear aligner treatment plans for gentle teeth straightening.",
-      is_published: true,
-      display_order: 3,
-    },
-    {
-      id: "dent-4",
-      title: "Aesthetic Smile Designing",
-      desc: "Professional in-chair teeth whitening, porcelain veneers, tooth contouring, and aesthetic smile enhancements.",
-      is_published: true,
-      display_order: 4,
-    },
-    {
-      id: "dent-5",
-      title: "Periodontal Care & Gum Health",
-      desc: "Targeted scaling, deep root planing, and therapeutic interventions to treat gingivitis and maintain firm, healthy gums.",
-      is_published: true,
-      display_order: 5,
-    },
-    {
-      id: "dent-6",
-      title: "Pediatric & Family Dental Care",
-      desc: "Gentle dental checkups, cavity prevention sealants, and age-appropriate oral hygiene education for children and families.",
-      is_published: true,
-      display_order: 6,
-    },
-  ],
+  services: OFFICIAL_DENTAL_SERVICES,
 };
 
 export const DEFAULT_SERVICES_SKIN: SpecialtyServicesContent = {
-  departmentHeading: "Skin Care",
+  departmentHeading: "Department of Dermatology & Skin Health",
   tagline: "Clinical Dermatology & Aesthetic Skin Health",
   description:
-    "Evidence-based dermatological care, acne management, skin revitalization, and clinical procedures administered in a sterile, patient-centered setting.",
+    "Evidence-based dermatological care, pimple and acne management, laser procedures, and clinical therapies administered in a sterile, patient-centered hospital setting in Tiruttani.",
   departmentImage: "/images/skin-care.jpg",
   departmentImageAlt: "DRK Hospital Dermatology Consultation",
-  services: [
-    {
-      id: "skin-1",
-      title: "Clinical Dermatology Consultations",
-      desc: "Specialized evaluations for chronic and acute skin conditions, including acne, eczema, psoriasis, dermatitis, and allergic rashes.",
-      is_published: true,
-      display_order: 1,
-    },
-    {
-      id: "skin-2",
-      title: "Targeted Acne & Acne Scar Care",
-      desc: "Individualized therapeutic protocols to control breakouts, reduce inflammation, and improve skin texture and post-acne scarring.",
-      is_published: true,
-      display_order: 2,
-    },
-    {
-      id: "skin-3",
-      title: "Pigmentation & Uneven Skin Tone",
-      desc: "Evidence-backed management plans for melasma, sun spots, post-inflammatory hyperpigmentation, and dull complexion.",
-      is_published: true,
-      display_order: 3,
-    },
-    {
-      id: "skin-4",
-      title: "Medical-Grade Skin Hydration & Peels",
-      desc: "Gentle exfoliating chemical formulations and intense hydration treatments performed under clinical supervision.",
-      is_published: true,
-      display_order: 4,
-    },
-    {
-      id: "skin-5",
-      title: "Skin Barrier Repair & Maintenance",
-      desc: "Tailored regimens restoring damaged cutaneous barriers, soothing reactive sensitivity, and reinforcing natural skin resilience.",
-      is_published: true,
-      display_order: 5,
-    },
-    {
-      id: "skin-6",
-      title: "Preventive Dermatological Screenings",
-      desc: "Thorough skin examinations, mole evaluations, and diagnostic checks promoting proactive lifelong skin wellness.",
-      is_published: true,
-      display_order: 6,
-    },
-  ],
+  services: OFFICIAL_SKIN_SERVICES,
 };
 
 export const DEFAULT_SERVICES_HAIR: SpecialtyServicesContent = {
-  departmentHeading: "Hair Care",
+  departmentHeading: "Department of Trichology & Scalp Sciences",
   tagline: "Trichology, Scalp Health & Hair Restoration",
   description:
-    "Comprehensive scalp diagnostics, hair loss management, therapeutic treatments, and trichology focused on follicular health and scalp nourishment.",
+    "Comprehensive scalp diagnostics, hair loss management, therapeutic PRP/GFC treatments, and trichology focused on follicular health and scalp nourishment in Tiruttani.",
   departmentImage: "/images/hair-care.jpg",
   departmentImageAlt: "DRK Hospital Trichology & Scalp Diagnostics",
-  services: [
-    {
-      id: "hair-1",
-      title: "Comprehensive Trichology Evaluations",
-      desc: "Microscopic follicular analysis and scalp assessments to identify the underlying triggers of thinning, shedding, or irritation.",
-      is_published: true,
-      display_order: 1,
-    },
-    {
-      id: "hair-2",
-      title: "Targeted Hair Loss & Thinning Management",
-      desc: "Customized medical therapy plans designed to strengthen weakened roots, decrease excessive shedding, and stimulate natural density.",
-      is_published: true,
-      display_order: 2,
-    },
-    {
-      id: "hair-3",
-      title: "Scalp Health & Dandruff Therapies",
-      desc: "Clinical management for seborrheic dermatitis, stubborn flaking, persistent itching, and imbalanced scalp microbiomes.",
-      is_published: true,
-      display_order: 3,
-    },
-    {
-      id: "hair-4",
-      title: "Follicular Revitalization Protocols",
-      desc: "Therapeutic nutrient infusions, scalp circulation stimulation, and non-invasive restorative techniques to support active follicle growth.",
-      is_published: true,
-      display_order: 4,
-    },
-    {
-      id: "hair-5",
-      title: "Post-Damage Hair Rehabilitation",
-      desc: "Specialized protein replenishment regimens repairing structurally compromised hair shafts from environmental stress or chemical processing.",
-      is_published: true,
-      display_order: 5,
-    },
-    {
-      id: "hair-6",
-      title: "Preventive Hair Maintenance Strategies",
-      desc: "Holistic lifestyle, nutritional, and topical guidance providing long-term scalp support and sustainable hair wellness.",
-      is_published: true,
-      display_order: 6,
-    },
-  ],
+  services: OFFICIAL_HAIR_SERVICES,
 };
 
 export const DEFAULT_SERVICES_APPROACH: ServicesApproachContent = {
@@ -750,22 +627,34 @@ export const DEFAULT_SOCIAL_MEDIA: SocialMediaContent = {
 };
 
 export const DEFAULT_SEO_METADATA: SEOMetadataContent = {
-  siteTitle: "DRK Hospitals Tiruttani – Dental, Skin & Hair Care | Rooted in Care",
-  titleTemplate: "%s | DRK Hospitals Tiruttani",
+  organizationName: "DRK Hospitals",
+  legalName: "DRK Dental Skin & Hair Hospital Private Limited",
+  alternateNames: ["DRK Hospital", "DRK Hospitals Tiruttani"],
+  siteTitle: "DRK Hospitals Tiruttani | Dental, Skin & Hair Care",
+  titleTemplate: "%s | DRK Hospitals",
   defaultDescription:
-    "Looking for quality hospital care in Tiruttani? Discover DRK Hospitals for dental, skin and hair care services. Serving patients from Tiruttani, Arakkonam, Pallipattu, Sholinghur and nearby areas.",
+    "DRK Hospitals in Tiruttani, Tamil Nadu, provides dental, skin and hair healthcare services. Explore our specialties, hospital facilities and contact information.",
   keywords: [
     "DRK Hospitals",
+    "DRK Hospital",
+    "DRK Hospitals Tiruttani",
+    "DRK Dental Skin & Hair Hospital Private Limited",
+    "Dental hospital in Tiruttani",
+    "Dental care Tiruttani",
+    "Skin care clinic Tiruttani",
+    "Dermatology services Tiruttani",
+    "Skin hospital in Tiruttani",
+    "Hair care Tiruttani",
+    "Hair treatment Tiruttani",
     "Hospital in Tiruttani",
     "Best hospital in Tiruttani",
-    "Dental Hospital in Tiruttani",
-    "Skin Clinic in Tiruttani",
-    "Hair Clinic in Tiruttani",
-    "Multispeciality hospital in Tiruttani",
     "Dentist in Tiruttani",
-    "Dermatology Clinic Tiruttani",
     "Root canal treatment Tiruttani",
     "Dental implants Tiruttani",
+    "Clear aligners Tiruttani",
+    "Skin doctor in Tiruttani",
+    "Acne treatment Tiruttani",
+    "Trichology clinic Tiruttani",
     "Hospital near Arakkonam",
     "Hospital near Pallipattu",
     "Hospital near Sholinghur",
@@ -773,8 +662,28 @@ export const DEFAULT_SEO_METADATA: SEOMetadataContent = {
     "Hospital in Tiruvallur district",
     "டிஆர்கே மருத்துவமனை திருத்தணி",
   ],
-  ogImageUrl: "/images/hero-clinic.jpg",
+  ogImageUrl: "/images/drk-hospitals-official-logo.png",
   canonicalBase: "https://drkhospitals.com",
+  googleSiteVerification: "",
+  aboutTitle: "About Us | DRK Hospitals Tiruttani – Rooted in Care",
+  aboutDescription:
+    "Learn about DRK Hospitals in Tiruttani, Tamil Nadu, and its corporate entity DRK Dental Skin & Hair Hospital Private Limited. Discover our healthcare story, clinical standards, and modern facilities.",
+  servicesTitle: "Services | DRK Hospitals Tiruttani – Dental, Skin & Hair Care",
+  servicesDescription:
+    "Explore DRK Hospitals' dedicated healthcare specialties: Dental Care, Skin Care, and Hair Care in Tiruttani, Tamil Nadu. Clinical precision, advanced hygiene, and patient-first care.",
+  contactTitle: "Contact Us | DRK Hospitals Tiruttani – Rooted in Care",
+  contactDescription:
+    "Contact DRK Hospitals in Tiruttani, Tamil Nadu. Access hospital address, verified helpline phone numbers, operating hours, and Google Maps directions.",
+};
+
+export const DEFAULT_LEGAL_IDENTITY: LegalIdentityContent = {
+  publicBrandName: "DRK Hospitals",
+  registeredCompanyName: "DRK DENTAL SKIN & HAIR HOSPITAL PRIVATE LIMITED",
+  legalDescription:
+    "DRK Hospitals is the public healthcare brand associated with DRK Dental Skin & Hair Hospital Private Limited.",
+  showInFooter: true,
+  showOnAboutPage: true,
+  seoLegalName: "DRK Dental Skin & Hair Hospital Private Limited",
 };
 
 export const DEFAULT_FOOTER_SETTINGS: FooterSettingsContent = {
@@ -988,7 +897,7 @@ export const DEFAULT_FOOTER_SETTINGS: FooterSettingsContent = {
   copyright: {
     visible: true,
     prefix: "©",
-    hospitalName: "DRK Hospital",
+    hospitalName: "DRK Hospitals",
     useDynamicYear: true,
     manualYear: "2026",
     tagline: "ROOTED IN CARE",

@@ -22,6 +22,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
+  Scale,
   X,
 } from "lucide-react";
 import { signOutAdmin } from "@/lib/admin-auth";
@@ -123,6 +124,12 @@ export default function AdminSidebar({
           href: "/admin/dashboard/website-content?tab=footer",
           icon: PanelBottom,
           active: isNavActive("/admin/dashboard/website-content", "footer"),
+        },
+        {
+          label: "Legal Identity",
+          href: "/admin/dashboard/website-content?tab=legal",
+          icon: Scale,
+          active: isNavActive("/admin/dashboard/website-content", "legal"),
         },
       ],
     },

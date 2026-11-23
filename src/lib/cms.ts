@@ -62,6 +62,8 @@ export function getDefaultContentForSection(sectionKey: string): unknown {
       return defaults.DEFAULT_SOCIAL_MEDIA;
     case "seo_metadata":
       return defaults.DEFAULT_SEO_METADATA;
+    case "legal_identity":
+      return defaults.DEFAULT_LEGAL_IDENTITY;
     case "footer_settings":
       return defaults.DEFAULT_FOOTER_SETTINGS;
     default:
@@ -132,6 +134,74 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
       parsed.contact.buttons = parsed.contact.buttons.filter(
         (b: any) => b.type !== "whatsapp" && !b.text?.toLowerCase().includes("whatsapp")
       );
+    }
+  }
+
+  if (sectionKey === "seo_metadata") {
+    parsed.organizationName = parsed.organizationName || "DRK Hospitals";
+    parsed.legalName = parsed.legalName || "DRK Dental Skin & Hair Hospital Private Limited";
+    parsed.canonicalBase = parsed.canonicalBase || "https://drkhospitals.com";
+    if (!parsed.siteTitle || parsed.siteTitle.includes("Chennai")) {
+      parsed.siteTitle = "DRK Hospitals Tiruttani | Dental, Skin & Hair Care";
+    }
+  }
+
+  if (sectionKey === "legal_identity") {
+    parsed.publicBrandName = parsed.publicBrandName || "DRK Hospitals";
+    parsed.registeredCompanyName =
+      parsed.registeredCompanyName || "DRK DENTAL SKIN & HAIR HOSPITAL PRIVATE LIMITED";
+    parsed.legalDescription =
+      parsed.legalDescription ||
+      "DRK Hospitals is the public healthcare brand associated with DRK Dental Skin & Hair Hospital Private Limited.";
+    parsed.showInFooter = parsed.showInFooter !== false;
+    parsed.showOnAboutPage = parsed.showOnAboutPage !== false;
+    parsed.seoLegalName =
+      parsed.seoLegalName || "DRK Dental Skin & Hair Hospital Private Limited";
+  }
+
+  // Synchronize Official Service Catalogues (13 Dental, 16 Skin, 7 Hair)
+  if (sectionKey === "services_dental") {
+    if (
+      !Array.isArray(parsed.services) ||
+      parsed.services.length < 13 ||
+      !parsed.services.some((s: any) => s.title === "Root Canal Treatment")
+    ) {
+      parsed.services = defaults.DEFAULT_SERVICES_DENTAL.services;
+      parsed.departmentHeading =
+        parsed.departmentHeading || defaults.DEFAULT_SERVICES_DENTAL.departmentHeading;
+      parsed.tagline = parsed.tagline || defaults.DEFAULT_SERVICES_DENTAL.tagline;
+      parsed.description =
+        parsed.description || defaults.DEFAULT_SERVICES_DENTAL.description;
+    }
+  }
+
+  if (sectionKey === "services_skin") {
+    if (
+      !Array.isArray(parsed.services) ||
+      parsed.services.length < 16 ||
+      !parsed.services.some((s: any) => s.title === "Carbon Peel Laser Treatment")
+    ) {
+      parsed.services = defaults.DEFAULT_SERVICES_SKIN.services;
+      parsed.departmentHeading =
+        parsed.departmentHeading || defaults.DEFAULT_SERVICES_SKIN.departmentHeading;
+      parsed.tagline = parsed.tagline || defaults.DEFAULT_SERVICES_SKIN.tagline;
+      parsed.description =
+        parsed.description || defaults.DEFAULT_SERVICES_SKIN.description;
+    }
+  }
+
+  if (sectionKey === "services_hair") {
+    if (
+      !Array.isArray(parsed.services) ||
+      parsed.services.length < 7 ||
+      !parsed.services.some((s: any) => s.title === "PRP Treatment")
+    ) {
+      parsed.services = defaults.DEFAULT_SERVICES_HAIR.services;
+      parsed.departmentHeading =
+        parsed.departmentHeading || defaults.DEFAULT_SERVICES_HAIR.departmentHeading;
+      parsed.tagline = parsed.tagline || defaults.DEFAULT_SERVICES_HAIR.tagline;
+      parsed.description =
+        parsed.description || defaults.DEFAULT_SERVICES_HAIR.description;
     }
   }
 
@@ -252,8 +322,10 @@ export async function getAdminSection<T>(
       section_key: data.section_key,
       section_name: data.section_name || sectionName,
       category: data.category || category,
-      content: data.content || def,
-      draft_content: data.draft_content || null,
+      content: sanitizePublishedContent(sectionKey, data.content || def),
+      draft_content: data.draft_content
+        ? sanitizePublishedContent(sectionKey, data.draft_content)
+        : null,
       is_published: data.is_published !== false,
       has_draft: Boolean(data.has_draft && data.draft_content),
       published_at: data.published_at,

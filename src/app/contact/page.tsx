@@ -27,30 +27,15 @@ export const metadata: Metadata = {
 
 const contactJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Hospital",
-  name: HOSPITAL_INFO.name,
-  alternateName: [
-    "DRK Hospital",
-    "DRK Hospitals Tiruttani",
-    "டிஆர்கே மருத்துவமனை திருத்தணி",
-  ],
+  "@type": "ContactPage",
+  "@id": "https://drkhospitals.com/contact#webpage",
   url: "https://drkhospitals.com/contact",
-  email: HOSPITAL_INFO.email.enquiry,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: HOSPITAL_INFO.city,
-    addressRegion: HOSPITAL_INFO.state,
-    postalCode: HOSPITAL_INFO.pincode,
-    addressCountry: "IN",
+  name: "Contact Us | DRK Hospitals Tiruttani",
+  description:
+    "Contact DRK Hospitals in Tiruttani, Tamil Nadu. Access hospital address, verified helpline phone numbers, operating hours, and Google Maps directions.",
+  mainEntity: {
+    "@id": "https://drkhospitals.com/#organization",
   },
-  areaServed: [
-    { "@type": "City", name: "Tiruttani" },
-    { "@type": "AdministrativeArea", name: "Tiruvallur District" },
-  ],
-  medicalSpecialty: [
-    "Dentistry",
-    "Dermatology",
-  ],
 };
 
 export default function ContactPage() {

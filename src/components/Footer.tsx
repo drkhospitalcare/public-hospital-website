@@ -30,6 +30,7 @@ import {
   ContactInfoContent,
   SocialMediaContent,
   FooterSettingsContent,
+  LegalIdentityContent,
 } from "@/types/cms";
 import SafeImage from "@/components/SafeImage";
 import { HOSPITAL_INFO } from "@/lib/hospital-info";
@@ -109,6 +110,7 @@ export default function Footer() {
   const contact = useCMSSection<ContactInfoContent>("contact_info", defaults.DEFAULT_CONTACT_INFO);
   const social = useCMSSection<SocialMediaContent>("social_media", defaults.DEFAULT_SOCIAL_MEDIA);
   const footerSettings = useCMSSection<FooterSettingsContent>("footer_settings", defaults.DEFAULT_FOOTER_SETTINGS);
+  const legal = useCMSSection<LegalIdentityContent>("legal_identity", defaults.DEFAULT_LEGAL_IDENTITY);
 
   // Resolved Structured Configurations with Graceful Defaults
   const def = defaults.DEFAULT_FOOTER_SETTINGS;
@@ -563,37 +565,63 @@ export default function Footer() {
           className="border-t border-white/15"
           style={{ backgroundColor: appearance.bottomBarBgColor || "#05144f" }}
         >
-          <div className="container flex flex-col items-center justify-between gap-3 py-5 text-center text-xs sm:flex-row sm:text-left text-blue-200">
-            <p>
-              {copyright.useCustomFullText && copyright.customFullText ? (
-                copyright.customFullText
-              ) : (
-                <>
-                  {copyright.prefix || "©"} {displayedYear} {copyright.hospitalName || "DRK Hospital"}.{" "}
-                  {copyright.tagline || "ROOTED IN CARE"}. {copyright.suffix || "All rights reserved."}
-                </>
+          <div className="container flex flex-col items-center justify-between gap-4 py-5 text-center text-xs sm:flex-row sm:text-left text-blue-200">
+            <div className="space-y-1">
+              <p>
+                {copyright.useCustomFullText && copyright.customFullText ? (
+                  copyright.customFullText
+                ) : (
+                  <>
+                    {copyright.prefix || "©"} {displayedYear} {copyright.hospitalName || "DRK Hospitals"}.{" "}
+                    {copyright.tagline || "ROOTED IN CARE"}. {copyright.suffix || "All rights reserved."}
+                  </>
+                )}
+              </p>
+              {legal.showInFooter !== false && (
+                <p className="text-[11px] text-blue-200/90 font-normal">
+                  {legal.publicBrandName || "DRK Hospitals"} is the public brand of{" "}
+                  <span className="font-medium text-white">{legal.registeredCompanyName || "DRK Dental Skin & Hair Hospital Private Limited"}</span>.
+                </p>
               )}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs text-blue-300">
-              {copyright.locationVisible !== false && (
-                <span>{copyright.locationLabel || HOSPITAL_INFO.addressShort}</span>
-              )}
-              {copyright.links
-                .filter((l) => l.visible !== false)
-                .sort((a, b) => (a.order || 0) - (b.order || 0))
-                .map((link) => (
-                  <span key={link.id} className="inline-flex items-center gap-3 sm:gap-4">
-                    <span>{separatorChar}</span>
-                    <Link
-                      href={link.url}
-                      target={link.openInNewTab ? "_blank" : undefined}
-                      rel={link.openInNewTab ? "noopener noreferrer" : undefined}
-                      className="hover:text-white transition"
-                    >
-                      {link.label}
-                    </Link>
-                  </span>
-                ))}
+            </div>
+
+            {/* Developer Credit & Bottom Links */}
+            <div className="flex flex-col sm:items-end items-center gap-1.5 text-xs text-blue-200">
+              <div className="text-[11px] sm:text-xs text-blue-200 font-medium tracking-wide">
+                <span>Designed &amp; Developed by </span>
+                <span className="text-white font-semibold">Deendhayal RR</span>
+                <span className="mx-2 text-blue-300/60 hidden sm:inline">•</span>
+                <span className="block sm:inline mt-0.5 sm:mt-0">
+                  <span>Contact: </span>
+                  <a
+                    href="tel:+919344365842"
+                    className="text-[#10C6C1] hover:text-white font-semibold underline underline-offset-2 transition-colors ml-0.5"
+                  >
+                    +91 93443 65842
+                  </a>
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 text-[11px] text-blue-300/80">
+                {copyright.locationVisible !== false && (
+                  <span>{copyright.locationLabel || HOSPITAL_INFO.addressShort}</span>
+                )}
+                {copyright.links
+                  .filter((l) => l.visible !== false)
+                  .sort((a, b) => (a.order || 0) - (b.order || 0))
+                  .map((link) => (
+                    <span key={link.id} className="inline-flex items-center gap-3">
+                      <span>{separatorChar}</span>
+                      <Link
+                        href={link.url}
+                        target={link.openInNewTab ? "_blank" : undefined}
+                        rel={link.openInNewTab ? "noopener noreferrer" : undefined}
+                        className="hover:text-white transition"
+                      >
+                        {link.label}
+                      </Link>
+                    </span>
+                  ))}
+              </div>
             </div>
           </div>
         </div>

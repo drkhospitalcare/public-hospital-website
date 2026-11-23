@@ -7,9 +7,16 @@
 
 export const HOSPITAL_INFO = {
   name: "DRK Hospitals",
+  legalName: "DRK Dental Skin & Hair Hospital Private Limited",
+  companyName: "DRK Dental Skin & Hair Hospital Private Limited",
+  alternateNames: [
+    "DRK Hospital",
+    "DRK Hospitals Tiruttani",
+    "டிஆர்கே மருத்துவமனை திருத்தணி",
+  ],
   tagline: "ROOTED IN CARE",
   description:
-    "A dedicated healthcare center in Tiruttani providing clinical care across Dental Care, Skin Care, and Hair Care.",
+    "DRK Hospitals in Tiruttani, Tamil Nadu, provides dental, skin and hair healthcare services. Explore our specialties, hospital facilities and contact information.",
   
   // Confirmed Official Patient-Visit Address (Tiruttani, Tamil Nadu)
   street: "SF.No. 29/2A, Akkaia Naidu Street",
@@ -45,27 +52,27 @@ export const HOSPITAL_INFO = {
     full: "Monday to Saturday: 9:00 AM – 9:00 PM | Sunday: 9:00 AM – 9:00 PM",
   },
   
-  // Contact Phone Numbers (PENDING HOSPITAL CONFIRMATION: Official hospital phone numbers; currently configured placeholders)
+  // Contact Phone Numbers (Verified hospital helpline)
   phone: {
-    primary: "+91 44 2345 6789",
-    primaryRaw: "+914423456789",
-    secondary: "+91 98765 43210",
-    secondaryRaw: "+919876543210",
+    primary: "+91 6380517153",
+    primaryRaw: "+916380517153",
+    secondary: "+91 6380517153",
+    secondaryRaw: "+916380517153",
     label: "Hospital Helpline",
   },
   
-  // WhatsApp Contact (PENDING HOSPITAL CONFIRMATION: Official WhatsApp number; currently configured placeholder)
+  // WhatsApp Contact (Verified hospital contact number)
   whatsapp: {
-    number: "+91 98765 43210",
-    raw: "919876543210",
+    number: "+91 6380517153",
+    raw: "916380517153",
     message: "Hello DRK Hospitals, I would like to enquire about consultation in Tiruttani.",
-    url: "https://wa.me/919876543210?text=Hello%20DRK%20Hospitals%2C%20I%20would%20like%20to%20enquire%20about%20consultation%20in%20Tiruttani.",
+    url: "https://wa.me/916380517153?text=Hello%20DRK%20Hospitals%2C%20I%20would%20like%20to%20enquire%20about%20consultation%20in%20Tiruttani.",
   },
   
   // Email
   email: {
-    enquiry: "enquiries@drkhospitals.com",
-    contact: "contact@drkhospitals.com",
+    enquiry: "drkhospitalcare@gmail.com",
+    contact: "drkhospitalcare@gmail.com",
   },
 
   // Regional Service Area Coverage (Nearby regional towns)

@@ -48,6 +48,7 @@ import {
   SocialMediaContent,
   SEOMetadataContent,
   FooterSettingsContent,
+  LegalIdentityContent,
   MediaCategory,
 } from "@/types/cms";
 
@@ -61,6 +62,7 @@ import MapsEditor from "@/components/admin/cms/MapsEditor";
 import SocialEditor from "@/components/admin/cms/SocialEditor";
 import SEOEditor from "@/components/admin/cms/SEOEditor";
 import FooterEditor from "@/components/admin/cms/FooterEditor";
+import LegalIdentityEditor from "@/components/admin/cms/LegalIdentityEditor";
 import MediaLibraryModal from "@/components/admin/cms/MediaLibraryModal";
 import LivePreviewModal from "@/components/admin/cms/LivePreviewModal";
 
@@ -74,6 +76,7 @@ type ActiveSectionId =
   | "social"
   | "seo"
   | "footer"
+  | "legal"
   | "media";
 
 function WebsiteContentStudio() {
@@ -94,7 +97,7 @@ function WebsiteContentStudio() {
       setActiveSection("media");
       setShowMediaModal(true);
     } else if (
-      ["homepage", "about", "services", "contact", "social", "seo", "footer"].includes(tab)
+      ["homepage", "about", "services", "contact", "social", "seo", "footer", "legal"].includes(tab)
     ) {
       setActiveSection(tab as ActiveSectionId);
     }
@@ -184,6 +187,11 @@ function WebsiteContentStudio() {
     defaults.DEFAULT_FOOTER_SETTINGS
   );
 
+  // Legal Company Information
+  const [legal, setLegal] = useState<LegalIdentityContent>(
+    defaults.DEFAULT_LEGAL_IDENTITY
+  );
+
   // Publication Status tracking for active section
   const [statusMap, setStatusMap] = useState<
     Record<string, { isPublished: boolean; hasDraft: boolean; updatedAt?: string }>
@@ -246,6 +254,7 @@ function WebsiteContentStudio() {
       socRec,
       seoRec,
       footerRec,
+      legalRec,
     ] = await Promise.all([
       getAdminSection<HomepageHeroContent>("homepage_hero", "Homepage Hero", "homepage"),
       getAdminSection<HomepageSpecialtiesContent>(
@@ -300,6 +309,7 @@ function WebsiteContentStudio() {
       getAdminSection<SocialMediaContent>("social_media", "Social Media", "social"),
       getAdminSection<SEOMetadataContent>("seo_metadata", "SEO & Metadata", "seo"),
       getAdminSection<FooterSettingsContent>("footer_settings", "Footer Settings", "general"),
+      getAdminSection<LegalIdentityContent>("legal_identity", "Legal Company Information", "legal"),
     ]);
 
     // Populate states using draft if available, otherwise published content
@@ -331,6 +341,7 @@ function WebsiteContentStudio() {
     setSocial((socRec.draft_content || socRec.content) as SocialMediaContent);
     setSeo((seoRec.draft_content || seoRec.content) as SEOMetadataContent);
     setFooterSettings((footerRec.draft_content || footerRec.content) as FooterSettingsContent);
+    setLegal((legalRec.draft_content || legalRec.content) as LegalIdentityContent);
 
     // Save status map
     const sm: Record<string, { isPublished: boolean; hasDraft: boolean; updatedAt?: string }> = {
@@ -373,6 +384,11 @@ function WebsiteContentStudio() {
         isPublished: footerRec.is_published,
         hasDraft: footerRec.has_draft,
         updatedAt: footerRec.updated_at,
+      },
+      legal: {
+        isPublished: legalRec.is_published,
+        hasDraft: legalRec.has_draft,
+        updatedAt: legalRec.updated_at,
       },
     };
     setStatusMap(sm);
@@ -443,6 +459,10 @@ function WebsiteContentStudio() {
       err = r.error;
     } else if (activeSection === "footer") {
       const r = await saveSectionDraft("footer_settings", "Footer Settings", "general", footerSettings);
+      success = r.success;
+      err = r.error;
+    } else if (activeSection === "legal") {
+      const r = await saveSectionDraft("legal_identity", "Legal Company Information", "legal", legal);
       success = r.success;
       err = r.error;
     }
@@ -517,6 +537,10 @@ function WebsiteContentStudio() {
       const r = await publishSection("footer_settings", "Footer Settings", "general", footerSettings);
       success = r.success;
       err = r.error;
+    } else if (activeSection === "legal") {
+      const r = await publishSection("legal_identity", "Legal Company Information", "legal", legal);
+      success = r.success;
+      err = r.error;
     }
 
     setPublishing(false);
@@ -549,6 +573,8 @@ function WebsiteContentStudio() {
       await discardSectionDraft("seo_metadata");
     } else if (activeSection === "footer") {
       await discardSectionDraft("footer_settings");
+    } else if (activeSection === "legal") {
+      await discardSectionDraft("legal_identity");
     }
     loadAllData();
     showToast("success", "Draft discarded. Restored live published version.");
@@ -722,6 +748,8 @@ function WebsiteContentStudio() {
                     ? "Social Media Profiles"
                     : activeSection === "seo"
                     ? "SEO & Website Metadata"
+                    : activeSection === "legal"
+                    ? "Legal Company Information & Brand Governance"
                     : "Footer Settings & Brand Logo"
                 }
                 category={
@@ -729,6 +757,8 @@ function WebsiteContentStudio() {
                     ? "LOCATION"
                     : activeSection === "footer"
                     ? "FOOTER"
+                    : activeSection === "legal"
+                    ? "LEGAL"
                     : activeSection.toUpperCase()
                 }
                 isPublished={statusMap[activeSection]?.isPublished !== false}
@@ -843,6 +873,10 @@ function WebsiteContentStudio() {
                   setShowMediaModal(true);
                 }}
               />
+            )}
+
+            {activeSection === "legal" && (
+              <LegalIdentityEditor legal={legal} setLegal={setLegal} />
             )}
 
             {activeSection === "media" && (

@@ -7,19 +7,20 @@ import HealthcarePhilosophy from "@/components/HealthcarePhilosophy";
 import CoreValues from "@/components/CoreValues";
 import ClinicalStandards from "@/components/ClinicalStandards";
 import AboutFacilities from "@/components/AboutFacilities";
+import CompanyIdentity from "@/components/CompanyIdentity";
 import ContactCTA from "@/components/ContactCTA";
 
 export const metadata: Metadata = {
   title: "About Us | DRK Hospitals Tiruttani – Rooted in Care",
   description:
-    "Learn about DRK Hospitals in Tiruttani, Tamil Nadu. Discover our healthcare story, vision, mission, healthcare philosophy, core values, clinical standards, and modern facilities for Dental, Skin, and Hair health.",
+    "Learn about DRK Hospitals in Tiruttani, Tamil Nadu, and its corporate entity DRK Dental Skin & Hair Hospital Private Limited. Discover our healthcare story, clinical standards, and modern facilities.",
   alternates: {
     canonical: "https://drkhospitals.com/about",
   },
   openGraph: {
     title: "About DRK Hospitals | Tiruttani, Tamil Nadu",
     description:
-      "A dedicated healthcare center in Tiruttani committed to clinical excellence across Dental Care, Skin Care, and Hair Care. Rooted in care with compassionate, disciplined expertise.",
+      "DRK Hospitals in Tiruttani, Tamil Nadu, and registered corporate entity DRK Dental Skin & Hair Hospital Private Limited. Dedicated to clinical excellence across Dental Care, Skin Care, and Hair Care.",
     url: "https://drkhospitals.com/about",
     images: [
       {
@@ -32,9 +33,27 @@ export const metadata: Metadata = {
   },
 };
 
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://drkhospitals.com/about#webpage",
+  url: "https://drkhospitals.com/about",
+  name: "About DRK Hospitals Tiruttani",
+  description:
+    "Learn about DRK Hospitals in Tiruttani, Tamil Nadu, and registered corporate entity DRK Dental Skin & Hair Hospital Private Limited.",
+  mainEntity: {
+    "@id": "https://drkhospitals.com/#organization",
+  },
+};
+
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+      />
+
       {/* SECTION 1 – HERO */}
       <AboutHero />
 
@@ -44,22 +63,25 @@ export default function AboutPage() {
       {/* SECTION 3 – OUR STORY ("How We Began") */}
       <StorySection />
 
-      {/* SECTION 3 – VISION AND MISSION */}
+      {/* SECTION 4 – VISION AND MISSION */}
       <VisionMission />
 
-      {/* SECTION 4 – OUR HEALTHCARE PHILOSOPHY */}
+      {/* SECTION 5 – OUR HEALTHCARE PHILOSOPHY */}
       <HealthcarePhilosophy />
 
-      {/* SECTION 5 – OUR CORE VALUES */}
+      {/* SECTION 6 – OUR CORE VALUES */}
       <CoreValues />
 
-      {/* SECTION 6 – CLINICAL STANDARDS */}
+      {/* SECTION 7 – CLINICAL STANDARDS */}
       <ClinicalStandards />
 
-      {/* SECTION 7 – OUR FACILITIES */}
+      {/* SECTION 8 – OUR FACILITIES */}
       <AboutFacilities />
 
-      {/* SECTION 8 – CONTACT CTA */}
+      {/* SECTION 9 – CORPORATE & LEGAL IDENTITY */}
+      <CompanyIdentity />
+
+      {/* SECTION 10 – CONTACT CTA */}
       <ContactCTA
         eyebrow="Connect With DRK Hospitals"
         title="Experience Dedicated Healthcare in Tiruttani"

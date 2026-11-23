@@ -24,6 +24,27 @@ export const metadata: Metadata = {
   },
 };
 
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "@id": "https://drkhospitals.com/services#webpage",
+  url: "https://drkhospitals.com/services",
+  name: "Healthcare Services | DRK Hospitals Tiruttani",
+  description:
+    "Comprehensive dental sciences, clinical dermatology, and specialized trichology treatments delivered with medical excellence in Tiruttani, Tamil Nadu.",
+  about: {
+    "@id": "https://drkhospitals.com/#organization",
+  },
+};
+
 export default function ServicesPage() {
-  return <ServicesClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+      />
+      <ServicesClient />
+    </>
+  );
 }

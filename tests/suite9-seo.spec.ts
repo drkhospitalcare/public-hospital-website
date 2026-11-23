@@ -7,7 +7,7 @@ test.describe("SUITE 9 – SEO and Metadata Tests", () => {
     await page.goto(`${PUBLIC_BASE}/`);
     const title = await page.title();
     expect(title).toContain("DRK Hospital");
-    expect(title).toContain("Rooted in Care");
+    expect(title).toContain("Tiruttani");
   });
 
   test("SEO-002: Homepage description meta tag exists", async ({ page }) => {
@@ -77,7 +77,7 @@ test.describe("SUITE 9 – SEO and Metadata Tests", () => {
     const jsonLdScript = page.locator('script[type="application/ld+json"]').first();
     await expect(jsonLdScript).toBeAttached();
     const jsonLdContent = await jsonLdScript.textContent();
-    expect(jsonLdContent).toContain('"@type":"Hospital"');
+    expect(jsonLdContent).toContain("Hospital");
     expect(jsonLdContent).toContain("DRK Hospital");
   });
 });

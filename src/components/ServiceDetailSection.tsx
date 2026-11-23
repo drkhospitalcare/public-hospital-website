@@ -10,6 +10,8 @@ import { HOSPITAL_INFO } from "@/lib/hospital-info";
 interface ServiceItem {
   title: string;
   desc: string;
+  slug?: string;
+  specialtyId?: string;
 }
 
 interface ServiceDetailSectionProps {
@@ -27,6 +29,8 @@ interface ServiceDetailSectionProps {
   consultationText: string;
   enquiryText: string;
   bgWhite?: boolean;
+  specialtyPageHref?: string;
+  specialtyPageLabel?: string;
 }
 
 export default function ServiceDetailSection({
@@ -44,6 +48,8 @@ export default function ServiceDetailSection({
   consultationText,
   enquiryText,
   bgWhite = true,
+  specialtyPageHref,
+  specialtyPageLabel,
 }: ServiceDetailSectionProps) {
   return (
     <section
@@ -130,6 +136,8 @@ export default function ServiceDetailSection({
                   title={item.title}
                   desc={item.desc}
                   accentColor={accentColor}
+                  slug={item.slug}
+                  specialtyId={item.specialtyId || id}
                 />
               </AnimatedSection>
             ))}
@@ -155,6 +163,15 @@ export default function ServiceDetailSection({
               </div>
 
               <div className="lg:col-span-4 flex flex-wrap lg:justify-end gap-3">
+                {specialtyPageHref && (
+                  <Link
+                    href={specialtyPageHref}
+                    className="btn-outline text-xs sm:text-sm !py-2.5 !px-4"
+                  >
+                    <span>{specialtyPageLabel || "Detailed Procedures"}</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                )}
                 <Link
                   href="/contact"
                   className="btn-primary text-xs sm:text-sm !py-2.5 !px-5"

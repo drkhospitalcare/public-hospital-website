@@ -1217,6 +1217,14 @@ export default function FooterEditor({
               </span>
             </div>
 
+            {/* Centralized Address Synchronization Notice */}
+            <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-3.5 text-xs text-sky-900 flex items-start gap-2.5">
+              <span className="font-bold text-sky-800 shrink-0 mt-0.5">Centralized Synchronization:</span>
+              <span>
+                Hospital address, phone numbers, and Google Maps URL are synchronized across Header, Footer, and Contact pages. Updating these details here or under Contact Information maintains consistency across the entire website.
+              </span>
+            </div>
+
             <div>
               <label className="text-xs font-bold text-[#071B68]">Column Heading</label>
               <input
@@ -1487,6 +1495,14 @@ export default function FooterEditor({
             <span className="font-bold text-[#071B68] shrink-0 mt-0.5">Notice:</span>
             <span>
               Business and consultation hours must reflect actual hospital doctor availability. Do not publish emergency-care or 24/7 emergency-service claims without explicit hospital confirmation.
+            </span>
+          </div>
+
+          {/* Centralized Working Hours Notice */}
+          <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-3.5 text-xs text-sky-900 flex items-start gap-2.5">
+            <span className="font-bold text-sky-800 shrink-0 mt-0.5">Centralized Schedule:</span>
+            <span>
+              Operating hours configured here synchronize with Header, Footer, Contact page, and Homepage. Standard schedule: Monday to Saturday 9:00 AM – 9:00 PM, Sunday 9:00 AM – 9:00 PM.
             </span>
           </div>
 

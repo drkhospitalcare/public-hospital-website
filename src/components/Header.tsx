@@ -9,6 +9,7 @@ import { HOSPITAL_INFO } from "@/lib/hospital-info";
 import { useCMSSection } from "@/lib/useCMS";
 import * as defaults from "@/lib/cms-defaults";
 import { ContactInfoContent } from "@/types/cms";
+import { formatOperatingHours } from "@/lib/working-hours";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -35,6 +36,7 @@ export default function Header() {
       raw: HOSPITAL_INFO.phone.primaryRaw,
     };
   const addressDisplay = `${contact.city}, ${contact.state}`;
+  const hoursSummary = formatOperatingHours(contact.operatingHours);
 
   // Close mobile menu upon navigation
   useEffect(() => {
@@ -80,7 +82,7 @@ export default function Header() {
             </span>
             <span className="hidden sm:flex items-center gap-1.5 font-medium text-[#071B68]">
               <Clock3 size={13} className="text-[#087FBA] shrink-0" />
-              <span>Mon – Sat: 8:00 AM – 8:00 PM</span>
+              <span>{hoursSummary.displayShort}</span>
             </span>
           </div>
           <div className="flex items-center gap-4 ml-auto">

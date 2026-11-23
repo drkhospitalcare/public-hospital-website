@@ -11,16 +11,18 @@ export const HOSPITAL_INFO = {
   description:
     "A dedicated healthcare center in Tiruttani providing clinical care across Dental Care, Skin Care, and Hair Care.",
   
-  // Location & Address (Tiruttani, Tamil Nadu)
+  // Confirmed Official Patient-Visit Address (Tiruttani, Tamil Nadu)
+  street: "SF.No. 29/2A, Akkaia Naidu Street",
+  locality: "Akkaia Naidu Street",
   city: "Tiruttani",
   district: "Tiruvallur District",
   state: "Tamil Nadu",
   country: "India",
   pincode: "631209",
-  // PENDING HOSPITAL CONFIRMATION: Specific street address & building door number
-  address: "DRK Hospitals, Tiruttani, Tiruvallur District, Tamil Nadu 631209",
+  address: "SF.No. 29/2A, Akkaia Naidu Street, Tiruttani, Tiruvallur – 631209, Tamil Nadu, India",
+  fullAddress: "DRK Hospitals, SF.No. 29/2A, Akkaia Naidu Street, Tiruttani, Tiruvallur – 631209, Tamil Nadu, India",
   addressShort: "Tiruttani, Tamil Nadu",
-  // PENDING HOSPITAL CONFIRMATION: Building GPS coordinates (Current values represent Tiruttani town center)
+  // Building GPS coordinates
   coordinates: {
     latitude: 13.1784,
     longitude: 79.6105,
@@ -29,18 +31,18 @@ export const HOSPITAL_INFO = {
     latitude: 13.1784,
     longitude: 79.6105,
   },
-  // PENDING HOSPITAL CONFIRMATION: Official Google Maps Place link
+  // Confirmed Google Maps Place link
   maps: {
-    shareUrl: "https://maps.google.com/?q=Tiruttani+Tamil+Nadu",
-    embedUrl: "https://maps.google.com/maps?q=Tiruttani,%20Tamil%20Nadu&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    shareUrl: "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India",
+    embedUrl: "https://maps.google.com/maps?q=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
   
-  // Working Hours (PENDING HOSPITAL CONFIRMATION: Exact OPD hours)
+  // Working Hours (Authoritative hospital operating schedule)
   workingHours: {
-    weekdays: "Mon – Sat: 8:00 AM – 8:00 PM",
-    sunday: "Sunday: 9:00 AM – 1:00 PM (Consultation)",
-    displayShort: "Mon – Sat: 8:00 AM – 8:00 PM",
-    full: "Monday to Saturday: 8:00 AM – 8:00 PM | Sunday: 9:00 AM – 1:00 PM",
+    weekdays: "Mon – Sat: 9:00 AM – 9:00 PM",
+    sunday: "Sunday: 9:00 AM – 9:00 PM (Consultation)",
+    displayShort: "Mon – Sat: 9:00 AM – 9:00 PM",
+    full: "Monday to Saturday: 9:00 AM – 9:00 PM | Sunday: 9:00 AM – 9:00 PM",
   },
   
   // Contact Phone Numbers (PENDING HOSPITAL CONFIRMATION: Official hospital phone numbers; currently configured placeholders)

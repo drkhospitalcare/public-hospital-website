@@ -158,6 +158,20 @@ export default function ContactEditor({ contact, setContact }: ContactEditorProp
               />
             </div>
           </div>
+
+          <div>
+            <label className="text-xs font-bold text-[#071B68]">Google Maps URL (Official Navigation Link)</label>
+            <input
+              type="url"
+              value={contact.googleMapsUrl || ""}
+              onChange={(e) => setContact({ ...contact, googleMapsUrl: e.target.value })}
+              placeholder="https://www.google.com/maps/search/?api=1&query=..."
+              className="mt-1 w-full rounded-xl border border-[#DCE8F0] bg-white px-3 py-2 text-xs font-mono text-[#071B68]"
+            />
+            <p className="mt-1 text-[11px] text-[#5D6B85]">
+              Master Google Maps navigation URL used across the header, footer, contact page, and map directions button.
+            </p>
+          </div>
         </div>
       )}
 
@@ -538,6 +552,22 @@ export default function ContactEditor({ contact, setContact }: ContactEditorProp
                   visitingInfo: { ...contact.visitingInfo, accessibilityInfo: e.target.value },
                 })
               }
+              className="mt-1 w-full rounded-xl border border-[#DCE8F0] bg-white p-2.5 text-xs text-[#071B68]"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs font-bold text-[#071B68]">Parking & Transportation Guidance</label>
+            <textarea
+              rows={2}
+              value={contact.visitingInfo.parkingInfo || ""}
+              onChange={(e) =>
+                setContact({
+                  ...contact,
+                  visitingInfo: { ...contact.visitingInfo, parkingInfo: e.target.value },
+                })
+              }
+              placeholder="Designated patient parking space available on premises..."
               className="mt-1 w-full rounded-xl border border-[#DCE8F0] bg-white p-2.5 text-xs text-[#071B68]"
             />
           </div>

@@ -33,6 +33,7 @@ import {
 } from "@/types/cms";
 import SafeImage from "@/components/SafeImage";
 import { HOSPITAL_INFO } from "@/lib/hospital-info";
+import { formatOperatingHours } from "@/lib/working-hours";
 
 function getSocialIcon(platform: string) {
   switch (platform?.toLowerCase()) {
@@ -143,20 +144,20 @@ export default function Footer() {
   const resolvedEmail = contactConfig.officialEmail || primaryEmail.email || HOSPITAL_INFO.email.enquiry;
 
   // Address: Verified Tiruttani hospital address
-  const resolvedAddress = contactConfig.useHospitalInfo
-    ? HOSPITAL_INFO.address
-    : [
-        contactConfig.addressLine1,
-        contactConfig.addressLine2,
-        contactConfig.street,
-        contactConfig.landmark,
-        contactConfig.city,
-        contactConfig.district,
-        contactConfig.state,
-        contactConfig.pincode,
-      ]
-        .filter(Boolean)
-        .join(", ") || HOSPITAL_INFO.address;
+  const resolvedAddress =
+    (contact.address && !contact.address.includes("Chennai") && !contact.address.includes("Anna Salai")
+      ? contact.address
+      : HOSPITAL_INFO.address);
+
+  const resolvedMapsUrl =
+    contact.googleMapsUrl || contactConfig.googleMapsUrl || HOSPITAL_INFO.maps.shareUrl;
+
+  // Operating Hours: Synchronized from centralized CMS schedule
+  const hoursSummary = formatOperatingHours(
+    contact.operatingHours && contact.operatingHours.length > 0
+      ? contact.operatingHours
+      : hours.days
+  );
 
   // Social Links resolution (use footer socialLinks if populated, else fallback to social CMS section)
   const activeSocialLinks =
@@ -488,9 +489,9 @@ export default function Footer() {
                 {contactConfig.addressVisible !== false && (
                   <div className="flex items-start gap-2.5">
                     <MapPin size={17} className="text-[#10C6C1] shrink-0 mt-0.5" />
-                    {contactConfig.googleMapsUrl ? (
+                    {resolvedMapsUrl ? (
                       <a
-                        href={contactConfig.googleMapsUrl}
+                        href={resolvedMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-[#10C6C1] transition"
@@ -528,8 +529,8 @@ export default function Footer() {
                   <div className="flex items-start gap-2.5">
                     <Clock3 size={17} className="text-[#10C6C1] shrink-0 mt-0.5" />
                     <div className="text-xs space-y-0.5">
-                      <p>Mon – Sat: 8:00 AM – 8:00 PM</p>
-                      <p>Sunday: 9:00 AM – 1:00 PM (Consultation)</p>
+                      <p>{hoursSummary.weekdaysText}</p>
+                      <p>{hoursSummary.sundayText}</p>
                       {hours.generalAdvisory && (
                         <p className="text-[10px] text-blue-300/80 pt-0.5">{hours.generalAdvisory}</p>
                       )}

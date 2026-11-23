@@ -326,6 +326,7 @@ export interface ContactInfoContent {
   state: string;
   country: string;
   pincode: string;
+  googleMapsUrl?: string;
   phoneNumbers: PhoneContactItem[];
   whatsapp: {
     number: string;
@@ -340,6 +341,7 @@ export interface ContactInfoContent {
     walkInInfo: string;
     visitingInstructions: string;
     accessibilityInfo: string;
+    parkingInfo?: string;
   };
 }
 

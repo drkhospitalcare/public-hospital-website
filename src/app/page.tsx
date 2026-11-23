@@ -33,6 +33,7 @@ import FacilityCard from "@/components/FacilityCard";
 import ApproachStep from "@/components/ApproachStep";
 import SafeImage from "@/components/SafeImage";
 import { useCMSSection } from "@/lib/useCMS";
+import { formatOperatingHours } from "@/lib/working-hours";
 import * as defaults from "@/lib/cms-defaults";
 import {
   HomepageHeroContent,
@@ -96,6 +97,7 @@ export default function HomePage() {
   );
   const cta = useCMSSection<HomepageCTAContent>("homepage_cta", defaults.DEFAULT_HOMEPAGE_CTA);
   const contact = useCMSSection<ContactInfoContent>("contact_info", defaults.DEFAULT_CONTACT_INFO);
+  const hoursSummary = formatOperatingHours(contact.operatingHours);
 
   const primaryPhone =
     contact.phoneNumbers.find((p) => p.isPrimary && p.isActive) ||
@@ -659,7 +661,9 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-base font-bold text-[#071B68]">Hospital Location</h3>
                   <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5D6B85]">
-                    {contact.address}
+                    {contact.address && !contact.address.includes("Chennai") && !contact.address.includes("Anna Salai")
+                      ? contact.address
+                      : defaults.DEFAULT_CONTACT_INFO.address}
                   </p>
                 </div>
                 <p className="mt-4 text-xs font-semibold text-[#087FBA]">
@@ -717,14 +721,16 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-base font-bold text-[#071B68]">Operating Hours</h3>
                   <div className="mt-2 space-y-1 text-xs sm:text-sm text-[#5D6B85]">
-                    {contact.operatingHours.slice(0, 2).map((oh) => (
-                      <p key={oh.day}>
-                        <strong className="text-[#071B68]">{oh.day}:</strong>{" "}
-                        {oh.isOpen ? `${oh.openTime} – ${oh.closeTime}` : "Closed"}
-                      </p>
-                    ))}
+                    <p>
+                      <strong className="text-[#071B68]">Monday – Saturday:</strong>{" "}
+                      {hoursSummary.weekdaysText.replace(/^Mon – Sat:\s*/, "")}
+                    </p>
+                    <p>
+                      <strong className="text-[#071B68]">Sunday:</strong>{" "}
+                      {hoursSummary.sundayText.replace(/^Sunday:\s*/, "")}
+                    </p>
                     <p className="text-[11px] text-[#087FBA] font-semibold pt-1">
-                      Mon – Sat: 8:00 AM – 8:00 PM
+                      {hoursSummary.displayShort}
                     </p>
                   </div>
                 </div>

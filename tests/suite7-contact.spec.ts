@@ -36,7 +36,7 @@ test.describe("SUITE 7 – Contact and Location Tests", () => {
   });
 
   test("CONTACT-005: Opening hours display", async ({ page }) => {
-    const weekdayHours = page.locator('text=8:00 AM').first();
+    const weekdayHours = page.locator('text=9:00 AM').first();
     await expect(weekdayHours).toBeVisible();
   });
 
@@ -64,7 +64,7 @@ test.describe("SUITE 7 – Contact and Location Tests", () => {
   test("CONTACT-009: Google Maps link works", async ({ page }) => {
     const mapIframe = page.locator('iframe[title*="Google Maps"]').first();
     await expect(mapIframe).toBeVisible();
-    const directionsLink = page.locator('a:has-text("Directions"), a[href*="maps.google.com"]').first();
+    const directionsLink = page.locator('a:has-text("Directions"), a[href*="google.com/maps"], a[href*="maps.google.com"]').first();
     await expect(directionsLink).toBeVisible();
   });
 

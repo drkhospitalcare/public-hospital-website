@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { useCMSSection } from "@/lib/useCMS";
 import { ContactInfoContent, PhoneContactItem } from "@/types/cms";
 import { DEFAULT_CONTACT_INFO } from "@/lib/cms-defaults";
+import { formatOperatingHours } from "@/lib/working-hours";
 
 interface ContactCTAProps {
   title?: string;
@@ -22,6 +23,7 @@ export default function ContactCTA({
     "contact_info",
     DEFAULT_CONTACT_INFO
   );
+  const hoursSummary = formatOperatingHours(contact.operatingHours);
 
   const primaryPhone =
     contact.phoneNumbers.find((p: PhoneContactItem) => p.isPrimary && p.isActive) ||
@@ -67,7 +69,7 @@ export default function ContactCTA({
             </div>
             <div className="flex items-center gap-2">
               <Clock size={16} className="text-[#10C6C1]" />
-              <span>Mon – Sat: {weekdayHours.openTime} – {weekdayHours.closeTime}</span>
+              <span>{hoursSummary.displayShort}</span>
             </div>
           </div>
 

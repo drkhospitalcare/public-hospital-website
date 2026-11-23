@@ -29,6 +29,8 @@ import {
   DEFAULT_CONTACT_INFO,
   DEFAULT_LOCATION_MAPS,
 } from "@/lib/cms-defaults";
+import { HOSPITAL_INFO } from "@/lib/hospital-info";
+import { formatOperatingHours } from "@/lib/working-hours";
 
 export default function ContactClient() {
   const contact = useCMSSection<ContactInfoContent>(
@@ -54,17 +56,7 @@ export default function ContactClient() {
     (p: PhoneContactItem) => !p.isPrimary && p.isActive
   ) || contact.phoneNumbers[1];
 
-  const weekdayHours =
-    contact.operatingHours.find((o) => o.day === "Monday") || {
-      openTime: "08:00 AM",
-      closeTime: "08:00 PM",
-    };
-  const sundayHours =
-    contact.operatingHours.find((o) => o.day === "Sunday") || {
-      isOpen: true,
-      openTime: "09:00 AM",
-      closeTime: "01:00 PM",
-    };
+  const hoursSummary = formatOperatingHours(contact.operatingHours);
 
   const whatsappUrl = `https://wa.me/${contact.whatsapp.raw || "919876543210"}?text=${encodeURIComponent(
     contact.whatsapp.defaultMessage || "Hello DRK Hospital"
@@ -128,7 +120,9 @@ export default function ContactClient() {
                 </div>
                 <h3 className="text-base font-bold text-[#071B68]">Hospital Location</h3>
                 <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5D6B85]">
-                  {contact.address}
+                  {contact.address && !contact.address.includes("Chennai") && !contact.address.includes("Anna Salai")
+                    ? contact.address
+                    : HOSPITAL_INFO.address}
                 </p>
               </div>
               <div className="mt-4 pt-3 border-t border-[#DCE8F0]/80">
@@ -250,11 +244,11 @@ export default function ContactClient() {
                 </h4>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-0.5 text-xs text-[#5D6B85] mt-0.5">
                   <span className="font-semibold text-[#071B68]">
-                    Mon – Sat: {weekdayHours.openTime} – {weekdayHours.closeTime}
+                    {hoursSummary.weekdaysText}
                   </span>
                   <span className="hidden sm:inline">•</span>
                   <span>
-                    Sun: {sundayHours.isOpen ? `${sundayHours.openTime} – ${sundayHours.closeTime}` : "Closed"}
+                    {hoursSummary.sundayText}
                   </span>
                 </div>
               </div>
@@ -319,13 +313,15 @@ export default function ContactClient() {
                         Official Hospital Address
                       </p>
                       <p className="text-xs text-[#5D6B85]">
-                        {contact.address}, {contact.city}, {contact.state} {contact.pincode}
+                        {contact.address.includes(contact.city)
+                          ? contact.address
+                          : `${contact.address}, ${contact.city}, ${contact.state} ${contact.pincode}`}
                       </p>
                     </div>
                   </div>
 
                   <a
-                    href={maps.shareUrl || "https://maps.google.com/?q=Tiruttani+Tamil+Nadu"}
+                    href={contact.googleMapsUrl || maps.shareUrl || HOSPITAL_INFO.maps.shareUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cursor-pointer inline-flex items-center justify-center gap-1.5 rounded-full bg-[#071B68] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#087FBA] transition shadow-xs shrink-0"

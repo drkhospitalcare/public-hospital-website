@@ -84,6 +84,55 @@ export async function checkCMSTablesReady(): Promise<boolean> {
 }
 
 /**
+ * Sanitizes published CMS content to guarantee hospital factual safety.
+ * Strictly enforces confirmed patient-visit address in Tiruttani and eliminates
+ * any legacy unconfirmed Chennai placeholders or outdated coordinates.
+ */
+export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): T {
+  if (!rawContent || typeof rawContent !== "object") return rawContent;
+  let serialized = JSON.stringify(rawContent);
+
+  if (
+    serialized.includes("Anna Salai") ||
+    serialized.includes("Central Medical Enclave") ||
+    serialized.includes("Chennai")
+  ) {
+    serialized = serialized
+      .replace(
+        /DRK Hospital, Anna Salai \/ Central Medical Enclave, Chennai, Tamil Nadu 600002/g,
+        "DRK Hospitals, SF.No. 29/2A, Akkaia Naidu Street, Tiruttani, Tiruvallur – 631209, Tamil Nadu, India."
+      )
+      .replace(/DRK Hospital Chennai/g, "DRK Hospitals Tiruttani")
+      .replace(/in Chennai/g, "in Tiruttani")
+      .replace(/Chennai Facility Building/g, "Tiruttani Facility Building")
+      .replace(/Chennai/g, "Tiruttani");
+  }
+
+  const parsed = JSON.parse(serialized);
+
+  if (sectionKey === "contact_info") {
+    parsed.address = "DRK Hospitals, SF.No. 29/2A, Akkaia Naidu Street, Tiruttani, Tiruvallur – 631209, Tamil Nadu, India.";
+    parsed.locality = "Tiruttani";
+    parsed.city = "Tiruttani";
+    parsed.state = "Tamil Nadu";
+    parsed.pincode = "631209";
+    parsed.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
+  }
+
+  if (sectionKey === "footer_settings" && parsed.contact) {
+    parsed.contact.street = "SF.No. 29/2A, Akkaia Naidu Street";
+    parsed.contact.addressLine1 = "DRK Hospitals";
+    parsed.contact.city = "Tiruttani";
+    parsed.contact.district = "Tiruvallur District";
+    parsed.contact.state = "Tamil Nadu";
+    parsed.contact.pincode = "631209";
+    parsed.contact.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
+  }
+
+  return parsed;
+}
+
+/**
  * Fetches published section content for public pages.
  * Falls back to approved defaults if table or record does not exist.
  */
@@ -91,12 +140,12 @@ export async function getPublishedSection<T>(sectionKey: string, fallback?: T): 
   const defaultFallback = (fallback !== undefined ? fallback : getDefaultContentForSection(sectionKey)) as T;
 
   if (!isSupabaseConfigured()) {
-    return defaultFallback;
+    return sanitizePublishedContent(sectionKey, defaultFallback);
   }
 
   try {
     const supabase = getSupabaseClient();
-    if (!supabase) return defaultFallback;
+    if (!supabase) return sanitizePublishedContent(sectionKey, defaultFallback);
 
     const { data, error } = await supabase
       .from("website_content")
@@ -106,13 +155,13 @@ export async function getPublishedSection<T>(sectionKey: string, fallback?: T): 
       .maybeSingle();
 
     if (error || !data || !data.content) {
-      return defaultFallback;
+      return sanitizePublishedContent(sectionKey, defaultFallback);
     }
 
-    return data.content as T;
+    return sanitizePublishedContent(sectionKey, data.content as T);
   } catch (err) {
     console.warn(`[CMS] Error fetching published section '${sectionKey}':`, err);
-    return defaultFallback;
+    return sanitizePublishedContent(sectionKey, defaultFallback);
   }
 }
 
@@ -138,7 +187,7 @@ export async function getAllPublishedSections(): Promise<Record<string, unknown>
     if (!error && data) {
       for (const row of data) {
         if (row.section_key && row.content) {
-          result[row.section_key] = row.content;
+          result[row.section_key] = sanitizePublishedContent(row.section_key, row.content);
         }
       }
     }

@@ -127,6 +127,12 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
     parsed.contact.state = "Tamil Nadu";
     parsed.contact.pincode = "631209";
     parsed.contact.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
+    parsed.contact.whatsappVisible = false;
+    if (Array.isArray(parsed.contact.buttons)) {
+      parsed.contact.buttons = parsed.contact.buttons.filter(
+        (b: any) => b.type !== "whatsapp" && !b.text?.toLowerCase().includes("whatsapp")
+      );
+    }
   }
 
   return parsed;

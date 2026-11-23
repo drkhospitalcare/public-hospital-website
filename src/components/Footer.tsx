@@ -165,25 +165,12 @@ export default function Footer() {
       ? socialConfig.links.filter((l) => l.isActive && l.url && l.url.trim() !== "")
       : social.links?.filter((l) => l.isActive && l.url && l.url.trim() !== "") || [];
 
-  // Buttons resolution
+  // Buttons resolution: WhatsApp button removed from Footer per hospital requirement
   const renderedButtons =
     contactConfig.buttons && contactConfig.buttons.length > 0
-      ? contactConfig.buttons.filter((b) => b.visible !== false)
-      : contact.whatsapp?.isEnabled
-      ? [
-          {
-            id: "default-wa",
-            text: contact.whatsapp.buttonText || "Chat on WhatsApp",
-            url: `https://wa.me/${contact.whatsapp.raw || HOSPITAL_INFO.whatsapp.raw}?text=${encodeURIComponent(
-              contact.whatsapp.defaultMessage || HOSPITAL_INFO.whatsapp.message
-            )}`,
-            type: "whatsapp" as const,
-            icon: "MessageCircle",
-            color: "accent" as const,
-            visible: true,
-            order: 1,
-          },
-        ]
+      ? contactConfig.buttons.filter(
+          (b) => b.visible !== false && b.type !== "whatsapp" && !b.text?.toLowerCase().includes("whatsapp")
+        )
       : [];
 
   const displayedYear =

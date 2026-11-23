@@ -37,7 +37,10 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith("/_") ||
     pathname.startsWith("/images") ||
-    pathname.startsWith("/favicon.ico") ||
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/icon") ||
+    pathname.startsWith("/apple-icon") ||
+    pathname.startsWith("/apple-touch-icon") ||
     pathname.startsWith("/robots.txt") ||
     pathname.startsWith("/sitemap.xml") ||
     pathname.startsWith("/api/auth")
@@ -101,8 +104,8 @@ export const config = {
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * - favicon, icon, apple-icon, apple-touch-icon (favicon files)
      */
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/((?!_next/static|_next/image|favicon|icon|apple-icon|apple-touch-icon).*)",
   ],
 };

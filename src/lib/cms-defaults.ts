@@ -886,23 +886,12 @@ export const DEFAULT_FOOTER_SETTINGS: FooterSettingsContent = {
     officialEmail: "enquiries@drkhospitals.com",
     emailLabel: "Email Enquiries",
     mailtoToggle: true,
-    whatsappVisible: true,
+    whatsappVisible: false,
     whatsappNumber: "+91 98765 43210",
     whatsappRaw: "919876543210",
     whatsappButtonText: "Chat on WhatsApp",
     whatsappMessage: "Hello DRK Hospitals, I would like to enquire about consultation in Tiruttani.",
-    buttons: [
-      {
-        id: "btn-wa",
-        text: "Chat on WhatsApp",
-        url: "https://wa.me/919876543210?text=Hello%20DRK%20Hospitals%2C%20I%20would%20like%20to%20enquire%20about%20consultation%20in%20Tiruttani.",
-        type: "whatsapp",
-        icon: "MessageCircle",
-        color: "accent",
-        visible: true,
-        order: 1,
-      },
-    ],
+    buttons: [],
   },
 
   businessHours: {

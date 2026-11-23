@@ -240,6 +240,8 @@ export interface AboutFounderContent {
   photoAlignment: "left" | "right";
   hidePhotoIfEmpty: boolean;
   displayOrder?: number;
+  qualifications?: string[];
+  specialisations?: string[];
 }
 
 // ==========================================

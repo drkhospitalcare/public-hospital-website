@@ -157,6 +157,35 @@ export default function LivePreviewModal({
                     />
                   </div>
                 )}
+                {previewData.aboutFounder.qualifications && previewData.aboutFounder.qualifications.length > 0 && (
+                  <div className="pt-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#071B68] block mb-1.5">
+                      Educational Qualifications
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {previewData.aboutFounder.qualifications.map((q: string, idx: number) => (
+                        <span key={idx} className="px-2 py-0.5 rounded-md bg-[#E8F3FA] text-[#087FBA] text-[11px] font-semibold border border-blue-200">
+                          {q}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {previewData.aboutFounder.specialisations && previewData.aboutFounder.specialisations.length > 0 && (
+                  <div className="pt-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#071B68] block mb-1.5">
+                      Professional Specialisations
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      {previewData.aboutFounder.specialisations.map((s: string, idx: number) => (
+                        <div key={idx} className="flex items-center gap-2 p-1.5 rounded-lg bg-white border border-[#DCE8F0] text-xs font-medium text-[#14234B]">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#10C6C1]" />
+                          <span>{s}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

@@ -204,6 +204,40 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
       parsed.seoLegalName || "DRK Dental Skin & Hair Hospital Private Limited";
   }
 
+  if (sectionKey === "about_founder") {
+    parsed.founderName = parsed.founderName || "Dr. R. Ranjith Kumar";
+    if (
+      !parsed.founderDesignation ||
+      parsed.founderDesignation === "Founder" ||
+      !parsed.founderDesignation.includes("Chairman")
+    ) {
+      parsed.founderDesignation =
+        defaults.DEFAULT_ABOUT_FOUNDER.founderDesignation;
+    }
+    if (
+      !parsed.sectionHeading ||
+      parsed.sectionHeading === "Our Founder" ||
+      parsed.sectionHeading === "Hospital Leadership"
+    ) {
+      parsed.sectionHeading = "Meet Our Founder";
+    }
+    if (!parsed.sectionSubheading || parsed.sectionSubheading === "Rooted in Care") {
+      parsed.sectionSubheading = "Leadership Rooted in Care and Excellence";
+    }
+    if (!parsed.founderStatement || parsed.founderStatement.includes("Founder of DRK Hospitals")) {
+      parsed.founderStatement = defaults.DEFAULT_ABOUT_FOUNDER.founderStatement;
+    }
+    if (!parsed.photoUrl) {
+      parsed.photoUrl = defaults.DEFAULT_ABOUT_FOUNDER.photoUrl;
+    }
+    if (!Array.isArray(parsed.qualifications) || parsed.qualifications.length === 0) {
+      parsed.qualifications = defaults.DEFAULT_ABOUT_FOUNDER.qualifications;
+    }
+    if (!Array.isArray(parsed.specialisations) || parsed.specialisations.length === 0) {
+      parsed.specialisations = defaults.DEFAULT_ABOUT_FOUNDER.specialisations;
+    }
+  }
+
   // Synchronize Official Service Catalogues (13 Dental, 16 Skin, 7 Hair)
   if (sectionKey === "services_dental") {
     if (

@@ -1,6 +1,16 @@
 "use client";
 
-import { Quote, ShieldCheck, HeartHandshake, Award, Sparkles, UserCheck } from "lucide-react";
+import {
+  Quote,
+  ShieldCheck,
+  HeartHandshake,
+  Award,
+  Sparkles,
+  UserCheck,
+  GraduationCap,
+  Stethoscope,
+  CheckCircle2,
+} from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import SafeImage from "@/components/SafeImage";
 import { useCMSSection } from "@/lib/useCMS";
@@ -22,6 +32,16 @@ export default function FounderProfile() {
   const showPhotoColumn = hasPhoto || !founder.hidePhotoIfEmpty;
   const isPhotoRight = founder.photoAlignment === "right";
 
+  const qualifications =
+    founder.qualifications && founder.qualifications.length > 0
+      ? founder.qualifications
+      : defaults.DEFAULT_ABOUT_FOUNDER.qualifications || [];
+
+  const specialisations =
+    founder.specialisations && founder.specialisations.length > 0
+      ? founder.specialisations
+      : defaults.DEFAULT_ABOUT_FOUNDER.specialisations || [];
+
   return (
     <section
       id="founder-profile"
@@ -33,13 +53,13 @@ export default function FounderProfile() {
       }}
     >
       <div className="container relative">
-        {/* Section Eyebrow & Optional Subheading */}
+        {/* Section Eyebrow & Headings */}
         <AnimatedSection>
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#DCE8F0] bg-white px-4 py-1.5 shadow-2xs">
               <span className="h-2 w-2 rounded-full bg-[#10C6C1]" />
               <span className="text-xs font-bold tracking-wider text-[#087FBA] uppercase">
-                {founder.sectionEyebrow || "Leadership & Vision"}
+                {founder.sectionEyebrow || "Meet Our Founder"}
               </span>
             </div>
 
@@ -47,11 +67,11 @@ export default function FounderProfile() {
               id="founder-heading"
               className="mt-4 text-3xl font-extrabold tracking-tight text-[#071B68] sm:text-4xl lg:text-[2.65rem] leading-[1.18]"
             >
-              {founder.sectionHeading || "Hospital Leadership"}
+              {founder.sectionHeading || "Meet Our Founder"}
             </h2>
 
             {founder.sectionSubheading && (
-              <p className="mt-3 text-base text-[#5D6B85] font-medium">
+              <p className="mt-3 text-base sm:text-lg text-[#5D6B85] font-medium leading-relaxed">
                 {founder.sectionSubheading}
               </p>
             )}
@@ -60,7 +80,7 @@ export default function FounderProfile() {
 
         {/* Main Founder Card Grid */}
         <div
-          className={`grid items-center gap-10 lg:gap-14 ${
+          className={`grid items-start gap-10 lg:gap-14 ${
             showPhotoColumn ? "lg:grid-cols-12" : "max-w-3xl mx-auto"
           }`}
         >
@@ -72,7 +92,7 @@ export default function FounderProfile() {
               }`}
             >
               <AnimatedSection delay={0.1}>
-                <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+                <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none space-y-4">
                   {/* Decorative Backdrop Glow */}
                   <div className="absolute -inset-2.5 rounded-3xl bg-gradient-to-tr from-[#087FBA]/15 via-[#10C6C1]/20 to-transparent blur-lg opacity-70" />
 
@@ -93,13 +113,13 @@ export default function FounderProfile() {
                           priority
                         />
                         {/* Subtle bottom gradient to highlight caption */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#071B68]/70 via-transparent to-transparent pointer-events-none" />
-                        <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
-                          <p className="text-sm font-bold tracking-wide">
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#071B68]/85 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none space-y-0.5">
+                          <p className="text-base font-extrabold tracking-wide drop-shadow-sm">
                             {founder.founderName}
                           </p>
-                          <p className="text-xs text-[#10C6C1] font-semibold">
-                            {founder.founderDesignation} • DRK Hospitals & RRK Hospitals
+                          <p className="text-xs text-[#10C6C1] font-semibold leading-snug drop-shadow-sm">
+                            {founder.founderDesignation}
                           </p>
                         </div>
                       </>
@@ -113,7 +133,7 @@ export default function FounderProfile() {
                           </span>
                         </div>
                         <span className="rounded-full bg-[#071B68]/10 px-3.5 py-1 text-xs font-bold text-[#071B68] uppercase tracking-wider mb-2">
-                          {founder.founderDesignation || "Founder"}
+                          {founder.founderDesignation || "Founder & Chairman"}
                         </span>
                         <h4 className="text-xl font-extrabold text-[#071B68]">
                           {founder.founderName}
@@ -123,6 +143,18 @@ export default function FounderProfile() {
                         </p>
                       </div>
                     )}
+                  </div>
+
+                  {/* Trust Highlights Under Photograph */}
+                  <div className="rounded-2xl border border-[#DCE8F0] bg-white p-4 shadow-2xs space-y-2.5">
+                    <div className="flex items-center gap-2.5 text-xs font-bold text-[#071B68]">
+                      <ShieldCheck size={16} className="text-[#10C6C1] shrink-0" />
+                      <span>Dedicated Healthcare Leadership</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 text-xs font-semibold text-[#5D6B85]">
+                      <HeartHandshake size={16} className="text-[#087FBA] shrink-0" />
+                      <span>Patient-Centred Ethical Practice</span>
+                    </div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -143,25 +175,25 @@ export default function FounderProfile() {
                 <div className="inline-flex items-center gap-2 rounded-full bg-[#071B68] px-4 py-1.5 text-xs font-bold text-white shadow-xs">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#10C6C1]" />
                   <span className="tracking-wider uppercase">
-                    {founder.founderDesignation || "Founder"}
+                    {founder.founderDesignation || "Chairman – RRK  & DRK Dental Skin & Hair Hospital Pvt. Ltd."}
                   </span>
                 </div>
 
-                {/* Founder Name */}
+                {/* Founder Name & Subtitle */}
                 <div>
                   <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#071B68] leading-tight">
                     {founder.founderName}
                   </h3>
-                  <p className="text-sm font-semibold text-[#087FBA] mt-1">
-                    Founder • DRK Hospitals & RRK Hospitals
+                  <p className="text-sm sm:text-base font-semibold text-[#087FBA] mt-1.5 leading-snug">
+                    {founder.founderDesignation}
                   </p>
                 </div>
 
                 {/* Founder Statement Card */}
-                <div className="relative rounded-3xl border border-[#DCE8F0] bg-white p-6 sm:p-8 shadow-xs space-y-4">
+                <div className="relative rounded-2xl border border-[#DCE8F0] bg-white p-6 sm:p-7 shadow-xs space-y-3">
                   <div className="flex items-start gap-3">
                     <Quote
-                      size={28}
+                      size={26}
                       className="text-[#10C6C1] shrink-0 mt-0.5 opacity-90"
                     />
                     <blockquote className="text-base sm:text-lg leading-relaxed text-[#14234B] font-medium">
@@ -170,26 +202,65 @@ export default function FounderProfile() {
                   </div>
 
                   {founder.additionalBio && (
-                    <p className="text-sm leading-relaxed text-[#5D6B85] pt-2 border-t border-[#DCE8F0]/80">
+                    <p className="text-sm leading-relaxed text-[#5D6B85] pt-3 border-t border-[#DCE8F0]/80">
                       {founder.additionalBio}
                     </p>
                   )}
                 </div>
 
-                {/* Ethical Clinical Commitments */}
-                <div className="grid gap-3 sm:grid-cols-2 pt-2">
-                  <div className="flex items-center gap-3 rounded-2xl border border-[#DCE8F0] bg-[#F8FDFF] p-3.5 text-xs font-semibold text-[#071B68]">
-                    <ShieldCheck size={18} className="text-[#10C6C1] shrink-0" />
-                    <span>Patient-Centred Care Delivery</span>
-                  </div>
-                  <div className="flex items-center gap-3 rounded-2xl border border-[#DCE8F0] bg-[#F8FDFF] p-3.5 text-xs font-semibold text-[#071B68]">
-                    <HeartHandshake size={18} className="text-[#087FBA] shrink-0" />
-                    <span>Ethical Healthcare Leadership</span>
-                  </div>
-                </div>
+                {/* Educational Qualifications Badges */}
+                {qualifications.length > 0 && (
+                  <div className="rounded-2xl border border-[#DCE8F0] bg-[#F8FDFF] p-5 sm:p-6 shadow-2xs space-y-3.5">
+                    <div className="flex items-center gap-2">
+                      <GraduationCap size={18} className="text-[#087FBA]" />
+                      <h4 className="text-sm font-bold text-[#071B68] uppercase tracking-wider">
+                        Educational Qualifications
+                      </h4>
+                    </div>
 
-                {/* Regional Vision Note */}
-                <div className="flex items-center gap-2 pt-1 text-xs text-[#5D6B85]">
+                    <div className="flex flex-wrap gap-2 sm:gap-2.5">
+                      {qualifications.map((qual) => (
+                        <span
+                          key={qual}
+                          className="inline-flex items-center rounded-xl border border-[#DCE8F0] bg-white px-3.5 py-1.5 text-xs font-extrabold text-[#071B68] shadow-2xs hover:border-[#087FBA] hover:text-[#087FBA] transition-colors"
+                        >
+                          {qual}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Professional Specialisations Grid */}
+                {specialisations.length > 0 && (
+                  <div className="space-y-3.5 pt-1">
+                    <div className="flex items-center gap-2">
+                      <Stethoscope size={18} className="text-[#10C6C1]" />
+                      <h4 className="text-sm font-bold text-[#071B68] uppercase tracking-wider">
+                        Professional Specialisations
+                      </h4>
+                    </div>
+
+                    <div className="grid gap-2.5 sm:grid-cols-2">
+                      {specialisations.map((spec) => (
+                        <div
+                          key={spec}
+                          className="flex items-center gap-2.5 rounded-xl border border-[#DCE8F0] bg-white p-3 hover:border-[#087FBA] hover:shadow-xs transition-all"
+                        >
+                          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#EFFBFC] text-[#087FBA]">
+                            <CheckCircle2 size={15} className="text-[#10C6C1]" />
+                          </div>
+                          <span className="text-xs font-bold text-[#071B68] leading-tight">
+                            {spec}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Hospital Brand & Regional Foothold */}
+                <div className="flex items-center gap-2 pt-2 text-xs text-[#5D6B85]">
                   <span className="font-bold text-[#087FBA] tracking-wider uppercase">
                     DRK Hospitals
                   </span>
@@ -206,4 +277,3 @@ export default function FounderProfile() {
     </section>
   );
 }
-

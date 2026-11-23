@@ -254,18 +254,42 @@ export const DEFAULT_ABOUT_HERO: AboutHeroContent = {
 export const DEFAULT_ABOUT_FOUNDER: AboutFounderContent = {
   enabled: true,
   sectionEyebrow: "Leadership & Vision",
-  sectionHeading: "Our Founder",
-  sectionSubheading: "Rooted in Care",
+  sectionHeading: "Meet Our Founder",
+  sectionSubheading: "Leadership Rooted in Care and Excellence",
   founderName: "Dr. R. Ranjith Kumar",
-  founderDesignation: "Founder",
+  founderDesignation: "Chairman – RRK  & DRK Dental Skin & Hair Hospital Pvt. Ltd.",
   founderStatement:
-    "Dr. R. Ranjith Kumar is the Founder of DRK Hospitals and RRK Hospitals, driven by a commitment to patient-centred and ethical healthcare.",
+    "Dr. R. Ranjith Kumar is the Founder and Chairman of DRK Hospitals and RRK Hospitals, driven by an uncompromising commitment to patient-centred and ethical healthcare.",
   additionalBio: "",
-  photoUrl: "",
-  photoAlt: "Dr. R. Ranjith Kumar – Founder, DRK Hospitals & RRK Hospitals",
+  photoUrl:
+    "https://iqjlrprznvkzbnbixgww.supabase.co/storage/v1/object/public/website-media/cms/hospital-gallery/1795406135940-2Q__-crop-3x4.webp",
+  photoAlt:
+    "Dr. R. Ranjith Kumar – Chairman, RRK & DRK Dental Skin & Hair Hospital Pvt. Ltd.",
   photoAlignment: "left",
   hidePhotoIfEmpty: false,
   displayOrder: 2,
+  qualifications: [
+    "BDS",
+    "FICOI",
+    "PGDOI",
+    "MDS",
+    "FMC (Germany)",
+    "PGDCC (Germany)",
+    "D.Ortho (New Delhi)",
+    "LL.B. (Hons.)",
+    "ML",
+    "MD",
+  ],
+  specialisations: [
+    "Dental Surgeon",
+    "Implant Surgeon",
+    "Sinus Lift Surgeon",
+    "Laser Surgeon",
+    "Certified Orthodontic Braces Specialist",
+    "Maxillofacial Surgeon",
+    "Skin Cosmetologist",
+    "Medico-Legal Consultant",
+  ],
 };
 
 export const DEFAULT_ABOUT_STORY: AboutStoryContent = {

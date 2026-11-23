@@ -29,6 +29,9 @@ import {
   Smartphone,
   ShieldCheck,
   Sparkles,
+  GraduationCap,
+  Stethoscope,
+  CheckCircle2,
 } from "lucide-react";
 import SafeImage from "@/components/SafeImage";
 
@@ -75,6 +78,73 @@ export default function AboutEditor({
     "hero" | "founder" | "story" | "vision" | "philosophy" | "values" | "standards" | "facilities"
   >("hero");
   const [previewDevice, setPreviewDevice] = useState<"desktop" | "mobile">("desktop");
+  const [newQual, setNewQual] = useState("");
+  const [newSpec, setNewSpec] = useState("");
+
+  const currentQualifications = founder.qualifications || [];
+  const currentSpecialisations = founder.specialisations || [];
+
+  const handleAddQualification = () => {
+    if (!newQual.trim()) return;
+    setFounder({
+      ...founder,
+      qualifications: [...currentQualifications, newQual.trim()],
+    });
+    setNewQual("");
+  };
+
+  const handleRemoveQualification = (idx: number) => {
+    setFounder({
+      ...founder,
+      qualifications: currentQualifications.filter((_, i) => i !== idx),
+    });
+  };
+
+  const handleMoveQualification = (idx: number, direction: "up" | "down") => {
+    const targetIdx = direction === "up" ? idx - 1 : idx + 1;
+    if (targetIdx < 0 || targetIdx >= currentQualifications.length) return;
+    const next = [...currentQualifications];
+    const [moved] = next.splice(idx, 1);
+    next.splice(targetIdx, 0, moved);
+    setFounder({ ...founder, qualifications: next });
+  };
+
+  const handleUpdateQualification = (idx: number, val: string) => {
+    const next = [...currentQualifications];
+    next[idx] = val;
+    setFounder({ ...founder, qualifications: next });
+  };
+
+  const handleAddSpecialisation = () => {
+    if (!newSpec.trim()) return;
+    setFounder({
+      ...founder,
+      specialisations: [...currentSpecialisations, newSpec.trim()],
+    });
+    setNewSpec("");
+  };
+
+  const handleRemoveSpecialisation = (idx: number) => {
+    setFounder({
+      ...founder,
+      specialisations: currentSpecialisations.filter((_, i) => i !== idx),
+    });
+  };
+
+  const handleMoveSpecialisation = (idx: number, direction: "up" | "down") => {
+    const targetIdx = direction === "up" ? idx - 1 : idx + 1;
+    if (targetIdx < 0 || targetIdx >= currentSpecialisations.length) return;
+    const next = [...currentSpecialisations];
+    const [moved] = next.splice(idx, 1);
+    next.splice(targetIdx, 0, moved);
+    setFounder({ ...founder, specialisations: next });
+  };
+
+  const handleUpdateSpecialisation = (idx: number, val: string) => {
+    const next = [...currentSpecialisations];
+    next[idx] = val;
+    setFounder({ ...founder, specialisations: next });
+  };
 
   return (
     <div className="space-y-6">
@@ -313,6 +383,186 @@ export default function AboutEditor({
               />
             </div>
 
+            {/* Educational Qualifications Management */}
+            <div className="pt-2 border-t border-[#DCE8F0] space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <GraduationCap size={16} className="text-[#087FBA]" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#071B68]">
+                    Educational Qualifications ({currentQualifications.length})
+                  </h4>
+                </div>
+                <span className="text-[11px] text-[#5D6B85]">
+                  Display qualifications exactly as supplied (BDS, FICOI, MDS, etc.)
+                </span>
+              </div>
+
+              {/* Add New Qualification Form */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={newQual}
+                  onChange={(e) => setNewQual(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleAddQualification();
+                    }
+                  }}
+                  placeholder="e.g. D.Ortho (New Delhi), LL.B. (Hons.), etc."
+                  className="flex-1 rounded-xl border border-[#DCE8F0] bg-white px-3 py-2 text-xs text-[#071B68]"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddQualification}
+                  className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl bg-[#071B68] px-3.5 py-2 text-xs font-bold text-white hover:bg-[#087FBA] transition"
+                >
+                  <Plus size={13} />
+                  <span>Add</span>
+                </button>
+              </div>
+
+              {/* Qualifications Reorderable List */}
+              <div className="space-y-2">
+                {currentQualifications.map((qual, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between gap-2 p-2.5 rounded-xl border border-[#DCE8F0] bg-[#F8FDFF]"
+                  >
+                    <div className="flex items-center gap-2 flex-1">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white border border-[#DCE8F0] text-[10px] font-bold text-[#087FBA]">
+                        {idx + 1}
+                      </span>
+                      <input
+                        type="text"
+                        value={qual}
+                        onChange={(e) => handleUpdateQualification(idx, e.target.value)}
+                        className="flex-1 rounded-lg border border-[#DCE8F0] bg-white px-2.5 py-1 text-xs font-bold text-[#071B68]"
+                      />
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => handleMoveQualification(idx, "up")}
+                        disabled={idx === 0}
+                        title="Move Up"
+                        className="p-1 rounded-lg hover:bg-white text-[#5D6B85] disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                      >
+                        <ArrowUp size={13} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleMoveQualification(idx, "down")}
+                        disabled={idx === currentQualifications.length - 1}
+                        title="Move Down"
+                        className="p-1 rounded-lg hover:bg-white text-[#5D6B85] disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                      >
+                        <ArrowDown size={13} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveQualification(idx)}
+                        title="Delete Qualification"
+                        className="p-1 rounded-lg hover:bg-red-50 text-red-500 cursor-pointer"
+                      >
+                        <Trash2 size={13} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Professional Specialisations Management */}
+            <div className="pt-2 border-t border-[#DCE8F0] space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Stethoscope size={16} className="text-[#10C6C1]" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#071B68]">
+                    Professional Specialisations ({currentSpecialisations.length})
+                  </h4>
+                </div>
+                <span className="text-[11px] text-[#5D6B85]">
+                  Clinical specialisations displayed in the profile grid
+                </span>
+              </div>
+
+              {/* Add New Specialisation Form */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={newSpec}
+                  onChange={(e) => setNewSpec(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleAddSpecialisation();
+                    }
+                  }}
+                  placeholder="e.g. Implant Surgeon, Maxillofacial Surgeon, etc."
+                  className="flex-1 rounded-xl border border-[#DCE8F0] bg-white px-3 py-2 text-xs text-[#071B68]"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddSpecialisation}
+                  className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl bg-[#087FBA] px-3.5 py-2 text-xs font-bold text-white hover:bg-[#071B68] transition"
+                >
+                  <Plus size={13} />
+                  <span>Add</span>
+                </button>
+              </div>
+
+              {/* Specialisations Reorderable List */}
+              <div className="grid gap-2 sm:grid-cols-2">
+                {currentSpecialisations.map((spec, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between gap-2 p-2.5 rounded-xl border border-[#DCE8F0] bg-[#F8FDFF]"
+                  >
+                    <div className="flex items-center gap-2 flex-1">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white border border-[#DCE8F0] text-[10px] font-bold text-[#10C6C1]">
+                        {idx + 1}
+                      </span>
+                      <input
+                        type="text"
+                        value={spec}
+                        onChange={(e) => handleUpdateSpecialisation(idx, e.target.value)}
+                        className="flex-1 rounded-lg border border-[#DCE8F0] bg-white px-2.5 py-1 text-xs font-bold text-[#071B68]"
+                      />
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => handleMoveSpecialisation(idx, "up")}
+                        disabled={idx === 0}
+                        title="Move Up"
+                        className="p-1 rounded-lg hover:bg-white text-[#5D6B85] disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                      >
+                        <ArrowUp size={13} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleMoveSpecialisation(idx, "down")}
+                        disabled={idx === currentSpecialisations.length - 1}
+                        title="Move Down"
+                        className="p-1 rounded-lg hover:bg-white text-[#5D6B85] disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                      >
+                        <ArrowDown size={13} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveSpecialisation(idx)}
+                        title="Delete Specialisation"
+                        className="p-1 rounded-lg hover:bg-red-50 text-red-500 cursor-pointer"
+                      >
+                        <Trash2 size={13} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Photograph Upload, Replace, Remove & Smart Cropping */}
             <div className="pt-2 border-t border-[#DCE8F0]">
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#071B68] mb-3">
@@ -520,6 +770,45 @@ export default function AboutEditor({
                           <p className="text-xs text-[#5D6B85] leading-relaxed">
                             {founder.additionalBio}
                           </p>
+                        )}
+
+                        {/* Qualifications preview */}
+                        {currentQualifications.length > 0 && (
+                          <div className="space-y-1 pt-1">
+                            <span className="text-[10px] font-bold text-[#087FBA] uppercase tracking-wider block">
+                              Qualifications:
+                            </span>
+                            <div className="flex flex-wrap gap-1">
+                              {currentQualifications.map((q) => (
+                                <span
+                                  key={q}
+                                  className="rounded-md border border-[#DCE8F0] bg-white px-2 py-0.5 text-[9px] font-bold text-[#071B68]"
+                                >
+                                  {q}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Specialisations preview */}
+                        {currentSpecialisations.length > 0 && (
+                          <div className="space-y-1 pt-1">
+                            <span className="text-[10px] font-bold text-[#10C6C1] uppercase tracking-wider block">
+                              Specialisations:
+                            </span>
+                            <div className="grid grid-cols-2 gap-1">
+                              {currentSpecialisations.map((s) => (
+                                <div
+                                  key={s}
+                                  className="flex items-center gap-1 rounded-md border border-[#DCE8F0] bg-white p-1 text-[9px] font-bold text-[#071B68]"
+                                >
+                                  <span className="h-1 w-1 rounded-full bg-[#10C6C1] shrink-0" />
+                                  <span className="truncate">{s}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>

@@ -50,24 +50,32 @@ export default function ContactClient() {
     DEFAULT_LEGAL_IDENTITY
   );
 
+  const cleanPhones = (contact.phoneNumbers || []).filter(
+    (p: PhoneContactItem) =>
+      !p.number?.includes("98765") &&
+      !p.raw?.includes("98765") &&
+      !p.label?.toLowerCase().includes("coordination")
+  );
+
   const primaryPhone =
-    contact.phoneNumbers.find((p: PhoneContactItem) => p.isPrimary && p.isActive) ||
-    contact.phoneNumbers[0] || {
+    cleanPhones.find((p: PhoneContactItem) => p.isPrimary && p.isActive) ||
+    cleanPhones.find((p: PhoneContactItem) => p.isActive) || {
       id: "p1",
-      label: "Primary Desk",
-      number: "+91 44 2345 6789",
-      raw: "+914423456789",
+      label: "Main Hospital Helpline",
+      number: "+91 63805 17153",
+      raw: "+916380517153",
       isPrimary: true,
       isActive: true,
     };
-  const secondaryPhone = contact.phoneNumbers.find(
-    (p: PhoneContactItem) => !p.isPrimary && p.isActive
-  ) || contact.phoneNumbers[1];
 
   const hoursSummary = formatOperatingHours(contact.operatingHours);
 
-  const whatsappUrl = `https://wa.me/${contact.whatsapp.raw || "919876543210"}?text=${encodeURIComponent(
-    contact.whatsapp.defaultMessage || "Hello DRK Hospital"
+  const whatsappUrl = `https://wa.me/${
+    contact.whatsapp.raw && !contact.whatsapp.raw.includes("98765")
+      ? contact.whatsapp.raw
+      : "916380517153"
+  }?text=${encodeURIComponent(
+    contact.whatsapp.defaultMessage || "Hello DRK Hospitals"
   )}`;
 
   return (
@@ -157,17 +165,6 @@ export default function ContactClient() {
                     </a>
                     <span className="block text-[11px] text-[#8896AB]">{primaryPhone.label}</span>
                   </p>
-                  {secondaryPhone && (
-                    <p className="pt-1">
-                      <a
-                        href={`tel:${secondaryPhone.raw}`}
-                        className="font-semibold text-[#071B68] hover:text-[#087FBA] transition"
-                      >
-                        {secondaryPhone.number}
-                      </a>
-                      <span className="block text-[11px] text-[#8896AB]">{secondaryPhone.label}</span>
-                    </p>
-                  )}
                 </div>
               </div>
               <div className="mt-4 pt-3 border-t border-[#DCE8F0]/80">
@@ -407,34 +404,6 @@ export default function ContactClient() {
                       <span>Call Now</span>
                     </a>
                   </div>
-
-                  {/* Secondary Phone if Available */}
-                  {secondaryPhone && (
-                    <div className="p-3.5 rounded-xl border border-[#DCE8F0] bg-[#F8FDFF] flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white border border-[#DCE8F0] text-[#087FBA] shadow-2xs">
-                          <Phone size={18} />
-                        </div>
-                        <div>
-                          <span className="block text-[11px] font-semibold text-[#8896AB] uppercase">
-                            {secondaryPhone.label}
-                          </span>
-                          <a
-                            href={`tel:${secondaryPhone.raw}`}
-                            className="text-sm font-bold text-[#071B68] hover:text-[#087FBA] transition"
-                          >
-                            {secondaryPhone.number}
-                          </a>
-                        </div>
-                      </div>
-                      <a
-                        href={`tel:${secondaryPhone.raw}`}
-                        className="cursor-pointer inline-flex items-center gap-1 rounded-full border border-[#DCE8F0] bg-white px-3.5 py-1.5 text-xs font-bold text-[#071B68] hover:bg-[#EFFBFC] transition shadow-2xs shrink-0"
-                      >
-                        <span>Call</span>
-                      </a>
-                    </div>
-                  )}
 
                   {/* WhatsApp Direct Action */}
                   <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-between gap-3">

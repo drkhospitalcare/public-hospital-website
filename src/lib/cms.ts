@@ -119,6 +119,43 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
     parsed.state = "Tamil Nadu";
     parsed.pincode = "631209";
     parsed.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
+
+    // Enforce removal of patient coordination phone number (+91 98765 43210)
+    // Retain only Main Hospital Helpline: +91 63805 17153
+    if (Array.isArray(parsed.phoneNumbers)) {
+      parsed.phoneNumbers = parsed.phoneNumbers.filter(
+        (p: any) =>
+          !p.number?.includes("98765") &&
+          !p.raw?.includes("98765") &&
+          !p.label?.toLowerCase().includes("coordination")
+      );
+      if (parsed.phoneNumbers.length === 0) {
+        parsed.phoneNumbers = [
+          {
+            id: "phone-1",
+            label: "Main Hospital Helpline",
+            number: "+91 63805 17153",
+            raw: "+916380517153",
+            isPrimary: true,
+            isActive: true,
+          },
+        ];
+      } else {
+        const primary = parsed.phoneNumbers.find((p: any) => p.isPrimary) || parsed.phoneNumbers[0];
+        primary.isPrimary = true;
+        primary.isActive = true;
+        if (!primary.number || primary.number.includes("2345 6789") || primary.number.includes("44 2345")) {
+          primary.number = "+91 63805 17153";
+          primary.raw = "+916380517153";
+          primary.label = "Main Hospital Helpline";
+        }
+      }
+    }
+
+    if (parsed.whatsapp && (parsed.whatsapp.number?.includes("98765") || parsed.whatsapp.raw?.includes("98765"))) {
+      parsed.whatsapp.number = "+91 63805 17153";
+      parsed.whatsapp.raw = "916380517153";
+    }
   }
 
   if (sectionKey === "footer_settings" && parsed.contact) {
@@ -130,6 +167,14 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
     parsed.contact.pincode = "631209";
     parsed.contact.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
     parsed.contact.whatsappVisible = false;
+    if (parsed.contact.secondaryPhone?.includes("98765") || parsed.contact.secondaryPhoneRaw?.includes("98765")) {
+      parsed.contact.secondaryPhone = "";
+      parsed.contact.secondaryPhoneRaw = "";
+    }
+    if (parsed.contact.whatsappNumber?.includes("98765") || parsed.contact.whatsappRaw?.includes("98765")) {
+      parsed.contact.whatsappNumber = "+91 63805 17153";
+      parsed.contact.whatsappRaw = "916380517153";
+    }
     if (Array.isArray(parsed.contact.buttons)) {
       parsed.contact.buttons = parsed.contact.buttons.filter(
         (b: any) => b.type !== "whatsapp" && !b.text?.toLowerCase().includes("whatsapp")

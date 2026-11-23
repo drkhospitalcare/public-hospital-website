@@ -72,5 +72,22 @@ test.describe("SUITE 7 – Contact and Location Tests", () => {
     const addressCard = page.getByText("Tamil Nadu").first();
     await expect(addressCard).toBeVisible();
   });
+
+  test("CONTACT-011: Patient Coordination number (+91 98765 43210) is completely removed", async ({ page }) => {
+    // 1. Confirm +91 98765 43210 is completely absent from the Contact page
+    await expect(page.locator("body")).not.toContainText("98765");
+    await expect(page.locator("body")).not.toContainText("Patient Coordination");
+
+    // 2. Confirm Main Hospital Helpline is displayed
+    await expect(page.locator("body")).toContainText("Main Hospital Helpline");
+    await expect(page.locator("body")).toContainText("63805");
+
+    // 3. Confirm telephone links on page do not contain 98765
+    const telLinks = await page.locator('a[href^="tel:"]').all();
+    for (const link of telLinks) {
+      const href = await link.getAttribute("href");
+      expect(href).not.toContain("98765");
+    }
+  });
 });
 

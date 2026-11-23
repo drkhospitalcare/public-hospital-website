@@ -25,11 +25,18 @@ export default function ContactCTA({
   );
   const hoursSummary = formatOperatingHours(contact.operatingHours);
 
+  const cleanPhones = (contact.phoneNumbers || []).filter(
+    (p: PhoneContactItem) =>
+      !p.number?.includes("98765") &&
+      !p.raw?.includes("98765") &&
+      !p.label?.toLowerCase().includes("coordination")
+  );
+
   const primaryPhone =
-    contact.phoneNumbers.find((p: PhoneContactItem) => p.isPrimary && p.isActive) ||
-    contact.phoneNumbers[0] || {
-      number: "+91 44 2345 6789",
-      raw: "+914423456789",
+    cleanPhones.find((p: PhoneContactItem) => p.isPrimary && p.isActive) ||
+    cleanPhones.find((p: PhoneContactItem) => p.isActive) || {
+      number: "+91 63805 17153",
+      raw: "+916380517153",
     };
 
   const weekdayHours =
@@ -38,8 +45,12 @@ export default function ContactCTA({
       closeTime: "08:00 PM",
     };
 
-  const whatsappUrl = `https://wa.me/${contact.whatsapp.raw || "919876543210"}?text=${encodeURIComponent(
-    contact.whatsapp.defaultMessage || "Hello DRK Hospital"
+  const whatsappUrl = `https://wa.me/${
+    contact.whatsapp.raw && !contact.whatsapp.raw.includes("98765")
+      ? contact.whatsapp.raw
+      : "916380517153"
+  }?text=${encodeURIComponent(
+    contact.whatsapp.defaultMessage || "Hello DRK Hospitals"
   )}`;
 
   return (

@@ -101,26 +101,25 @@ export default function HomePage() {
   const legal = useCMSSection<LegalIdentityContent>("legal_identity", defaults.DEFAULT_LEGAL_IDENTITY);
   const hoursSummary = formatOperatingHours(contact.operatingHours);
 
+  const cleanPhones = (contact.phoneNumbers || []).filter(
+    (p) =>
+      !p.number?.includes("98765") &&
+      !p.raw?.includes("98765") &&
+      !p.label?.toLowerCase().includes("coordination")
+  );
+
   const primaryPhone =
-    contact.phoneNumbers.find((p) => p.isPrimary && p.isActive) ||
-    contact.phoneNumbers[0] || {
+    cleanPhones.find((p) => p.isPrimary && p.isActive) ||
+    cleanPhones.find((p) => p.isActive) || {
       id: "fallback-primary",
-      label: "Hospital Reception",
-      number: "+91 44 2345 6789",
-      raw: "+914423456789",
+      label: "Main Hospital Helpline",
+      number: "+91 63805 17153",
+      raw: "+916380517153",
       isPrimary: true,
       isActive: true,
     };
 
-  const secondaryPhone =
-    contact.phoneNumbers.find((p) => !p.isPrimary && p.isActive) || {
-      id: "fallback-secondary",
-      label: "Patient Coordination",
-      number: "+91 98765 43210",
-      raw: "+919876543210",
-      isPrimary: false,
-      isActive: true,
-    };
+  const secondaryPhone = cleanPhones.find((p) => !p.isPrimary && p.isActive);
 
   return (
     <>

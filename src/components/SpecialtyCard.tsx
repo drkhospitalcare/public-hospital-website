@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { LucideIcon, ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -37,12 +37,13 @@ export default function SpecialtyCard({
     >
       {/* Photograph Container */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
-        <Image
+        <SafeImage
           src={image}
           alt={title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          fallbackSrc="/images/hero-clinic.jpg"
         />
         <div className="absolute top-4 right-4 rounded-xl bg-white/95 p-2.5 text-[#071B68] shadow-md backdrop-blur-xs">
           <IconComponent size={22} className="text-[#087FBA]" />

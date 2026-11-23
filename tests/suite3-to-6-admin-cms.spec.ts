@@ -24,7 +24,7 @@ test.describe("SUITES 3, 4, 5, 6 – Admin Dashboard & CMS Modules Verification"
   test("HOME-001: Homepage CMS defaults are complete and properly typed", () => {
     const hero = getDefaultContentForSection("homepage_hero") as typeof defaults.DEFAULT_HOMEPAGE_HERO;
     expect(hero).toBeDefined();
-    expect(hero.eyebrow).toBe("Rooted in Care • DRK Hospital Chennai");
+    expect(hero.eyebrow).toBe("Rooted in Care • DRK Hospitals Tiruttani");
     expect(hero.heading).toContain("Smile, Skin and Hair");
     expect(hero.badgeTitle).toBe("Certified Standards");
     expect(hero.timingBadge).toContain("Mon – Sat");

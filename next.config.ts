@@ -37,6 +37,9 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.resolve(__dirname),
   images: {
     remotePatterns,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 };
 

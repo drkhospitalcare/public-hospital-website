@@ -14,6 +14,9 @@ import {
   Car,
   Accessibility,
   CheckCircle2,
+  Train,
+  Bus,
+  Compass,
 } from "lucide-react";
 import { useCMSSection } from "@/lib/useCMS";
 import {
@@ -99,7 +102,7 @@ export default function ContactClient() {
             <div className="inline-flex items-center gap-2 rounded-full border border-[#DCE8F0] bg-white px-4 py-1.5 shadow-2xs mb-4">
               <Phone size={14} className="text-[#087FBA]" />
               <span className="text-xs font-bold tracking-wider text-[#071B68] uppercase">
-                Contact DRK Hospital • Chennai
+                Contact DRK Hospitals • Tiruttani
               </span>
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight text-[#071B68] sm:text-5xl md:text-6xl leading-[1.12]">
@@ -107,7 +110,7 @@ export default function ContactClient() {
             </h1>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#5D6B85] max-w-2xl">
               Have questions regarding our dental, dermatological, or trichological services?
-              Connect directly with our Chennai hospital desk, message us on WhatsApp, or visit our central facility in person.
+              Connect directly with our Tiruttani hospital desk, message us on WhatsApp, or visit our central facility in person.
             </p>
           </div>
         </div>
@@ -258,7 +261,7 @@ export default function ContactClient() {
             </div>
 
             <div className="text-[11px] text-[#8896AB] sm:text-right shrink-0">
-              <span>* Emergency services and holiday schedules may vary.</span>
+              <span>* Consultation hours and holiday schedules may vary.</span>
             </div>
           </div>
         </div>
@@ -282,19 +285,19 @@ export default function ContactClient() {
                     </h2>
                   </div>
                   <span className="inline-flex items-center self-start sm:self-auto text-xs font-bold text-[#087FBA] bg-[#EFFBFC] px-3 py-1 rounded-full border border-[#DCE8F0]">
-                    Chennai Central
+                    Tiruttani Central
                   </span>
                 </div>
 
                 <p className="text-xs sm:text-sm text-[#5D6B85] leading-relaxed mb-4">
-                  {maps.mapDescription || "Easily accessible by road, metro, and public transit in Chennai, Tamil Nadu."}
+                  {maps.mapDescription || "Easily accessible by road, railway, and public transit in Tiruttani, Tamil Nadu."}
                 </p>
 
                 {/* Google Maps Embed Frame */}
                 {maps.isMapEnabled && (
                   <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] w-full max-w-full overflow-hidden rounded-2xl border border-[#DCE8F0] bg-slate-100 shadow-2xs">
                     <iframe
-                      title="DRK Hospital Google Maps Location in Chennai, Tamil Nadu"
+                      title="DRK Hospitals Google Maps Location in Tiruttani, Tamil Nadu"
                       src={maps.embedUrl}
                       width="100%"
                       height="100%"
@@ -322,7 +325,7 @@ export default function ContactClient() {
                   </div>
 
                   <a
-                    href={maps.shareUrl || "https://maps.google.com/?q=Chennai+Tamil+Nadu"}
+                    href={maps.shareUrl || "https://maps.google.com/?q=Tiruttani+Tamil+Nadu"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cursor-pointer inline-flex items-center justify-center gap-1.5 rounded-full bg-[#071B68] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#087FBA] transition shadow-xs shrink-0"
@@ -494,6 +497,94 @@ export default function ContactClient() {
                     <span>{contact.visitingInfo.visitingInstructions}</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Regional Patient Travel & Accessibility */}
+      <section className="bg-[#F8FDFF] py-16 border-t border-[#DCE8F0]">
+        <div className="container">
+          <div className="max-w-3xl mb-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#DCE8F0] bg-white px-3.5 py-1 text-xs font-bold text-[#087FBA] uppercase tracking-wider mb-3">
+              <Compass size={14} className="text-[#10C6C1]" />
+              <span>Regional Healthcare Accessibility</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#071B68]">
+              Traveling to DRK Hospitals from Surrounding Regional Towns
+            </h2>
+            <p className="mt-3 text-sm text-[#5D6B85] leading-relaxed">
+              DRK Hospitals operates a single central outpatient facility in Tiruttani. Nearby towns represent our regional outpatient service area and patient travel connectivity, not branch clinic locations.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Arakkonam */}
+            <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#087FBA] bg-[#EFFBFC] px-2.5 py-1 rounded-full">
+                  SH-58 & Rail Line
+                </span>
+                <Train size={18} className="text-[#10C6C1]" />
+              </div>
+              <h3 className="text-lg font-bold text-[#071B68]">From Arakkonam</h3>
+              <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                Direct road route via State Highway 58 (SH-58) and frequent suburban EMU trains directly connecting Arakkonam Junction to Tiruttani Station.
+              </p>
+              <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] font-semibold text-[#071B68]">
+                <span>Road: SH-58 • Rail: Direct EMU Trains</span>
+              </div>
+            </div>
+
+            {/* Pallipattu */}
+            <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#087FBA] bg-[#EFFBFC] px-2.5 py-1 rounded-full">
+                  SH-61 Road Route
+                </span>
+                <Bus size={18} className="text-[#10C6C1]" />
+              </div>
+              <h3 className="text-lg font-bold text-[#071B68]">From Pallipattu</h3>
+              <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                Direct regional transit via State Highway 61 (SH-61) with regular government and private bus connections to Tiruttani Bus Stand.
+              </p>
+              <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] font-semibold text-[#071B68]">
+                <span>Road: SH-61 • Bus: Direct TNSTC Route</span>
+              </div>
+            </div>
+
+            {/* Sholinghur */}
+            <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#087FBA] bg-[#EFFBFC] px-2.5 py-1 rounded-full">
+                  SH-61 Regional Road
+                </span>
+                <Car size={18} className="text-[#10C6C1]" />
+              </div>
+              <h3 className="text-lg font-bold text-[#071B68]">From Sholinghur</h3>
+              <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                Seamless travel via Tiruttani–Sholinghur Road / SH-61 connecting Ranipet district communities with our dedicated outpatient services.
+              </p>
+              <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] font-semibold text-[#071B68]">
+                <span>Road: SH-61 • Inter-district Transit</span>
+              </div>
+            </div>
+
+            {/* Nagari & Tiruvallur */}
+            <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#087FBA] bg-[#EFFBFC] px-2.5 py-1 rounded-full">
+                  NH-716 Corridor
+                </span>
+                <Navigation size={18} className="text-[#10C6C1]" />
+              </div>
+              <h3 className="text-lg font-bold text-[#071B68]">From Nagari & Tiruvallur</h3>
+              <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                Direct highway access via National Highway 716 (NH-716) for patients coming from Nagari (AP border region) and Tiruvallur headquarters.
+              </p>
+              <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] font-semibold text-[#071B68]">
+                <span>National Highway: NH-716 • Suburban Rail</span>
               </div>
             </div>
           </div>

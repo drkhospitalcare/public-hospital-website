@@ -18,7 +18,7 @@ export default function VisionMission() {
             centered
             eyebrow="Our Foundation"
             title="Vision & Mission"
-            copy="Guiding principles that steer our clinical staff, treatment methodologies, and everyday patient interactions in Chennai."
+            copy="Guiding principles that steer our clinical staff, treatment methodologies, and everyday patient interactions in Tiruttani."
           />
         </AnimatedSection>
 

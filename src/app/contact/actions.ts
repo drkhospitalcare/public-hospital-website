@@ -102,7 +102,7 @@ export async function submitEnquiryAction(
   return {
     success: true,
     message:
-      "Thank you for contacting DRK Hospital. Your enquiry has been received. Our Chennai reception desk will contact you during operational clinic hours.",
+      "Thank you for contacting DRK Hospital. Your enquiry has been received. Our Tiruttani reception desk will contact you during operational clinic hours.",
   };
 }
 

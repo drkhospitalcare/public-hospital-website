@@ -127,6 +127,39 @@ export default function LivePreviewModal({
               </div>
             )}
 
+            {/* If Founder Profile exists (e.g. About Page Preview) */}
+            {previewData?.aboutFounder && (
+              <div className="rounded-2xl border border-blue-200 bg-[#F8FDFF] p-5 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#10C6C1]" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#087FBA]">
+                    Founder Profile Section ({previewData.aboutFounder.enabled ? "Active" : "Disabled"})
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-extrabold text-[#071B68]">
+                    {previewData.aboutFounder.founderName}
+                  </h3>
+                  <p className="text-xs font-semibold text-[#087FBA]">
+                    {previewData.aboutFounder.founderDesignation} • DRK Hospitals & RRK Hospitals
+                  </p>
+                </div>
+                <div className="rounded-xl border border-[#DCE8F0] bg-white p-3.5 text-xs text-[#14234B] italic leading-relaxed">
+                  &ldquo;{previewData.aboutFounder.founderStatement}&rdquo;
+                </div>
+                {previewData.aboutFounder.photoUrl && (
+                  <div className="relative aspect-[3/4] w-36 rounded-xl overflow-hidden border border-[#DCE8F0]">
+                    <SafeImage
+                      src={previewData.aboutFounder.photoUrl}
+                      alt={previewData.aboutFounder.photoAlt || "Founder Portrait"}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* If an image exists */}
             {(previewData?.clinicImage || previewData?.image || previewData?.departmentImage) && (
               <div>

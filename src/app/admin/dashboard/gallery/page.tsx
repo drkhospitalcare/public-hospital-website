@@ -26,7 +26,10 @@ import {
   RefreshCw,
   Clock,
   Sparkles,
+  Crop,
 } from "lucide-react";
+import SmartImageCropper from "@/components/admin/media/SmartImageCropper";
+import { createFileFromBlob } from "@/lib/image-cropper-utils";
 import { GalleryCategory, GalleryImage } from "@/types/gallery";
 import {
   getSupabaseClient,
@@ -93,6 +96,10 @@ export default function AdminGalleryPage() {
   // Delete Confirmation Modal State
   const [deletingImage, setDeletingImage] = useState<GalleryImage | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Smart Cropper States
+  const [cropTargetUploadItem, setCropTargetUploadItem] = useState<UploadItem | null>(null);
+  const [cropTargetGalleryImage, setCropTargetGalleryImage] = useState<GalleryImage | null>(null);
 
   // Toast Helper
   const showToast = (type: "success" | "error" | "info", message: string) => {
@@ -977,13 +984,22 @@ export default function AdminGalleryPage() {
                         className="rounded-2xl border border-[#DCE8F0] p-4 bg-[#F8FDFF] relative flex flex-col sm:flex-row gap-4"
                       >
                         {/* Thumbnail */}
-                        <div className="relative h-24 w-28 shrink-0 overflow-hidden rounded-xl border border-[#DCE8F0] bg-slate-100">
+                        <div className="relative h-24 w-28 shrink-0 overflow-hidden rounded-xl border border-[#DCE8F0] bg-slate-100 group">
                           <SafeImage
                             src={item.preview}
                             alt="Preview"
                             fill
                             className="object-cover"
                           />
+                          <button
+                            type="button"
+                            onClick={() => setCropTargetUploadItem(item)}
+                            title="Crop & adjust position"
+                            className="cursor-pointer absolute inset-0 bg-[#071B68]/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-1 text-[11px] font-bold text-white transition backdrop-blur-2xs"
+                          >
+                            <Crop size={12} className="text-[#10C6C1]" />
+                            <span>Crop</span>
+                          </button>
                           <div className="absolute bottom-1 right-1 rounded bg-black/70 px-1 text-[9px] text-white">
                             {formatBytes(item.file.size)}
                           </div>
@@ -1157,13 +1173,21 @@ export default function AdminGalleryPage() {
 
             <form onSubmit={handleEditSubmit} className="mt-5 space-y-4">
               {/* Preview */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#DCE8F0] bg-slate-100 mb-4">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#DCE8F0] bg-slate-100 mb-4 group">
                 <SafeImage
                   src={editingImage.public_url}
                   alt={editTitle}
                   fill
                   className="object-cover"
                 />
+                <button
+                  type="button"
+                  onClick={() => setCropTargetGalleryImage(editingImage)}
+                  className="cursor-pointer absolute top-2 right-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold text-[#071B68] shadow-md hover:bg-[#071B68] hover:text-white transition inline-flex items-center gap-1.5"
+                >
+                  <Crop size={13} className="text-[#087FBA]" />
+                  <span>Crop / Re-frame</span>
+                </button>
               </div>
 
               <div>
@@ -1291,6 +1315,57 @@ export default function AdminGalleryPage() {
             </div>
           </div>
         </div>
+      )}
+      {/* Smart Cropper for Upload Items */}
+      {cropTargetUploadItem && (
+        <SmartImageCropper
+          isOpen={!!cropTargetUploadItem}
+          onClose={() => setCropTargetUploadItem(null)}
+          imageSrc={cropTargetUploadItem.preview}
+          contextTitle={`Crop & Frame: ${cropTargetUploadItem.title || "Gallery Image"}`}
+          presetKey="gallery-landscape"
+          onSave={(croppedUrl, result) => {
+            if (result) {
+              const croppedFile = createFileFromBlob(result.blob, result.fileName, result.mimeType);
+              updateUploadItem(cropTargetUploadItem.id, {
+                file: croppedFile,
+                preview: result.dataUrl,
+              });
+            } else if (croppedUrl) {
+              updateUploadItem(cropTargetUploadItem.id, {
+                preview: croppedUrl,
+              });
+            }
+            setCropTargetUploadItem(null);
+            showToast("success", "Image cropped and framed for upload!");
+          }}
+        />
+      )}
+
+      {/* Smart Cropper for Existing Gallery Items */}
+      {cropTargetGalleryImage && (
+        <SmartImageCropper
+          isOpen={!!cropTargetGalleryImage}
+          onClose={() => setCropTargetGalleryImage(null)}
+          imageSrc={cropTargetGalleryImage.public_url}
+          contextTitle={`Crop & Re-frame: ${cropTargetGalleryImage.title}`}
+          presetKey="gallery-landscape"
+          onSave={async (croppedUrl) => {
+            if (croppedUrl) {
+              const supabase = getSupabaseClient();
+              if (supabase) {
+                await supabase
+                  .from("gallery_images")
+                  .update({ public_url: croppedUrl })
+                  .eq("id", cropTargetGalleryImage.id);
+              }
+              setEditingImage((prev) => (prev ? { ...prev, public_url: croppedUrl } : null));
+              loadImages();
+              showToast("success", "Gallery image updated with new cropped derivative!");
+            }
+            setCropTargetGalleryImage(null);
+          }}
+        />
       )}
     </div>
   );

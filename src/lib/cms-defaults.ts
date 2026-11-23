@@ -14,6 +14,7 @@ import {
   HomepageJourneyContent,
   HomepageCTAContent,
   AboutHeroContent,
+  AboutFounderContent,
   AboutStoryContent,
   VisionMissionContent,
   AboutPhilosophyContent,
@@ -242,6 +243,23 @@ export const DEFAULT_ABOUT_HERO: AboutHeroContent = {
     "Welcome to DRK Hospitals. We are a specialized healthcare center in Tiruttani established with a singular focus: delivering ethical, clinical excellence with deep human empathy serving Tiruttani, Arakkonam, Pallipattu, and surrounding communities.",
   image: "/images/hospital-building.jpg",
   imageAlt: "DRK Hospitals Tiruttani Facility Building",
+};
+
+export const DEFAULT_ABOUT_FOUNDER: AboutFounderContent = {
+  enabled: true,
+  sectionEyebrow: "Leadership & Vision",
+  sectionHeading: "Our Founder",
+  sectionSubheading: "Rooted in Care",
+  founderName: "Dr. R. Ranjith Kumar",
+  founderDesignation: "Founder",
+  founderStatement:
+    "Dr. R. Ranjith Kumar is the Founder of DRK Hospitals and RRK Hospitals, driven by a commitment to patient-centred and ethical healthcare.",
+  additionalBio: "",
+  photoUrl: "",
+  photoAlt: "Dr. R. Ranjith Kumar – Founder, DRK Hospitals & RRK Hospitals",
+  photoAlignment: "left",
+  hidePhotoIfEmpty: false,
+  displayOrder: 2,
 };
 
 export const DEFAULT_ABOUT_STORY: AboutStoryContent = {

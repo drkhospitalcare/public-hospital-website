@@ -272,6 +272,7 @@ export default function HomepageEditor({
               imageSrc={hero.clinicImage}
               imageAlt={hero.clinicImageAlt}
               category="Homepage Hero"
+              presetKey="homepage-hero-desktop"
               onImageChange={(url) => setHero({ ...hero, clinicImage: url })}
               onAltChange={(alt) => setHero({ ...hero, clinicImageAlt: alt })}
               onOpenMediaLibrary={() => onOpenMediaLibrary("Homepage Hero")}
@@ -396,6 +397,13 @@ export default function HomepageEditor({
                     ? "Skin Care"
                     : "Hair Care"
                 }
+                presetKey={
+                  item.title.includes("Dental")
+                    ? "dental-card"
+                    : item.title.includes("Skin")
+                    ? "skin-card"
+                    : "hair-card"
+                }
                 onImageChange={(url) => {
                   const updated = [...specialties.items];
                   updated[idx].image = url;
@@ -477,6 +485,7 @@ export default function HomepageEditor({
             imageSrc={about.image}
             imageAlt={about.imageAlt}
             category="About Hospital"
+            presetKey="facility-image"
             onImageChange={(url) => setAbout({ ...about, image: url })}
             onAltChange={(alt) => setAbout({ ...about, imageAlt: alt })}
             onOpenMediaLibrary={() => onOpenMediaLibrary("About Hospital")}
@@ -642,6 +651,7 @@ export default function HomepageEditor({
                   imageSrc={item.image}
                   imageAlt={item.imageAlt}
                   category="Infrastructure"
+                  presetKey="facility-image"
                   onImageChange={(url) => {
                     const list = [...facilities.items];
                     list[idx].image = url;

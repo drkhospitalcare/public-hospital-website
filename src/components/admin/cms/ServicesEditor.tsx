@@ -116,6 +116,15 @@ export default function ServicesEditor({
           imageSrc={dept.departmentImage}
           imageAlt={dept.departmentImageAlt}
           category={mediaCat}
+          presetKey={
+            mediaCat === "Dental Care"
+              ? "dental-card"
+              : mediaCat === "Skin Care"
+              ? "skin-card"
+              : mediaCat === "Hair Care"
+              ? "hair-card"
+              : "specialty-banner"
+          }
           onImageChange={(url) => setDept({ ...dept, departmentImage: url })}
           onAltChange={(alt) => setDept({ ...dept, departmentImageAlt: alt })}
           onOpenMediaLibrary={() => onOpenMediaLibrary(mediaCat)}
@@ -280,6 +289,7 @@ export default function ServicesEditor({
             imageSrc={hero.image}
             imageAlt={hero.imageAlt}
             category="Homepage Hero"
+            presetKey="services-hero"
             onImageChange={(url) => setHero({ ...hero, image: url })}
             onAltChange={(alt) => setHero({ ...hero, imageAlt: alt })}
             onOpenMediaLibrary={() => onOpenMediaLibrary("Homepage Hero")}

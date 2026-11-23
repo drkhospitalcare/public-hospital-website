@@ -21,6 +21,10 @@ import {
   Search,
   Camera,
   Layers,
+  Compass,
+  Train,
+  Car,
+  Bus,
 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -502,6 +506,134 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* REGIONAL HEALTHCARE DESTINATION (~50 KM) */}
+      <section className="bg-white py-20 border-t border-[#DCE8F0]">
+        <div className="container">
+          <AnimatedSection>
+            <SectionHeading
+              centered
+              eyebrow="Regional Healthcare Reach"
+              title="Serving Tiruttani & Surrounding Regional Communities"
+              copy="DRK Hospitals operates a single central facility in Tiruttani. Surrounding towns represent our regional outpatient service area and patient travel connectivity, not branch clinic locations."
+            />
+          </AnimatedSection>
+
+          {/* Regional Network Grid */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Tiruttani & Nearby */}
+            <AnimatedSection delay={0.05}>
+              <div className="card p-6 bg-[#F8FDFF] border border-[#DCE8F0] hover:border-[#087FBA] transition-all h-full flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex rounded-xl bg-[#EFFBFC] p-3 text-[#087FBA] mb-4">
+                    <MapPin size={22} />
+                  </div>
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#10C6C1] mb-1">
+                    Central Facility
+                  </span>
+                  <h3 className="text-lg font-bold text-[#071B68]">Tiruttani (திருத்தணி)</h3>
+                  <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                    Full-service outpatient dental operatory, clinical dermatology consultation rooms, and trichology treatment center located in Tiruttani town center.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] text-[#087FBA] font-semibold">
+                  Tiruvallur District • 631209
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Arakkonam */}
+            <AnimatedSection delay={0.1}>
+              <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all h-full flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex rounded-xl bg-[#EFFBFC] p-3 text-[#087FBA] mb-4">
+                    <Train size={22} />
+                  </div>
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#087FBA] mb-1">
+                    SH-58 & Rail Corridor
+                  </span>
+                  <h3 className="text-lg font-bold text-[#071B68]">Arakkonam (அரக்கோணம்)</h3>
+                  <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                    Convenient travel for Arakkonam residents via State Highway 58 or direct suburban EMU trains arriving frequently at Tiruttani station.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] text-[#5D6B85]">
+                  SH-58 Direct • Frequent EMU Trains
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Pallipattu */}
+            <AnimatedSection delay={0.15}>
+              <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all h-full flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex rounded-xl bg-[#EFFBFC] p-3 text-[#087FBA] mb-4">
+                    <Bus size={22} />
+                  </div>
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#087FBA] mb-1">
+                    SH-61 Road Route
+                  </span>
+                  <h3 className="text-lg font-bold text-[#071B68]">Pallipattu (பள்ளிப்பட்டு)</h3>
+                  <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                    Regular direct road connectivity via SH-61 connecting Pallipattu families with trusted oral health, skin diagnostics, and hair therapy.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] text-[#5D6B85]">
+                  SH-61 Direct Route • Regular Buses
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Sholinghur & Border Region */}
+            <AnimatedSection delay={0.2}>
+              <div className="card p-6 bg-white border border-[#DCE8F0] hover:border-[#087FBA] transition-all h-full flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex rounded-xl bg-[#EFFBFC] p-3 text-[#087FBA] mb-4">
+                    <Compass size={22} />
+                  </div>
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#087FBA] mb-1">
+                    NH-716 & SH-61 Access
+                  </span>
+                  <h3 className="text-lg font-bold text-[#071B68]">Sholinghur & Nagari</h3>
+                  <p className="mt-2 text-xs text-[#5D6B85] leading-relaxed">
+                    Accessible healthcare via Tiruttani–Sholinghur Rd and NH-716 serving cross-border and neighboring communities seeking disciplined care.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-[#DCE8F0] text-[11px] text-[#5D6B85]">
+                  NH-716 & SH-61 Regional Access
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+
+          {/* Regional Specialties Summary Bar */}
+          <AnimatedSection delay={0.25}>
+            <div className="mt-8 rounded-2xl bg-[#EFFBFC]/70 border border-[#DCE8F0] p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#087FBA] shadow-2xs border border-[#DCE8F0]">
+                  <ShieldCheck size={20} />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-[#071B68]">
+                    Specialized Outpatient Disciplines at DRK Hospitals Tiruttani
+                  </p>
+                  <p className="text-xs text-[#5D6B85]">
+                    Comprehensive Dental Sciences • Clinical Dermatology • Diagnostic Trichology
+                  </p>
+                </div>
+              </div>
+
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 rounded-full bg-[#071B68] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#087FBA] transition shadow-xs shrink-0"
+              >
+                <span>Plan Your Visit</span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </AnimatedSection>
         </div>

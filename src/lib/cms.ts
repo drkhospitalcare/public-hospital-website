@@ -30,6 +30,8 @@ export function getDefaultContentForSection(sectionKey: string): unknown {
       return defaults.DEFAULT_HOMEPAGE_CTA;
     case "about_hero":
       return defaults.DEFAULT_ABOUT_HERO;
+    case "about_founder":
+      return defaults.DEFAULT_ABOUT_FOUNDER;
     case "about_story":
       return defaults.DEFAULT_ABOUT_STORY;
     case "about_vision_mission":

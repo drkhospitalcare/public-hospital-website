@@ -12,8 +12,10 @@ import {
   ExternalLink,
   Loader2,
   Copy,
+  Crop,
   Image as ImageIcon,
 } from "lucide-react";
+import SmartImageCropper from "../media/SmartImageCropper";
 import { getWebsiteMediaList, uploadWebsiteMedia, deleteWebsiteMedia } from "@/lib/cms";
 import { WebsiteMediaItem, MediaCategory } from "@/types/cms";
 import { formatBytes } from "@/lib/supabase";
@@ -54,6 +56,7 @@ export default function MediaLibraryModal({
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [cropTargetItem, setCropTargetItem] = useState<WebsiteMediaItem | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -259,7 +262,7 @@ export default function MediaLibraryModal({
                       </p>
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between gap-1 pt-2 border-t border-[#DCE8F0]">
+                    <div className="mt-3 flex items-center justify-between gap-1.5 pt-2 border-t border-[#DCE8F0]">
                       {onSelectImage ? (
                         <button
                           type="button"
@@ -270,7 +273,7 @@ export default function MediaLibraryModal({
                           className="cursor-pointer flex-1 inline-flex items-center justify-center gap-1 rounded-lg bg-[#071B68] py-1.5 px-2 text-[11px] font-bold text-white hover:bg-[#087FBA] transition"
                         >
                           <Check size={12} />
-                          <span>Use Image</span>
+                          <span>Use</span>
                         </button>
                       ) : (
                         <button
@@ -279,9 +282,19 @@ export default function MediaLibraryModal({
                           className="cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold text-[#087FBA] hover:underline"
                         >
                           <Copy size={12} />
-                          <span>{copiedId === item.id ? "Copied!" : "Copy URL"}</span>
+                          <span>{copiedId === item.id ? "Copied!" : "Copy"}</span>
                         </button>
                       )}
+
+                      <button
+                        type="button"
+                        onClick={() => setCropTargetItem(item)}
+                        title="Crop & create positioned derivative"
+                        className="cursor-pointer inline-flex items-center gap-1 rounded-lg border border-[#DCE8F0] bg-white px-2 py-1 text-[11px] font-semibold text-[#071B68] hover:bg-[#EFFBFC] hover:border-[#087FBA] transition"
+                      >
+                        <Crop size={12} className="text-[#087FBA]" />
+                        <span>Crop</span>
+                      </button>
 
                       <button
                         type="button"
@@ -298,6 +311,25 @@ export default function MediaLibraryModal({
             </div>
           )}
         </div>
+
+        {/* Smart Cropper Integration for Library Assets */}
+        {cropTargetItem && (
+          <SmartImageCropper
+            isOpen={!!cropTargetItem}
+            onClose={() => setCropTargetItem(null)}
+            imageSrc={cropTargetItem.public_url}
+            imageAlt={cropTargetItem.alt_text || cropTargetItem.title}
+            contextTitle={`Crop & Re-position: ${cropTargetItem.title}`}
+            onSave={async (croppedUrl) => {
+              setCropTargetItem(null);
+              await loadMedia();
+              if (onSelectImage && croppedUrl) {
+                onSelectImage(croppedUrl, cropTargetItem.alt_text || cropTargetItem.title);
+                onClose();
+              }
+            }}
+          />
+        )}
       </div>
     </div>
   );

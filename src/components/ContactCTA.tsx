@@ -15,7 +15,7 @@ interface ContactCTAProps {
 
 export default function ContactCTA({
   title = "Have Questions or Need Clinical Guidance?",
-  description = "Connect with our front desk team in Chennai. We are here to assist with department enquiries, clinic timings, and general consultation guidance.",
+  description = "Connect with our front desk team in Tiruttani. We are here to assist with department enquiries, clinic timings, and general consultation guidance.",
   eyebrow = "Connect With DRK Hospital",
 }: ContactCTAProps) {
   const contact = useCMSSection<ContactInfoContent>(
@@ -63,7 +63,7 @@ export default function ContactCTA({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-semibold text-[#071B68]">
             <div className="flex items-center gap-2">
               <MapPin size={16} className="text-[#087FBA]" />
-              <span>{contact.locality || contact.city}, Chennai</span>
+              <span>{contact.locality || contact.city}, Tamil Nadu</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock size={16} className="text-[#10C6C1]" />

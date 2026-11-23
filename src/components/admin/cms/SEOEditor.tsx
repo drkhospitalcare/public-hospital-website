@@ -76,6 +76,7 @@ export default function SEOEditor({ seo, setSeo, onOpenMediaLibrary }: SEOEditor
         label="Social Media Share Image (Open Graph / Twitter Card)"
         imageSrc={seo.ogImageUrl}
         category="Other"
+        presetKey="og-image"
         onImageChange={(url) => setSeo({ ...seo, ogImageUrl: url })}
         onOpenMediaLibrary={() => onOpenMediaLibrary("Other")}
         hint="Recommended: 1200x630px JPG or PNG image shown when sharing the DRK Hospital website on WhatsApp, LinkedIn, or Twitter."

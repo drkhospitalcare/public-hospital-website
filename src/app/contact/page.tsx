@@ -3,23 +3,23 @@ import ContactClient from "@/components/contact/ContactClient";
 import { HOSPITAL_INFO } from "@/lib/hospital-info";
 
 export const metadata: Metadata = {
-  title: "Contact Us | DRK Hospital Chennai – Rooted in Care",
+  title: "Contact Us | DRK Hospitals Tiruttani – Rooted in Care",
   description:
-    "Contact DRK Hospital in Chennai, Tamil Nadu. Access hospital address, verified helpline phone numbers, WhatsApp consultation link, operating hours, and Google Maps location.",
+    "Contact DRK Hospitals in Tiruttani, Tamil Nadu. Access hospital address, verified helpline phone numbers, WhatsApp consultation link, operating hours, and Google Maps directions.",
   alternates: {
     canonical: "https://drkhospitals.com/contact",
   },
   openGraph: {
-    title: "Contact DRK Hospital | Chennai, Tamil Nadu",
+    title: "Contact DRK Hospitals | Tiruttani, Tamil Nadu",
     description:
-      "Get in touch with DRK Hospital for dental, skin, and hair care services. Telephone helplines, WhatsApp chat, location map, and visiting hours in Chennai.",
+      "Get in touch with DRK Hospitals for dental, skin, and hair care services in Tiruttani. Telephone helplines, WhatsApp chat, location map, and visiting hours.",
     url: "https://drkhospitals.com/contact",
     images: [
       {
         url: "/images/drk-logo.png",
         width: 1200,
         height: 400,
-        alt: "DRK Hospital Chennai – Rooted in Care",
+        alt: "DRK Hospitals Tiruttani – Rooted in Care",
       },
     ],
   },
@@ -27,38 +27,29 @@ export const metadata: Metadata = {
 
 const contactJsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": "Hospital",
   name: HOSPITAL_INFO.name,
+  alternateName: [
+    "DRK Hospital",
+    "DRK Hospitals Tiruttani",
+    "டிஆர்கே மருத்துவமனை திருத்தணி",
+  ],
   url: "https://drkhospitals.com/contact",
-  telephone: HOSPITAL_INFO.phone.primary,
   email: HOSPITAL_INFO.email.enquiry,
   address: {
     "@type": "PostalAddress",
-    streetAddress: HOSPITAL_INFO.address,
     addressLocality: HOSPITAL_INFO.city,
     addressRegion: HOSPITAL_INFO.state,
+    postalCode: HOSPITAL_INFO.pincode,
     addressCountry: "IN",
   },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
-      opens: "08:00",
-      closes: "20:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Sunday",
-      opens: "09:00",
-      closes: "13:00",
-    },
+  areaServed: [
+    { "@type": "City", name: "Tiruttani" },
+    { "@type": "AdministrativeArea", name: "Tiruvallur District" },
+  ],
+  medicalSpecialty: [
+    "Dentistry",
+    "Dermatology",
   ],
 };
 

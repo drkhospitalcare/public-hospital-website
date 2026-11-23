@@ -33,6 +33,7 @@ import {
   HomepageJourneyContent,
   HomepageCTAContent,
   AboutHeroContent,
+  AboutFounderContent,
   AboutStoryContent,
   VisionMissionContent,
   AboutPhilosophyContent,
@@ -135,6 +136,9 @@ function WebsiteContentStudio() {
 
   // About Page
   const [aboutHero, setAboutHero] = useState<AboutHeroContent>(defaults.DEFAULT_ABOUT_HERO);
+  const [aboutFounder, setAboutFounder] = useState<AboutFounderContent>(
+    defaults.DEFAULT_ABOUT_FOUNDER
+  );
   const [aboutStory, setAboutStory] = useState<AboutStoryContent>(defaults.DEFAULT_ABOUT_STORY);
   const [visionMission, setVisionMission] = useState<VisionMissionContent>(
     defaults.DEFAULT_VISION_MISSION
@@ -225,6 +229,7 @@ function WebsiteContentStudio() {
       jrnyRec,
       ctaRec,
       abtHeroRec,
+      abtFounderRec,
       abtStoryRec,
       vmRec,
       phRec,
@@ -262,6 +267,7 @@ function WebsiteContentStudio() {
       ),
       getAdminSection<HomepageCTAContent>("homepage_cta", "Homepage CTA", "homepage"),
       getAdminSection<AboutHeroContent>("about_hero", "About Hero", "about"),
+      getAdminSection<AboutFounderContent>("about_founder", "Founder Profile", "about"),
       getAdminSection<AboutStoryContent>("about_story", "Our Story", "about"),
       getAdminSection<VisionMissionContent>(
         "about_vision_mission",
@@ -306,6 +312,7 @@ function WebsiteContentStudio() {
     setCta((ctaRec.draft_content || ctaRec.content) as HomepageCTAContent);
 
     setAboutHero((abtHeroRec.draft_content || abtHeroRec.content) as AboutHeroContent);
+    setAboutFounder((abtFounderRec.draft_content || abtFounderRec.content) as AboutFounderContent);
     setAboutStory((abtStoryRec.draft_content || abtStoryRec.content) as AboutStoryContent);
     setVisionMission((vmRec.draft_content || vmRec.content) as VisionMissionContent);
     setPhilosophy((phRec.draft_content || phRec.content) as AboutPhilosophyContent);
@@ -400,6 +407,7 @@ function WebsiteContentStudio() {
       success = r1.success && r2.success && r3.success && r4.success && r5.success && r6.success && r7.success;
       err = r1.error || r2.error;
     } else if (activeSection === "about") {
+      const r0 = await saveSectionDraft("about_founder", "Founder Profile", "about", aboutFounder);
       const r1 = await saveSectionDraft("about_hero", "About Hero", "about", aboutHero);
       const r2 = await saveSectionDraft("about_story", "Our Story", "about", aboutStory);
       const r3 = await saveSectionDraft("about_vision_mission", "Vision & Mission", "about", visionMission);
@@ -407,8 +415,8 @@ function WebsiteContentStudio() {
       const r5 = await saveSectionDraft("about_values", "Core Values", "about", coreValues);
       const r6 = await saveSectionDraft("about_clinical_standards", "Standards", "about", standards);
       const r7 = await saveSectionDraft("about_facilities", "Facilities", "about", aboutFacilities);
-      success = r1.success && r2.success;
-      err = r1.error;
+      success = r0.success && r1.success && r2.success && r3.success && r4.success && r5.success && r6.success && r7.success;
+      err = r0.error || r1.error;
     } else if (activeSection === "services") {
       const r1 = await saveSectionDraft("services_hero", "Services Hero", "services", servicesHero);
       const r2 = await saveSectionDraft("services_dental", "Dental Care", "services", dental);
@@ -471,6 +479,7 @@ function WebsiteContentStudio() {
       success = r1.success && r2.success && r3.success && r4.success && r5.success && r6.success && r7.success;
       err = r1.error || r2.error;
     } else if (activeSection === "about") {
+      const r0 = await publishSection("about_founder", "Founder Profile", "about", aboutFounder);
       const r1 = await publishSection("about_hero", "About Hero", "about", aboutHero);
       const r2 = await publishSection("about_story", "Our Story", "about", aboutStory);
       const r3 = await publishSection("about_vision_mission", "Vision & Mission", "about", visionMission);
@@ -478,8 +487,8 @@ function WebsiteContentStudio() {
       const r5 = await publishSection("about_values", "Core Values", "about", coreValues);
       const r6 = await publishSection("about_clinical_standards", "Standards", "about", standards);
       const r7 = await publishSection("about_facilities", "Facilities", "about", aboutFacilities);
-      success = r1.success && r2.success;
-      err = r1.error;
+      success = r0.success && r1.success && r2.success && r3.success && r4.success && r5.success && r6.success && r7.success;
+      err = r0.error || r1.error;
     } else if (activeSection === "services") {
       const r1 = await publishSection("services_hero", "Services Hero", "services", servicesHero);
       const r2 = await publishSection("services_dental", "Dental Care", "services", dental);
@@ -527,6 +536,7 @@ function WebsiteContentStudio() {
       await discardSectionDraft("homepage_hero");
     } else if (activeSection === "about") {
       await discardSectionDraft("about_hero");
+      await discardSectionDraft("about_founder");
     } else if (activeSection === "services") {
       await discardSectionDraft("services_hero");
     } else if (activeSection === "contact") {
@@ -549,7 +559,7 @@ function WebsiteContentStudio() {
       case "homepage":
         return { hero, specialties, aboutPreview, whyDrk, facilities, journey, cta };
       case "about":
-        return { aboutHero, aboutStory, visionMission, philosophy, coreValues, standards, aboutFacilities };
+        return { aboutHero, aboutFounder, aboutStory, visionMission, philosophy, coreValues, standards, aboutFacilities };
       case "services":
         return { servicesHero, dental, skin, hair, approach };
       case "contact":
@@ -761,6 +771,8 @@ function WebsiteContentStudio() {
               <AboutEditor
                 hero={aboutHero}
                 setHero={setAboutHero}
+                founder={aboutFounder}
+                setFounder={setAboutFounder}
                 story={aboutStory}
                 setStory={setAboutStory}
                 visionMission={visionMission}

@@ -27,16 +27,22 @@ const categories: Array<"All" | GalleryCategory> = [
   "Hospital Activities",
 ];
 
-export default function GalleryClient() {
+export default function GalleryClient({
+  initialImages = [],
+}: {
+  initialImages?: GalleryImage[];
+}) {
   const [selectedCategory, setSelectedCategory] = useState<"All" | GalleryCategory>("All");
-  const [images, setImages] = useState<GalleryImage[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [images, setImages] = useState<GalleryImage[]>(initialImages);
+  const [loading, setLoading] = useState<boolean>(initialImages.length === 0);
   const [error, setError] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Fetch images from Supabase or fallback
   const fetchGallery = useCallback(async () => {
-    setLoading(true);
+    if (images.length === 0) {
+      setLoading(true);
+    }
     setError(null);
 
     if (!isSupabaseConfigured()) {
@@ -149,15 +155,15 @@ export default function GalleryClient() {
             <div className="inline-flex items-center gap-2 rounded-full border border-[#DCE8F0] bg-white px-4 py-1.5 shadow-2xs mb-4">
               <Camera size={14} className="text-[#10C6C1]" />
               <span className="text-xs font-bold tracking-wider text-[#071B68] uppercase">
-                Visual Tour • DRK Hospital Chennai
+                Visual Tour • DRK Hospitals Tiruttani
               </span>
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight text-[#071B68] sm:text-5xl md:text-6xl leading-[1.12]">
               Hospital <span className="text-[#087FBA]">Gallery</span>
             </h1>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#5D6B85] max-w-2xl">
-              Take a visual journey through DRK Hospital. Explore our sterile dental suites,
-              dermatology consultation rooms, trichology diagnostic center, and daily patient care in Chennai.
+              Take a visual journey through DRK Hospitals. Explore our sterile dental suites,
+              dermatology consultation rooms, trichology diagnostic center, and daily patient care in Tiruttani.
             </p>
           </div>
         </div>

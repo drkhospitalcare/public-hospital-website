@@ -115,8 +115,8 @@ export default function ServicesClient() {
       {/* SECTION 6 – CONTACT CTA */}
       <ContactCTA
         eyebrow="Schedule Your Visit"
-        title="Consult With Our Specialists in Chennai"
-        description="Have questions regarding a dental, skin, or hair treatment? Contact DRK Hospital today for friendly assistance and consultation guidance."
+        title="Consult With Our Specialists in Tiruttani"
+        description="Have questions regarding a dental, skin, or hair treatment? Contact DRK Hospitals today for friendly assistance and consultation guidance."
       />
     </>
   );

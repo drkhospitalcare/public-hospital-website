@@ -78,7 +78,7 @@ export default function AboutHero() {
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#EFFBFC] text-[#10C6C1]">
                     <MapPin size={16} />
                   </div>
-                  <span>Chennai, Tamil Nadu</span>
+                  <span>Tiruttani, Tamil Nadu</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -90,7 +90,7 @@ export default function AboutHero() {
               <div className="relative aspect-[4/3] sm:aspect-[5/4] w-full overflow-hidden rounded-3xl border-4 border-white shadow-xl bg-slate-100">
                 <SafeImage
                   src={hero.image}
-                  alt={hero.imageAlt || "DRK Hospital Facility and Clinical Environment in Chennai"}
+                  alt={hero.imageAlt || "DRK Hospitals Facility and Clinical Environment in Tiruttani"}
                   fill
                   priority
                   className="object-cover"

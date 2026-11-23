@@ -8,7 +8,7 @@ test.describe("SUITE 7 – Contact and Location Tests", () => {
   });
 
   test("CONTACT-001: Contact details load", async ({ page }) => {
-    const address = page.locator('text=Chennai, Tamil Nadu').first();
+    const address = page.locator('text=Tiruttani, Tamil Nadu').first();
     await expect(address).toBeVisible();
   });
 

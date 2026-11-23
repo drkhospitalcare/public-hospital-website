@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -30,12 +30,13 @@ export default function FacilityCard({
     >
       {/* Facility Image Container */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
-        <Image
+        <SafeImage
           src={image}
           alt={title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-106"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          fallbackSrc="/images/infrastructure-reception.jpg"
         />
         <div className="absolute top-3 left-3 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-[#071B68] shadow-xs backdrop-blur-xs">
           {category}

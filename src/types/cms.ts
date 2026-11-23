@@ -225,6 +225,22 @@ export interface AboutFacilitiesContent {
   items: AboutFacilityItem[];
 }
 
+export interface AboutFounderContent {
+  enabled: boolean;
+  sectionEyebrow: string;
+  sectionHeading: string;
+  sectionSubheading?: string;
+  founderName: string;
+  founderDesignation: string;
+  founderStatement: string;
+  additionalBio?: string;
+  photoUrl: string;
+  photoAlt: string;
+  photoAlignment: "left" | "right";
+  hidePhotoIfEmpty: boolean;
+  displayOrder?: number;
+}
+
 // ==========================================
 // 4. Module 4: Services Page Models
 // ==========================================

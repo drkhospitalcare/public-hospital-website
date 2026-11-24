@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   MapPin,
@@ -37,6 +38,8 @@ import { HOSPITAL_INFO } from "@/lib/hospital-info";
 import { formatOperatingHours } from "@/lib/working-hours";
 
 export default function ContactClient() {
+  const [mapLoadError, setMapLoadError] = useState(false);
+
   const contact = useCMSSection<ContactInfoContent>(
     "contact_info",
     DEFAULT_CONTACT_INFO
@@ -49,6 +52,18 @@ export default function ContactClient() {
     "legal_identity",
     DEFAULT_LEGAL_IDENTITY
   );
+
+  // Valid Google Maps embed URL check - prevents broken iframe when shortened maps.app.goo.gl link is saved
+  const sanitizedEmbedUrl =
+    maps.embedUrl &&
+    !maps.embedUrl.includes("maps.app.goo.gl") &&
+    !maps.embedUrl.includes("goo.gl") &&
+    (maps.embedUrl.includes("output=embed") || maps.embedUrl.includes("/embed"))
+      ? maps.embedUrl
+      : "https://www.google.com/maps?q=13.1756454%2C79.6116292&z=17&output=embed";
+
+  const directionsUrl =
+    maps.shareUrl || contact.googleMapsUrl || HOSPITAL_INFO.maps.shareUrl;
 
   const cleanPhones = (contact.phoneNumbers || []).filter(
     (p: PhoneContactItem) =>
@@ -295,17 +310,40 @@ export default function ContactClient() {
                 {/* Google Maps Embed Frame */}
                 {maps.isMapEnabled && (
                   <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] w-full max-w-full overflow-hidden rounded-2xl border border-[#DCE8F0] bg-slate-100 shadow-2xs">
-                    <iframe
-                      title="DRK Hospitals Google Maps Location in Tiruttani, Tamil Nadu"
-                      src={maps.embedUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen={false}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="absolute inset-0 h-full w-full"
-                    />
+                    {!mapLoadError ? (
+                      <iframe
+                        title="DRK Hospitals Google Maps Location in Tiruttani, Tamil Nadu"
+                        src={sanitizedEmbedUrl}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen={false}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="absolute inset-0 h-full w-full"
+                        onError={() => setMapLoadError(true)}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#F8FDFF]">
+                        <MapPin size={32} className="text-[#087FBA] mb-2" />
+                        <p className="text-sm font-bold text-[#071B68] mb-1">
+                          DRK Hospitals Location Pin
+                        </p>
+                        <p className="text-xs text-[#5D6B85] max-w-sm mb-3">
+                          SF.No. 29/2A, Akkaia Naidu Street, Tiruttani, Tiruvallur – 631209, Tamil Nadu, India
+                        </p>
+                        <a
+                          href={directionsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-[#071B68] px-4 py-2 text-xs font-bold text-white hover:bg-[#087FBA] transition"
+                        >
+                          <Navigation size={12} className="text-[#10C6C1]" />
+                          <span>View on Google Maps</span>
+                          <ExternalLink size={11} />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -326,7 +364,7 @@ export default function ContactClient() {
                   </div>
 
                   <a
-                    href={contact.googleMapsUrl || maps.shareUrl || HOSPITAL_INFO.maps.shareUrl}
+                    href={directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cursor-pointer inline-flex items-center justify-center gap-1.5 rounded-full bg-[#071B68] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#087FBA] transition shadow-xs shrink-0"

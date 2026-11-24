@@ -539,7 +539,7 @@ export const DEFAULT_CONTACT_INFO: ContactInfoContent = {
   state: "Tamil Nadu",
   country: "India",
   pincode: "631209",
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India",
+  googleMapsUrl: "https://www.google.com/maps/place/DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited/@13.1756454,79.6090543,17z/data=!4m15!1m8!3m7!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!2sDRK+Dental+Skin+%26+Hair+Hospital+Private+Limited!8m2!3d13.1756454!4d79.6116292!10e1!16s%2Fg%2F11p31pytyq!3m5!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!8m2!3d13.1756454!4d79.6116292!16s%2Fg%2F11p31pytyq",
   phoneNumbers: [
     {
       id: "phone-1",
@@ -591,10 +591,10 @@ export const DEFAULT_CONTACT_INFO: ContactInfoContent = {
 };
 
 export const DEFAULT_LOCATION_MAPS: LocationMapsContent = {
-  shareUrl: "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India",
-  embedUrl: "https://maps.google.com/maps?q=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India&t=&z=16&ie=UTF8&iwloc=&output=embed",
-  latitude: "13.1784",
-  longitude: "79.6105",
+  shareUrl: "https://www.google.com/maps/place/DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited/@13.1756454,79.6090543,17z/data=!4m15!1m8!3m7!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!2sDRK+Dental+Skin+%26+Hair+Hospital+Private+Limited!8m2!3d13.1756454!4d79.6116292!10e1!16s%2Fg%2F11p31pytyq!3m5!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!8m2!3d13.1756454!4d79.6116292!16s%2Fg%2F11p31pytyq",
+  embedUrl: "https://www.google.com/maps?q=13.1756454%2C79.6116292&z=17&output=embed",
+  latitude: "13.1756454",
+  longitude: "79.6116292",
   mapTitle: "DRK Hospitals Location in Tiruttani",
   mapDescription: "Centrally located on Akkaia Naidu Street in Tiruttani, Tiruvallur District with convenient road and rail access, serving patients from Tiruttani, Arakkonam, Pallipattu, Sholinghur, and Nagari.",
   directionsButtonText: "Open in Google Maps",
@@ -798,7 +798,7 @@ export const DEFAULT_FOOTER_SETTINGS: FooterSettingsContent = {
     state: "Tamil Nadu",
     pincode: "631209",
     country: "India",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India",
+    googleMapsUrl: "https://www.google.com/maps/place/DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited/@13.1756454,79.6090543,17z/data=!4m15!1m8!3m7!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!2sDRK+Dental+Skin+%26+Hair+Hospital+Private+Limited!8m2!3d13.1756454!4d79.6116292!10e1!16s%2Fg%2F11p31pytyq!3m5!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!8m2!3d13.1756454!4d79.6116292!16s%2Fg%2F11p31pytyq",
     addressFormat: "single",
     phoneVisible: true,
     primaryPhone: "+91 63805 17153",

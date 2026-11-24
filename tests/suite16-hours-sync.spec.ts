@@ -54,12 +54,12 @@ test.describe("SUITE 16 – Hospital Working Hours & Global Info Synchronization
     await expect(main).not.toContainText("Chennai");
     await expect(main).not.toContainText("Anna Salai");
 
-    // Google Maps link points to confirmed Tiruttani coordinates
+    // Google Maps link points to confirmed Tiruttani coordinates / official hospital listing
     const mapLinks = page.locator('a[href*="maps"]');
     const count = await mapLinks.count();
     expect(count).toBeGreaterThan(0);
     const href = await mapLinks.first().getAttribute("href");
-    expect(href).toContain("Tiruttani");
+    expect(href?.toLowerCase()).toMatch(/tiruttani|drk\+dental\+skin|3a52a5e4f77fe909|13\.1756454/);
   });
 
   // -------------------------------------------------------------

@@ -118,7 +118,7 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
     parsed.city = "Tiruttani";
     parsed.state = "Tamil Nadu";
     parsed.pincode = "631209";
-    parsed.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
+    parsed.googleMapsUrl = "https://www.google.com/maps/place/DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited/@13.1756454,79.6090543,17z/data=!4m15!1m8!3m7!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!2sDRK+Dental+Skin+%26+Hair+Hospital+Private+Limited!8m2!3d13.1756454!4d79.6116292!10e1!16s%2Fg%2F11p31pytyq!3m5!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!8m2!3d13.1756454!4d79.6116292!16s%2Fg%2F11p31pytyq";
 
     // Enforce removal of patient coordination phone number (+91 98765 43210)
     // Retain only Main Hospital Helpline: +91 63805 17153
@@ -158,6 +158,41 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
     }
   }
 
+  if (sectionKey === "contact_maps") {
+    // Ensure embed URL is a valid Google Maps embed URL, not a shortened maps.app.goo.gl link
+    if (
+      !parsed.embedUrl ||
+      parsed.embedUrl.includes("maps.app.goo.gl") ||
+      parsed.embedUrl.includes("goo.gl") ||
+      (!parsed.embedUrl.includes("output=embed") && !parsed.embedUrl.includes("/embed"))
+    ) {
+      parsed.embedUrl = "https://www.google.com/maps?q=13.1756454%2C79.6116292&z=17&output=embed";
+    }
+
+    // Official coordinates for DRK Hospitals business pin
+    if (!parsed.latitude || parsed.latitude === "13.1784") {
+      parsed.latitude = "13.1756454";
+    }
+    if (!parsed.longitude || parsed.longitude === "79.6105") {
+      parsed.longitude = "79.6116292";
+    }
+
+    // Official business listing share/directions URL
+    if (
+      !parsed.shareUrl ||
+      parsed.shareUrl.includes("search/?api=1") ||
+      parsed.shareUrl.includes("maps.google.com/?q=") ||
+      !parsed.shareUrl.includes("DRK+Dental+Skin")
+    ) {
+      parsed.shareUrl =
+        "https://www.google.com/maps/place/DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited/@13.1756454,79.6090543,17z/data=!4m15!1m8!3m7!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!2sDRK+Dental+Skin+%26+Hair+Hospital+Private+Limited!8m2!3d13.1756454!4d79.6116292!10e1!16s%2Fg%2F11p31pytyq!3m5!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!8m2!3d13.1756454!4d79.6116292!16s%2Fg%2F11p31pytyq";
+    }
+
+    parsed.mapTitle = parsed.mapTitle || "DRK Hospitals Location in Tiruttani";
+    parsed.directionsButtonText = parsed.directionsButtonText || "Open in Google Maps";
+    parsed.isMapEnabled = parsed.isMapEnabled !== false;
+  }
+
   if (sectionKey === "footer_settings" && parsed.contact) {
     parsed.contact.street = "SF.No. 29/2A, Akkaia Naidu Street";
     parsed.contact.addressLine1 = "DRK Hospitals";
@@ -165,7 +200,7 @@ export function sanitizePublishedContent<T>(sectionKey: string, rawContent: T): 
     parsed.contact.district = "Tiruvallur District";
     parsed.contact.state = "Tamil Nadu";
     parsed.contact.pincode = "631209";
-    parsed.contact.googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=SF.No.+29%2F2A%2C+Akkaia+Naidu+Street%2C+Tiruttani%2C+Tiruvallur+631209%2C+Tamil+Nadu+India";
+    parsed.contact.googleMapsUrl = "https://www.google.com/maps/place/DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited/@13.1756454,79.6090543,17z/data=!4m15!1m8!3m7!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!2sDRK+Dental+Skin+%26+Hair+Hospital+Private+Limited!8m2!3d13.1756454!4d79.6116292!10e1!16s%2Fg%2F11p31pytyq!3m5!1s0x3a52a5e4f77fe909:0x7676cee213d6cd5d!8m2!3d13.1756454!4d79.6116292!16s%2Fg%2F11p31pytyq";
     parsed.contact.whatsappVisible = false;
     if (parsed.contact.secondaryPhone?.includes("98765") || parsed.contact.secondaryPhoneRaw?.includes("98765")) {
       parsed.contact.secondaryPhone = "";

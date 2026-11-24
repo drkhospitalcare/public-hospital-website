@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import { HOSPITAL_INFO } from "../src/lib/hospital-info";
+import { DEFAULT_LOCATION_MAPS } from "../src/lib/cms-defaults";
 
 const PUBLIC_BASE = "http://localhost:8000";
 
@@ -61,16 +63,48 @@ test.describe("SUITE 7 – Contact and Location Tests", () => {
     await expect(walkInInfo).toBeVisible();
   });
 
-  test("CONTACT-009: Google Maps link works", async ({ page }) => {
+  test("CONTACT-009: Google Maps link works with valid embed and directions listing", async ({ page }) => {
     const mapIframe = page.locator('iframe[title*="Google Maps"]').first();
     await expect(mapIframe).toBeVisible();
+
+    const src = await mapIframe.getAttribute("src");
+    expect(src).not.toBeNull();
+    // Must NOT be a shortened maps.app.goo.gl link
+    expect(src).not.toContain("maps.app.goo.gl");
+    expect(src).not.toContain("goo.gl");
+    // Must contain embed parameter and correct coordinates
+    expect(src).toMatch(/output=embed|embed/);
+    expect(src).toContain("13.1756454");
+    expect(src).toContain("79.6116292");
+
+    // Verify loading and referrerPolicy attributes
+    expect(await mapIframe.getAttribute("loading")).toBe("lazy");
+    expect(await mapIframe.getAttribute("referrerpolicy")).toBe("no-referrer-when-downgrade");
+
     const directionsLink = page.locator('a:has-text("Directions"), a[href*="google.com/maps"], a[href*="maps.google.com"]').first();
     await expect(directionsLink).toBeVisible();
+    const href = await directionsLink.getAttribute("href");
+    expect(href).toContain("DRK+Dental+Skin+%26+Hair+Hospital+Private+Limited");
+    expect(href).toContain("13.1756454");
+    expect(href).toContain("79.6116292");
   });
 
   test("CONTACT-010: Location settings persist correctly", async ({ page }) => {
     const addressCard = page.getByText("Tamil Nadu").first();
     await expect(addressCard).toBeVisible();
+  });
+
+  test("CONTACT-012: Hospital GPS coordinates are verified to 13.1756454, 79.6116292", () => {
+    expect(HOSPITAL_INFO.coordinates.latitude).toBe(13.1756454);
+    expect(HOSPITAL_INFO.coordinates.longitude).toBe(79.6116292);
+    expect(HOSPITAL_INFO.geo.latitude).toBe(13.1756454);
+    expect(HOSPITAL_INFO.geo.longitude).toBe(79.6116292);
+
+    expect(DEFAULT_LOCATION_MAPS.latitude).toBe("13.1756454");
+    expect(DEFAULT_LOCATION_MAPS.longitude).toBe("79.6116292");
+    expect(DEFAULT_LOCATION_MAPS.embedUrl).toContain("13.1756454");
+    expect(DEFAULT_LOCATION_MAPS.embedUrl).toContain("79.6116292");
+    expect(DEFAULT_LOCATION_MAPS.embedUrl).not.toContain("maps.app.goo.gl");
   });
 
   test("CONTACT-011: Patient Coordination number (+91 98765 43210) is completely removed", async ({ page }) => {
